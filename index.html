@@ -20,7 +20,9 @@
                 const weatherInfoElement = document.getElementById('weather-info');
 
                 forecastList.forEach(forecast => {
-                    const date = new Date(forecast.dt * 1000).toLocaleDateString();
+                    const date = new Date(forecast.dt * 1000);
+                    const formattedDate = date.toLocaleDateString('es', { weekday: 'long', month: 'long', day: 'numeric' });
+                    const hour = date.toLocaleTimeString('es', { hour: 'numeric', minute: 'numeric', hour12: true });
                     const temperature = forecast.main.temp;
                     const precipitation = forecast.pop * 100; // Probabilidad de precipitación en porcentaje
                     const cloudiness = forecast.clouds.all;
@@ -28,7 +30,7 @@
                     // Crear elementos HTML para mostrar los datos
                     const forecastElement = document.createElement('div');
                     forecastElement.innerHTML = `
-                        <p>${date}: ${temperature}°C</p>
+                        <p>${formattedDate} a las ${hour}: ${temperature}°C</p>
                         <p>Precipitación: ${precipitation}%</p>
                         <p>Nubosidad: ${cloudiness}%</p>
                     `;
