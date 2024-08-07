@@ -5,8 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pronóstico del Tiempo</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos para el div de donaciones */
+        .neon-div {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+            background-color: #000;
+            color: #fff;
+            border-radius: 10px;
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.3s;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .neon-div:hover {
+            background-color: #00ff00;
+        }
+    </style>
 </head>
 <body>
+    <div class="neon-div" onclick="copyAccountNumber()">
+        ¡Ayúdanos con tu donación! Número de cuenta: 1234-5678-9012-3456
+    </div>
     <h1>Pronóstico del Tiempo para [nombre de la localidad]</h1>
     <div id="weather-info"></div>
 
@@ -42,6 +65,14 @@
             .catch(error => {
                 console.error('Error al obtener datos meteorológicos:', error);
             });
+    </script>
+    <script>
+        function copyAccountNumber() {
+            const accountNumber = '1234-5678-9012-3456';
+            navigator.clipboard.writeText(accountNumber)
+                .then(() => alert('Número de cuenta copiado: ' + accountNumber))
+                .catch(error => console.error('Error al copiar el número de cuenta:', error));
+        }
     </script>
 </body>
 </html>
