@@ -15,13 +15,22 @@
         fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric')
             .then(response => response.json())
             .then(data => {
-                // Extraer datos relevantes (por ejemplo, temperatura)
+                // Extraer datos relevantes
                 const temperature = data.list[0].main.temp;
-                const description = data.list[0].weather[0].description;
+                const tempMax = data.list[0].main.temp_max;
+                const tempMin = data.list[0].main.temp_min;
+                const cloudiness = data.list[0].clouds.all;
+                const precipitation = data.list[0].pop;
 
                 // Actualizar el elemento HTML con los datos
                 const weatherInfoElement = document.getElementById('weather-info');
-                weatherInfoElement.innerHTML = `Temperatura: ${temperature}°C, ${description}`;
+                weatherInfoElement.innerHTML = `
+                    <p>Temperatura: ${temperature}°C</p>
+                    <p>Temp. Máxima: ${tempMax}°C</p>
+                    <p>Temp. Mínima: ${tempMin}°C</p>
+                    <p>Nubosidad: ${cloudiness}%</p>
+                    <p>Probabilidad de Precipitación: ${precipitation}%</p>
+                `;
             })
             .catch(error => {
                 console.error('Error al obtener datos meteorológicos:', error);
