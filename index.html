@@ -1,13 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pronóstico del Tiempo</title>
-<link rel="stylesheet" href="estilos.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información Meteorológica</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div id="pronostico"></div>
-<script src="script.js"></script>
+    <h1>Información Meteorológica</h1>
+    <div id="weather-info"></div>
+
+    <script>
+        // Hacer una solicitud a la API de OpenWeatherMap (reemplaza con tu URL)
+        fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric')
+            .then(response => response.json())
+            .then(data => {
+                // Extraer datos relevantes (por ejemplo, temperatura)
+                const temperature = data.list[0].main.temp;
+                const description = data.list[0].weather[0].description;
+
+                // Actualizar el elemento HTML con los datos
+                const weatherInfoElement = document.getElementById('weather-info');
+                weatherInfoElement.innerHTML = `Temperatura: ${temperature}°C, ${description}`;
+            })
+            .catch(error => {
+                console.error('Error al obtener datos meteorológicos:', error);
+            });
+    </script>
 </body>
 </html>
