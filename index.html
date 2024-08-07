@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Información Meteorológica</title>
+    <title>Pronóstico del Tiempo</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Información Meteorológica</h1>
+    <h1>Pronóstico del Tiempo para [nombre de la localidad]</h1>
     <div id="weather-info"></div>
 
     <script>
@@ -15,12 +15,26 @@
         fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric')
             .then(response => response.json())
             .then(data => {
-                // Extraer datos relevantes para el pronóstico de 3 horas
-                const forecast = data.list[0].weather[0].description;
-
-                // Actualizar el elemento HTML con los datos
+                // Extraer datos relevantes para el pronóstico a tres días
+                const forecastList = data.list.slice(0, 8); // Obtener los primeros 8 registros (3 días)
                 const weatherInfoElement = document.getElementById('weather-info');
-                weatherInfoElement.innerHTML = `Pronóstico para las próximas 3 horas: ${forecast}`;
+
+                forecastList.forEach(forecast => {
+                    const date = new Date(forecast.dt * 1000).toLocaleDateString();
+                    const temperature = forecast.main.temp;
+                    const precipitation = forecast.pop * 100; // Probabilidad de precipitación en porcentaje
+                    const cloudiness = forecast.clouds.all;
+
+                    // Crear elementos HTML para mostrar los datos
+                    const forecastElement = document.createElement('div');
+                    forecastElement.innerHTML = `
+                        <p>${date}: ${temperature}°C</p>
+                        <p>Precipitación: ${precipitation}%</p>
+                        <p>Nubosidad: ${cloudiness}%</p>
+                    `;
+
+                    weatherInfoElement.appendChild(forecastElement);
+                });
             })
             .catch(error => {
                 console.error('Error al obtener datos meteorológicos:', error);
