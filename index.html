@@ -30,7 +30,8 @@
                     // Crear elementos HTML para mostrar los datos
                     const forecastElement = document.createElement('div');
                     forecastElement.innerHTML = `
-                        <p>${formattedDate} a las ${hour}: ${temperature}°C</p>
+                        <p>${formattedDate} a las ${hour}</p>
+                        <p>Temperatura: ${temperature}°C</p>
                         <p>Precipitación: ${precipitation}%</p>
                         <p>Nubosidad: ${cloudiness}%</p>
                     `;
