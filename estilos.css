@@ -2,31 +2,3 @@ body {
 font-family: Arial, sans-serif;
 background-color: #f0f0f0;
 }
-
-#pronostico {
-width: 80%;
-margin: 40px auto;
-padding: 20px;
-background-color: #fff;
-border: 1px solid #ddd;
-border-radius: 10px;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-#pronostico h2 {
-margin-top: 0;
-}
-
-#pronostico ul {
-list-style: none;
-padding: 0;
-margin: 0;
-}
-
-#pronostico li {
-margin-bottom: 10px;
-}
-
-#pronostico li ul {
-margin-left: 20px;
-}
