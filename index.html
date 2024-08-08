@@ -26,8 +26,8 @@
         fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric')
             .then(response => response.json())
             .then(data => {
-                // Extraer datos relevantes para el pronóstico a tres días en intervalos de 2 horas
-                const forecastList = data.list.filter((forecast, index) => index % 4 === 0); // Cada 4 registros (2 horas)
+                // Extraer datos relevantes para el pronóstico a 48 horas en intervalos de 2 horas
+                const forecastList = data.list.slice(0, 24); // Obtener los primeros 24 registros (48 horas)
                 const weatherInfoElement = document.getElementById('weather-info');
 
                 forecastList.forEach(forecast => {
