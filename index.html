@@ -54,5 +54,38 @@
                 .catch(error => console.error('Error al copiar el número de cuenta:', error));
         }
     </script>
+     <script>
+        // Hacer una solicitud a la API de OpenWeatherMap (reemplaza con tu URL)
+        fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric')
+            .then(response => response.json())
+            .then(data => {
+                // Extraer datos relevantes para el pronóstico a tres días en intervalos de 2 horas
+                const forecastList = data.list.filter((forecast, index) => index % 4 === 0); // Cada 4 registros (2 horas)
+                const weatherInfoElement = document.getElementById('weather-info');
+
+                forecastList.forEach(forecast => {
+                    const date = new Date(forecast.dt * 1000);
+                    const formattedDate = date.toLocaleDateString('es', { weekday: 'long', month: 'long', day: 'numeric' });
+                    const hour = date.toLocaleTimeString('es', { hour: 'numeric', minute: 'numeric', hour12: true });
+                    const temperature = forecast.main.temp;
+                    const precipitation = forecast.pop * 100; // Probabilidad de precipitación en porcentaje
+                    const cloudiness = forecast.clouds.all;
+
+                    // Crear elementos HTML para mostrar los datos
+                    const forecastElement = document.createElement('div');
+                    forecastElement.innerHTML = `
+                        <p>${formattedDate} a las ${hour}</p>
+                        <p>Temperatura: ${temperature}°C</p>
+                        <p>Precipitación: ${precipitation}%</p>
+                        <p>Nubosidad: ${cloudiness}%</p>
+                    `;
+
+                    weatherInfoElement.appendChild(forecastElement);
+                });
+            })
+            .catch(error => {
+                console.error('Error al obtener datos meteorológicos:', error);
+            });
+    </script>
 </body>
 </html>
