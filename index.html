@@ -11,7 +11,7 @@
         ¡Ayúdanos con tu donación! Número de cuenta: 1271 8001 3023 546289
     </div>
     <h1>Pronóstico del Tiempo para <p> San Nicolás</h1>
-    <div id="weather-info"></div>
+    <div id="weather-data"></div>
     <script>
         function copyAccountNumber() {
             const accountNumber = '1271 8001 3023 546289';
@@ -22,36 +22,29 @@
     </script>
     <div>[-------|||||------]</div>
      <script>
-        // Hacer una solicitud a la API de OpenWeatherMap (reemplaza con tu URL)
-        fetch('https://api.openweathermap.org/data/3.0/onecall?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&&exclude=hourly,daily,alerts')
+        // Hacer la llamada a la API
+        const apiURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74';
+
+        fetch(apiURL)
             .then(response => response.json())
             .then(data => {
-                // Extraer datos relevantes para el pronóstico a 48 horas en intervalos de 2 horas
-                const forecastList = data.list.slice(0, 24); // Obtener los primeros 24 registros (48 horas)
-                const weatherInfoElement = document.getElementById('weather-info');
+                const currentTemperature = data.current.temp;
+                const weatherDescription = data.current.weather[0].description;
+                const dailyForecast = data.daily;
 
-                forecastList.forEach(forecast => {
-                    const date = new Date(forecast.dt * 1000);
-                    const formattedDate = date.toLocaleDateString('es', { weekday: 'long', month: 'long', day: 'numeric' });
-                    const hour = date.toLocaleTimeString('es', { hour: 'numeric', minute: 'numeric', hour12: true });
-                    const temperature = forecast.main.temp;
-                    const precipitation = forecast.pop * 100; // Probabilidad de precipitación en porcentaje
-                    const cloudiness = forecast.clouds.all;
-
-                    // Crear elementos HTML para mostrar los datos
-                    const forecastElement = document.createElement('div');
-                    forecastElement.innerHTML = `
-                        <p>${formattedDate} a las ${hour}</p>
-                        <p>Temperatura: ${temperature}°C</p>
-                        <p>Precipitación: ${precipitation}%</p>
-                        <p>Nubosidad: ${cloudiness}%</p>
-                    `;
-
-                    weatherInfoElement.appendChild(forecastElement);
-                });
+                // Mostrar los datos en el DOM
+                const weatherDataElement = document.getElementById('weather-data');
+                weatherDataElement.innerHTML = `
+                    <p>Temperatura actual: ${currentTemperature} °C</p>
+                    <p>Descripción del clima: ${weatherDescription}</p>
+                    <h2>Pronóstico diario:</h2>
+                    <ul>
+                        ${dailyForecast.map(day => `<li>${day.weather[0].description}</li>`).join('')}
+                    </ul>
+                `;
             })
             .catch(error => {
-                console.error('Error al obtener datos meteorológicos:', error);
+                console.error('Error al obtener datos del pronóstico del tiempo:', error);
             });
     </script>
 </body>
