@@ -23,7 +23,7 @@
     <div>[-------|||||------]</div>
      <script>
         // Hacer una solicitud a la API de OpenWeatherMap (reemplaza con tu URL)
-        fetch('https://api.openweathermap.org/data/3.0/onecall?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&excluye=alerts')
+        fetch('https://api.openweathermap.org/data/3.0/onecall?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&&exclude=hourly,daily,alerts')
             .then(response => response.json())
             .then(data => {
                 // Extraer datos relevantes para el pronóstico a 48 horas en intervalos de 2 horas
