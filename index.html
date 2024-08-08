@@ -53,7 +53,7 @@
 <script>
   async function obtenerDatos() {
     try {
-      const respuesta = await fetch('URL_DE_LA_API_AQUÍ');
+      const respuesta = await fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric');
       const datos = await respuesta.json();
       console.log(datos); // Muestra los datos en la consola (puedes adaptarlo según tus necesidades)
     } catch (error) {
