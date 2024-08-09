@@ -21,45 +21,6 @@
         }
     </script>
     <!--[-----=====-----]-->
-    <div id="clima"></div>
-    <script>
-  async function obtenerDatos() {
-    try {
-      const url = 'https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric';
-      const respuesta = await fetch(url);
-      const datos = await respuesta.json();
-
-      // Extrae los datos específicos que necesitas
-      const temperatura = datos.list[0].main.temp;
-      const sensacionTermica = datos.list[0].main.feels_like;
-      const humedad = datos.list[0].main.humidity;
-    const lluvia =
-    datos.list[0].pop * 100;
-      const nubosidad = datos.list[0].clouds.all;
-      const velocidadViento = datos.list[0].wind.speed;
-      const direccionViento = datos.list[0].wind.deg;
-      const rachasViento = datos.list[0].wind.gust;
-      const visibilidad = datos.list[0].visibility / 1000;
-
-      // Actualiza el contenido del elemento
-      document.getElementById('clima').innerHTML = `
-        <p>Temperatura: ${temperatura} °C</p>
-        <p>Sensación térmica: ${sensacionTermica} °C</p>
-        <p>Humedad: ${humedad}%</p>
-        <p>Nubosidad: ${nubosidad}%</p>
-        <p>Precipitacion: ${lluvia}%</p>
-        <p>Viento: ${velocidadViento} m/s, dirección ${direccionViento}° (ráfagas: ${rachasViento} m/s)</p>
-        <p>Visibilidad: ${visibilidad} Kilómetros</p>
-      `;
-    } catch (error) {
-      console.error('Error al obtener datos:', error);
-    }
-  }
-
-  // Llama a la función para obtener los datos al cargar la página
-  obtenerDatos();
-</script>
-    <!--[-----=====-----]-->
     <div id="pronostico"></div>
     <script>
   async function obtenerPronostico() {
@@ -116,29 +77,28 @@
 
       // Actualiza el contenido del elemento con ID "pronostico"
       document.getElementById('pronostico').innerHTML = `
-        <h2>Pronóstico para los próximos 3 días:</h2>
-        <h3>Día 1:</h3>
+        <h3>Hoy:</h3>
         <p>Temperatura: ${datosDia1.temperatura} °C</p>
         <p>Sensación térmica: ${datosDia1.sensacionTermica} °C</p>
         <p>Humedad: ${datosDia1.humedad}%</p>
         <p>Nubosidad: ${datosDia1.nubosidad}%</p>
-        <p>Probabilidad de lluvias: ${datosDia1.probabilidadLluvias}%</p>
+        <p>Precipitación: ${datosDia1.probabilidadLluvias}%</p>
         <p>Visibilidad: ${datosDia1.visibilidad} Kilómetros</p>
         <!-- Agrega más detalles según tus necesidades -->
-        <h3>Día 2:</h3>
+        <h3>Mañana:</h3>
         <p>Temperatura: ${datosDia2.temperatura} °C</p>
         <p>Sensación térmica: ${datosDia2.sensacionTermica} °C</p>
         <p>Humedad: ${datosDia2.humedad}%</p>
         <p>Nubosidad: ${datosDia2.nubosidad}%</p>
-        <p>Probabilidad de lluvias: ${datosDia2.probabilidadLluvias}%</p>
+        <p>Precipitación: ${datosDia2.probabilidadLluvias}%</p>
         <p>Visibilidad: ${datosDia2.visibilidad} Kilómetros</p>
         <!-- Agrega más detalles según tus necesidades -->
-        <h3>Día 3:</h3>
+        <h3>Pasado:</h3>
         <p>Temperatura: ${datosDia3.temperatura} °C</p>
         <p>Sensación térmica: ${datosDia3.sensacionTermica} °C</p>
         <p>Humedad: ${datosDia3.humedad}%</p>
         <p>Nubosidad: ${datosDia3.nubosidad}%</p>
-        <p>Probabilidad de lluvias: ${datosDia3.probabilidadLluvias}%</p>
+        <p>Precipitación: ${datosDia3.probabilidadLluvias}%</p>
         <p>Visibilidad: ${datosDia3.visibilidad} Kilómetros</p>
         <!-- Agrega más detalles según tus necesidades -->
       `;
