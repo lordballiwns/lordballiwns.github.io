@@ -20,9 +20,8 @@
                 .catch(error => console.error('Error al copiar el número de cuenta:', error));
         }
     </script>
-    <div>[-------|||||------]</div>
-     <div id="clima"></div>
     <!--[-----=====-----]-->
+    <div id="clima"></div>
     <script>
   async function obtenerDatos() {
     try {
@@ -56,6 +55,43 @@
 
   // Llama a la función para obtener los datos al cargar la página
   obtenerDatos();
+</script>
+    <!--[-----=====-----]-->
+    <div id="pronostico"></div>
+    <script>
+  async function obtenerPronostico() {
+    try {
+      const url = 'https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric';
+      const respuesta = await fetch(url);
+      const datos = await respuesta.json();
+
+      // Extrae los datos del tercer día (índice 2)
+      const pronosticoTercerDia = datos.list[2];
+      const temperatura = pronosticoTercerDia.main.temp;
+      const sensacionTermica = pronosticoTercerDia.main.feels_like;
+      const humedad = pronosticoTercerDia.main.humidity;
+      const nubosidad = pronosticoTercerDia.clouds.all;
+      const velocidadViento = pronosticoTercerDia.wind.speed;
+      const direccionViento = pronosticoTercerDia.wind.deg;
+      const rachasViento = pronosticoTercerDia.wind.gust;
+      const visibilidad = pronosticoTercerDia.visibility;
+
+      // Actualiza el contenido del elemento con ID "pronostico"
+      document.getElementById('pronostico').innerHTML = `
+        <p>Temperatura: ${temperatura} °C</p>
+        <p>Sensación térmica: ${sensacionTermica} °C</p>
+        <p>Humedad: ${humedad}%</p>
+        <p>Nubosidad: ${nubosidad}%</p>
+        <p>Viento: ${velocidadViento} m/s, dirección ${direccionViento}° (ráfagas: ${rachasViento} m/s)</p>
+        <p>Visibilidad: ${visibilidad} metros</p>
+      `;
+    } catch (error) {
+      console.error('Error al obtener pronóstico:', error);
+    }
+  }
+
+  // Llama a la función para obtener el pronóstico al cargar la página
+  obtenerPronostico();
 </script>
 </body>
 </html>
