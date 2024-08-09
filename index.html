@@ -72,6 +72,9 @@
       const pronosticoDia1 = datos.list[0];
       const pronosticoDia2 = datos.list[8];
       const pronosticoDia3 = datos.list[16];
+    
+    // Función para redondear a dos decimales
+      const redondear = (numero) => Math.round(numero * 100) / 100;
 
       // Datos específicos para cada día
       const datosDia1 = {
@@ -79,7 +82,8 @@
         sensacionTermica: pronosticoDia1.main.feels_like,
         humedad: pronosticoDia1.main.humidity,
         nubosidad: pronosticoDia1.clouds.all,
-        probabilidadLluvias: pronosticoDia1.pop * 100,
+        probabilidadLluvias: redondear(pronosticoDia1.pop * 100), 
+        // Multiplicamos por 100 y redondeamos
         velocidadViento: pronosticoDia1.wind.speed,
         direccionViento: pronosticoDia1.wind.deg,
         rachasViento: pronosticoDia1.wind.gust,
