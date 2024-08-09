@@ -39,7 +39,7 @@
       const velocidadViento = datos.list[0].wind.speed;
       const direccionViento = datos.list[0].wind.deg;
       const rachasViento = datos.list[0].wind.gust;
-      const visibilidad = datos.list[0].visibility;
+      const visibilidad = datos.list[0].visibility / 1000;
 
       // Actualiza el contenido del elemento
       document.getElementById('clima').innerHTML = `
@@ -49,7 +49,7 @@
         <p>Nubosidad: ${nubosidad}%</p>
         <p>Precipitacion: ${lluvia}%</p>
         <p>Viento: ${velocidadViento} m/s, dirección ${direccionViento}° (ráfagas: ${rachasViento} m/s)</p>
-        <p>Visibilidad: ${visibilidad} metros</p>
+        <p>Visibilidad: ${visibilidad} Kilómetros</p>
       `;
     } catch (error) {
       console.error('Error al obtener datos:', error);
@@ -83,7 +83,7 @@
         velocidadViento: pronosticoDia1.wind.speed,
         direccionViento: pronosticoDia1.wind.deg,
         rachasViento: pronosticoDia1.wind.gust,
-        visibilidad: pronosticoDia1.visibility,
+        visibilidad: pronosticoDia1.visibility / 1000,
       };
 
       const datosDia2 = {
@@ -95,7 +95,7 @@
         velocidadViento: pronosticoDia2.wind.speed,
         direccionViento: pronosticoDia2.wind.deg,
         rachasViento: pronosticoDia2.wind.gust,
-        visibilidad: pronosticoDia2.visibility,
+        visibilidad: pronosticoDia2.visibility / 1000,
       };
 
       const datosDia3 = {
@@ -107,7 +107,7 @@
         velocidadViento: pronosticoDia3.wind.speed,
         direccionViento: pronosticoDia3.wind.deg,
         rachasViento: pronosticoDia3.wind.gust,
-        visibilidad: pronosticoDia3.visibility,
+        visibilidad: pronosticoDia3.visibility / 1000,
       };
 
       // Actualiza el contenido del elemento con ID "pronostico"
@@ -119,6 +119,7 @@
         <p>Humedad: ${datosDia1.humedad}%</p>
         <p>Nubosidad: ${datosDia1.nubosidad}%</p>
         <p>Probabilidad de lluvias: ${datosDia1.probabilidadLluvias}%</p>
+        <p>Visibilidad: ${datosDia1.visibility} Kilómetros</p>
         <!-- Agrega más detalles según tus necesidades -->
         <h3>Día 2:</h3>
         <p>Temperatura: ${datosDia2.temperatura} °C</p>
@@ -126,6 +127,7 @@
         <p>Humedad: ${datosDia2.humedad}%</p>
         <p>Nubosidad: ${datosDia2.nubosidad}%</p>
         <p>Probabilidad de lluvias: ${datosDia2.probabilidadLluvias}%</p>
+        <p>Visibilidad: ${datosDi2.visibility} Kilómetros</p>
         <!-- Agrega más detalles según tus necesidades -->
         <h3>Día 3:</h3>
         <p>Temperatura: ${datosDia3.temperatura} °C</p>
@@ -133,6 +135,7 @@
         <p>Humedad: ${datosDia3.humedad}%</p>
         <p>Nubosidad: ${datosDia3.nubosidad}%</p>
         <p>Probabilidad de lluvias: ${datosDia3.probabilidadLluvias}%</p>
+        <p>Visibilidad: ${datosDia3.visibility} Kilómetros</p>
         <!-- Agrega más detalles según tus necesidades -->
       `;
     } catch (error) {
