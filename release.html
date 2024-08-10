@@ -24,7 +24,7 @@
     <div id="weather-data"></div>
 
     <script>
-        fetch('https://smn.conagua.gob.mx/tools/GUI/webservices/?method=1')
+        fetch('https://smn.conagua.gob.mx/tools/GUI/webservices/index.php?method=1')
             .then(response => response.json())
             .then(data => {
                 const weatherDiv = document.getElementById('weather-data');
