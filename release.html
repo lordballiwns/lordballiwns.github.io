@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pronóstico del Tiempo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="neon-div" onclick="copyAccountNumber()">
+        ¡Ayúdanos con tu donación! Número de cuenta: 1271 8001 3023 546289
+    </div>
+    <h1>Pronóstico del Tiempo para <p> San Nicolás</h1>
+    <!--test-->
+    <script>
+        function copyAccountNumber() {
+            const accountNumber = '1271 8001 3023 546289';
+            navigator.clipboard.writeText(accountNumber)
+                .then(() => alert('Número de cuenta copiado: ' + accountNumber))
+                .catch(error => console.error('Error al copiar el número de cuenta:', error));
+        }
+    </script>
+    <!--[-----=====-----]-->
+    <div id="weather-data"></div>
+
+    <script>
+        fetch('https://smn.conagua.gob.mx/tools/GUI/webservices/?method=1')
+            .then(response => response.json())
+            .then(data => {
+                const weatherDiv = document.getElementById('weather-data');
+                weatherDiv.innerHTML = `
+                    <p>Temperatura máxima: ${data.tmax}°C</p>
+                    <p>Temperatura mínima: ${data.tmin}°C</p>
+                    <p>Precipitación: ${data.prec} mm</p>
+                    <!-- Agrega más detalles según tus necesidades -->
+                `;
+            })
+            .catch(error => {
+                console.error('Error al obtener datos del SMN:', error);
+            });
+    </script>
+</body>
+</html>
