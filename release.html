@@ -47,7 +47,7 @@
         nubosidad: pronosticoDia1.clouds.all,
         uno: pronosticoDia1.weather.id,
         dos: pronosticoDia1.weather.main,
-        descripcion: pronosticoDia1.description,
+        descripcion: pronosticoDia1.weather.description,
         probabilidadLluvias: redondear(pronosticoDia1.pop * 100), 
         // Multiplicamos por 100 y redondeamos
         velocidadViento: pronosticoDia1.wind.speed,
@@ -87,7 +87,10 @@
         <p>Temperatura: ${datosDia1.temperatura} °C</p>
         <p>Sensación térmica: ${datosDia1.sensacionTermica} °C</p>
         <p>Humedad: ${datosDia1.humedad}%</p>
-        <p>Nubosidad: ${datosDia1.nubosidad}%, ${datosDia1.uno} , ${datosDia1.dos} , ${datosDia1.descripcion} </p>
+        <p>Nubosidad: ${datosDia1.nubosidad}%</p>
+        <p>Uno: ${datosDia1.uno}</p>
+        <p>Dos: ${datosDia1.dos}</p>
+        <p> ${datosDia1.descripcion} </p>
         <p>Precipitación: ${datosDia1.probabilidadLluvias}%</p>
         <p>Visibilidad: ${datosDia1.visibilidad} Kilómetros</p>
         <!-- Agrega más detalles según tus necesidades -->
