@@ -145,8 +145,8 @@
     <!-- Script para mostrar la fecha actual -->
     <script>
         const fechaActual = new Date();
-        const mes = fechaActual.toLocaleString('es', { month: 'long', year: 'numeric' });
-        const mesConPrimeraMayuscula = mes.charAt(0).toUpperCase() + mes.slice(1); // Ajuste aquí
+        const mes = fechaActual.toLocaleString('es', { month: 'long' });
+        const mesConPrimeraMayuscula = mes.charAt(0).toUpperCase() + mes.slice(1);
         const año = fechaActual.getFullYear();
         document.getElementById('fecha').textContent = `${mesConPrimeraMayuscula} ${año}`;
     </script>
