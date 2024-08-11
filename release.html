@@ -34,6 +34,12 @@
     
     // Función para redondear a dos decimales
       const redondear = (numero) => Math.round(numero * 100) / 100;
+    
+    // Mapeo de letras a períodos del día
+                const periodoDia = {
+                    d: 'Día',
+                    t: 'Tarde',
+                    n: 'Noche',
 
       // Datos específicos para cada día
       const datosDia1 = {
@@ -52,7 +58,7 @@
         rachasViento: pronosticoDia1.wind.gust,
         visibilidad: pronosticoDia1.visibility / 1000,
         rain3h: pronosticoDia1.rain ? pronosticoDia1.rain['3h'] : 0, // Agregamos rain.3h
-        sysPod: pronosticoDia1.sys.pod, // Agregamos sys.pod
+        sysPod: periodoDia[pronosticoDia1.sys.pod], // Agregamos sys.pod
         poblacion: datos.city.population, // Agregamos city.population
       };
 
