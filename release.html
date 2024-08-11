@@ -21,23 +21,97 @@
         }
     </script>
     <!--[-----=====-----]-->
-    <div id="weather-data"></div>
-
+    <div id="pronostico"></div>
     <script>
-        fetch('https://smn.conagua.gob.mx/tools/GUI/webservices/index.php?method=1')
-            .then(response => response.json())
-            .then(data => {
-                const weatherDiv = document.getElementById('weather-data');
-                weatherDiv.innerHTML = `
-                    <p>Temperatura máxima: ${data.tmax}°C</p>
-                    <p>Temperatura mínima: ${data.tmin}°C</p>
-                    <p>Precipitación: ${data.prec} mm</p>
-                    <!-- Agrega más detalles según tus necesidades -->
-                `;
-            });
-            .catch(error => {
-                console.error('Error al obtener datos del SMN:', error);
-            });
-    </script>
+  async function obtenerPronostico() {
+    try {
+      const url = 'https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric';
+      const respuesta = await fetch(url);
+      const datos = await respuesta.json();
+
+      // Extrae los datos para los próximos 3 días (índices 0, 8 y 16)
+      const pronosticoDia1 = datos.list[0];
+      const pronosticoDia2 = datos.list[8];
+      const pronosticoDia3 = datos.list[16];
+    
+    // Función para redondear a dos decimales
+      const redondear = (numero) => Math.round(numero * 100) / 100;
+
+      // Datos específicos para cada día
+      const datosDia1 = {
+        fecha: 
+        pronosticoDia1.list.dt,
+        temperatura: pronosticoDia1.main.temp,
+        sensacionTermica: pronosticoDia1.main.feels_like,
+        humedad: pronosticoDia1.main.humidity,
+        nubosidad: pronosticoDia1.clouds.all,
+        probabilidadLluvias: redondear(pronosticoDia1.pop * 100), 
+        // Multiplicamos por 100 y redondeamos
+        velocidadViento: pronosticoDia1.wind.speed,
+        direccionViento: pronosticoDia1.wind.deg,
+        rachasViento: pronosticoDia1.wind.gust,
+        visibilidad: pronosticoDia1.visibility / 1000,
+      };
+
+      const datosDia2 = {
+        temperatura: pronosticoDia2.main.temp,
+        sensacionTermica: pronosticoDia2.main.feels_like,
+        humedad: pronosticoDia2.main.humidity,
+        nubosidad: pronosticoDia2.clouds.all,
+        probabilidadLluvias: redondear(pronosticoDia2.pop * 100),
+        velocidadViento: pronosticoDia2.wind.speed,
+        direccionViento: pronosticoDia2.wind.deg,
+        rachasViento: pronosticoDia2.wind.gust,
+        visibilidad: pronosticoDia2.visibility / 1000,
+      };
+
+      const datosDia3 = {
+        temperatura: pronosticoDia3.main.temp,
+        sensacionTermica: pronosticoDia3.main.feels_like,
+        humedad: pronosticoDia3.main.humidity,
+        nubosidad: pronosticoDia3.clouds.all,
+        probabilidadLluvias: redondear(pronosticoDia3.pop * 100),
+        velocidadViento: pronosticoDia3.wind.speed,
+        direccionViento: pronosticoDia3.wind.deg,
+        rachasViento: pronosticoDia3.wind.gust,
+        visibilidad: pronosticoDia3.visibility / 1000,
+      };
+
+      // Actualiza el contenido del elemento con ID "pronostico"
+      document.getElementById('pronostico').innerHTML = `
+        <h3>Hoy:</h3>
+        <p>Fecha: ${datosDia1.fecha}</p>
+        <p>Temperatura: ${datosDia1.temperatura} °C</p>
+        <p>Sensación térmica: ${datosDia1.sensacionTermica} °C</p>
+        <p>Humedad: ${datosDia1.humedad}%</p>
+        <p>Nubosidad: ${datosDia1.nubosidad}%</p>
+        <p>Precipitación: ${datosDia1.probabilidadLluvias}%</p>
+        <p>Visibilidad: ${datosDia1.visibilidad} Kilómetros</p>
+        <!-- Agrega más detalles según tus necesidades -->
+        <h3>Mañana:</h3>
+        <p>Temperatura: ${datosDia2.temperatura} °C</p>
+        <p>Sensación térmica: ${datosDia2.sensacionTermica} °C</p>
+        <p>Humedad: ${datosDia2.humedad}%</p>
+        <p>Nubosidad: ${datosDia2.nubosidad}%</p>
+        <p>Precipitación: ${datosDia2.probabilidadLluvias}%</p>
+        <p>Visibilidad: ${datosDia2.visibilidad} Kilómetros</p>
+        <!-- Agrega más detalles según tus necesidades -->
+        <h3>Pasado:</h3>
+        <p>Temperatura: ${datosDia3.temperatura} °C</p>
+        <p>Sensación térmica: ${datosDia3.sensacionTermica} °C</p>
+        <p>Humedad: ${datosDia3.humedad}%</p>
+        <p>Nubosidad: ${datosDia3.nubosidad}%</p>
+        <p>Precipitación: ${datosDia3.probabilidadLluvias}%</p>
+        <p>Visibilidad: ${datosDia3.visibilidad} Kilómetros</p>
+        <!-- Agrega más detalles según tus necesidades -->
+      `;
+    } catch (error) {
+      console.error('Error al obtener pronóstico:', error);
+    }
+  }
+
+  // Llama a la función para obtener el pronóstico al cargar la página
+  obtenerPronostico();
+</script>
 </body>
 </html>
