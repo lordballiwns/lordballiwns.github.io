@@ -45,12 +45,9 @@
         sensacionTermica: pronosticoDia1.main.feels_like,
         humedad: pronosticoDia1.main.humidity,
         nubosidad: pronosticoDia1.clouds.all,
-        uno:
-        pronosticoDia1.weather.id,
-        dos:
-        pronosticoDia1.weather.main,
-        descripcion:
-        pronosticoDia1.weather.description,
+        uno: pronosticoDia1.weather.id,
+        dos: pronosticoDia1.weather.main,
+        descripcion: pronosticoDia1.weather.description,
         probabilidadLluvias: redondear(pronosticoDia1.pop * 100), 
         // Multiplicamos por 100 y redondeamos
         velocidadViento: pronosticoDia1.wind.speed,
