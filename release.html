@@ -47,7 +47,7 @@
         nubosidad: pronosticoDia1.clouds.all,
         uno: pronosticoDia1.weather.id,
         dos: pronosticoDia1.weather.main,
-        descripcion: pronosticoDia1.weather.description,
+        descripcion: pronosticoDia1.main.description,
         probabilidadLluvias: redondear(pronosticoDia1.pop * 100), 
         // Multiplicamos por 100 y redondeamos
         velocidadViento: pronosticoDia1.wind.speed,
