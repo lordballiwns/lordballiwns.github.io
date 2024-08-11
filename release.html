@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es_mx">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
     <div class="neon-div" onclick="copyAccountNumber()">
         ¡Ayúdanos con tu donación! Número de cuenta: 1271 8001 3023 546289
     </div>
-    <h1>Pronóstico del Tiempo para <p> San Nicolás</h1>
+    <h1>Pronóstico del Tiempo<p>Ayuntamiento de San Nicolás</h1>
     <!--test-->
     <script>
         function copyAccountNumber() {
@@ -30,7 +30,7 @@
       const datos = await respuesta.json();
 
       // Extrae los datos para los próximos 3 días (índices 0, 8 y 16)
-      const pronosticoDia1 = datos.list[1];
+      const pronosticoDia1 = datos.list[0];
       const pronosticoDia2 = datos.list[8];
       const pronosticoDia3 = datos.list[16];
     
@@ -59,6 +59,8 @@
       };
 
       const datosDia2 = {
+        fecha: 
+        pronosticoDia1.dt_txt,
         temperatura: pronosticoDia2.main.temp,
         sensacionTermica: pronosticoDia2.main.feels_like,
         humedad: pronosticoDia2.main.humidity,
@@ -71,6 +73,8 @@
       };
 
       const datosDia3 = {
+        fecha: 
+        pronosticoDia1.dt_txt,
         temperatura: pronosticoDia3.main.temp,
         sensacionTermica: pronosticoDia3.main.feels_like,
         humedad: pronosticoDia3.main.humidity,
@@ -98,6 +102,7 @@
         <p>Visibilidad: ${datosDia1.visibilidad} Kilómetros</p>
         <!-- Agrega más detalles según tus necesidades -->
         <h3>Mañana:</h3>
+        <p>Fecha: ${datosDia2.fecha}</p>
         <p>Temperatura: ${datosDia2.temperatura} °C</p>
         <p>Sensación térmica: ${datosDia2.sensacionTermica} °C</p>
         <p>Humedad: ${datosDia2.humedad}%</p>
@@ -106,6 +111,7 @@
         <p>Visibilidad: ${datosDia2.visibilidad} Kilómetros</p>
         <!-- Agrega más detalles según tus necesidades -->
         <h3>Pasado:</h3>
+        <p>Fecha: ${datosDia2.fecha}</p>
         <p>Temperatura: ${datosDia3.temperatura} °C</p>
         <p>Sensación térmica: ${datosDia3.sensacionTermica} °C</p>
         <p>Humedad: ${datosDia3.humedad}%</p>
