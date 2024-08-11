@@ -11,7 +11,6 @@
         ¡Ayúdanos con tu donación! <p> Número de cuenta: 1271 8001 3023 546289
     </div>
     <h1>Pronóstico del Tiempo<p>Ayuntamiento de San Nicolás</h1>
-    <!--test-->
     <script>
         function copyAccountNumber() {
             const accountNumber = '1271 8001 3023 546289';
@@ -20,7 +19,6 @@
                 .catch(error => console.error('Error al copiar el número de cuenta:', error));
         }
     </script>
-    <!--[-----=====-----]-->
     <div id="pronostico"></div>
     <script>
   async function obtenerPronostico() {
@@ -45,7 +43,7 @@
         sensacionTermica: pronosticoDia1.main.feels_like,
         humedad: pronosticoDia1.main.humidity,
         nubosidad: pronosticoDia1.clouds.all,
-        descripcion: pronosticoDia1.weather[0].description, // Corregimos aquí
+        descripcion: pronosticoDia1.weather[0].description, 
         probabilidadLluvias: redondear(pronosticoDia1.pop * 100), 
         // Multiplicamos por 100 y redondeamos
         
@@ -65,6 +63,7 @@
         sensacionTermica: pronosticoDia2.main.feels_like,
         humedad: pronosticoDia2.main.humidity,
         nubosidad: pronosticoDia2.clouds.all,
+        descripcion: pronosticoDia2.weather[0].description,
         probabilidadLluvias: redondear(pronosticoDia2.pop * 100),
         velocidadViento: pronosticoDia2.wind.speed,
         direccionViento: pronosticoDia2.wind.deg,
@@ -79,6 +78,7 @@
         sensacionTermica: pronosticoDia3.main.feels_like,
         humedad: pronosticoDia3.main.humidity,
         nubosidad: pronosticoDia3.clouds.all,
+        descripcion: pronosticoDia3.weather[0].description,
         probabilidadLluvias: redondear(pronosticoDia3.pop * 100),
         velocidadViento: pronosticoDia3.wind.speed,
         direccionViento: pronosticoDia3.wind.deg,
@@ -94,7 +94,7 @@
         <p>Sensación térmica: ${datosDia1.sensacionTermica} °C</p>
         <p>Humedad: ${datosDia1.humedad}%</p>
         <p>Nubosidad: ${datosDia1.nubosidad}%</p>
-        <p>Descripción: ${datosDia1.descripcion}</p> <!-- Corregimos aquí -->
+        <p>Descripción: ${datosDia1.descripcion}</p> 
         <p>Precipitación: ${datosDia1.probabilidadLluvias}%</p>
         <p>Lluvia en las últimas 3 horas: ${datosDia1.rain3h} mm</p>
         <p>Período del día: ${datosDia1.sysPod}</p>
@@ -107,15 +107,17 @@
         <p>Sensación térmica: ${datosDia2.sensacionTermica} °C</p>
         <p>Humedad: ${datosDia2.humedad}%</p>
         <p>Nubosidad: ${datosDia2.nubosidad}%</p>
+        <p>Descripción: ${datosDia2.descripcion}</p>
         <p>Precipitación: ${datosDia2.probabilidadLluvias}%</p>
         <p>Visibilidad: ${datosDia2.visibilidad} Kilómetros</p>
         <!-- Agrega más detalles según tus necesidades -->
         <h3>Pasado:</h3>
-        <p>Fecha: ${datosDia2.fecha}</p>
+        <p>Fecha: ${datosDia3.fecha}</p>
         <p>Temperatura: ${datosDia3.temperatura} °C</p>
         <p>Sensación térmica: ${datosDia3.sensacionTermica} °C</p>
         <p>Humedad: ${datosDia3.humedad}%</p>
         <p>Nubosidad: ${datosDia3.nubosidad}%</p>
+        <p>Descripción: ${datosDia3.descripcion}</p>
         <p>Precipitación: ${datosDia3.probabilidadLluvias}%</p>
         <p>Visibilidad: ${datosDia3.visibilidad} Kilómetros</p>
         <!-- Agrega más detalles según tus necesidades -->
