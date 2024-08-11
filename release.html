@@ -48,10 +48,14 @@
         descripcion: pronosticoDia1.weather[0].description, // Corregimos aquí
         probabilidadLluvias: redondear(pronosticoDia1.pop * 100), 
         // Multiplicamos por 100 y redondeamos
+        
         velocidadViento: pronosticoDia1.wind.speed,
         direccionViento: pronosticoDia1.wind.deg,
         rachasViento: pronosticoDia1.wind.gust,
         visibilidad: pronosticoDia1.visibility / 1000,
+        rain3h: pronosticoDia1.rain ? pronosticoDia1.rain['3h'] : 0, // Agregamos rain.3h
+        sysPod: pronosticoDia1.sys.pod, // Agregamos sys.pod
+        poblacion: datos.city.population, // Agregamos city.population
       };
 
       const datosDia2 = {
@@ -88,6 +92,9 @@
         <p>Nubosidad: ${datosDia1.nubosidad}%</p>
         <p>Descripción: ${datosDia1.descripcion}</p> <!-- Corregimos aquí -->
         <p>Precipitación: ${datosDia1.probabilidadLluvias}%</p>
+        <p>Lluvia en las últimas 3 horas: ${datosDia1.rain3h} mm</p>
+        <p>Período del día: ${datosDia1.sysPod}</p>
+        <p>Población: ${datosDia1.poblacion}</p>
         <p>Visibilidad: ${datosDia1.visibilidad} Kilómetros</p>
         <!-- Agrega más detalles según tus necesidades -->
         <h3>Mañana:</h3>
