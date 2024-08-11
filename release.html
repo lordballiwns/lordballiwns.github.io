@@ -137,9 +137,17 @@
   // Llama a la función para obtener el pronóstico al cargar la página
   obtenerPronostico();
 </script>
-    <marquee behavior="scroll" direction="left">
-        &copy; Proyecto Tigger Swan | Versión  5.0 RC2 | Todos los derechos reservados por Lord Balliwn's | Tema: Blue
-        | ${new Date().toLocaleString('es', { month: 'long', year: 'numeric' })}
+    <marquee behavior="scroll" direction="left" scrollamount="2">
+        &copy; Proyecto Tigger Swan | Versión  5.0 PR1 | Todos los derechos reservados por Lord Balliwn's | Tema: Blue
+        | <span id="fecha"></span>
     </marquee>
+
+    <!-- Script para mostrar la fecha actual -->
+    <script>
+        const fechaActual = new Date();
+        const mes = fechaActual.toLocaleString('es', { month: 'long' });
+        const año = fechaActual.getFullYear();
+        document.getElementById('fecha').textContent = `${mes} ${año}`;
+    </script>
 </body>
 </html>
