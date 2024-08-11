@@ -40,11 +40,17 @@
       // Datos específicos para cada día
       const datosDia1 = {
         fecha: 
-        pronosticoDia1.dt,
+        pronosticoDia1.dt_txt,
         temperatura: pronosticoDia1.main.temp,
         sensacionTermica: pronosticoDia1.main.feels_like,
         humedad: pronosticoDia1.main.humidity,
         nubosidad: pronosticoDia1.clouds.all,
+        Test1:
+        pronosticoDia1.weather.id,
+        Test2:
+        pronosticoDia1.weather.main,
+        Descripcion:
+        pronosticoDia1.weather.description,
         probabilidadLluvias: redondear(pronosticoDia1.pop * 100), 
         // Multiplicamos por 100 y redondeamos
         velocidadViento: pronosticoDia1.wind.speed,
@@ -84,7 +90,7 @@
         <p>Temperatura: ${datosDia1.temperatura} °C</p>
         <p>Sensación térmica: ${datosDia1.sensacionTermica} °C</p>
         <p>Humedad: ${datosDia1.humedad}%</p>
-        <p>Nubosidad: ${datosDia1.nubosidad}%</p>
+        <p>Nubosidad: ${datosDia1.nubosidad}%, ${datosDia1.Test1}, ${datosDia1.Test2}, ${datosDia1.Descripcion}</p>
         <p>Precipitación: ${datosDia1.probabilidadLluvias}%</p>
         <p>Visibilidad: ${datosDia1.visibilidad} Kilómetros</p>
         <!-- Agrega más detalles según tus necesidades -->
