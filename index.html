@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es_mx">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +8,9 @@
 </head>
 <body>
     <div class="neon-div" onclick="copyAccountNumber()">
-        ¡Ayúdanos con tu donación! Número de cuenta: 1271 8001 3023 546289
+        ¡Ayúdanos con tu donación! <p> Número de cuenta: 1271 8001 3023 546289
     </div>
-    <h1>Pronóstico del Tiempo para <p> San Nicolás</h1>
-    <!--test-->
+    <h1>Pronóstico del Tiempo<p>Ayuntamiento de San Nicolás</h1>
     <script>
         function copyAccountNumber() {
             const accountNumber = '1271 8001 3023 546289';
@@ -20,7 +19,6 @@
                 .catch(error => console.error('Error al copiar el número de cuenta:', error));
         }
     </script>
-    <!--[-----=====-----]-->
     <div id="pronostico"></div>
     <script>
   async function obtenerPronostico() {
@@ -36,26 +34,43 @@
     
     // Función para redondear a dos decimales
       const redondear = (numero) => Math.round(numero * 100) / 100;
+    
+    // Mapeo de letras a períodos del día
+                const periodoDia = {
+                    d: 'Día',
+                    t: 'Tarde',
+                    n: 'Noche',
+                    };
 
       // Datos específicos para cada día
       const datosDia1 = {
+        fecha: 
+        pronosticoDia1.dt_txt,
         temperatura: pronosticoDia1.main.temp,
         sensacionTermica: pronosticoDia1.main.feels_like,
         humedad: pronosticoDia1.main.humidity,
         nubosidad: pronosticoDia1.clouds.all,
+        descripcion: pronosticoDia1.weather[0].description, 
         probabilidadLluvias: redondear(pronosticoDia1.pop * 100), 
         // Multiplicamos por 100 y redondeamos
+        
         velocidadViento: pronosticoDia1.wind.speed,
         direccionViento: pronosticoDia1.wind.deg,
         rachasViento: pronosticoDia1.wind.gust,
         visibilidad: pronosticoDia1.visibility / 1000,
+        rain3h: pronosticoDia1.rain ? pronosticoDia1.rain['3h'] : 0, // Agregamos rain.3h
+        sysPod: periodoDia[pronosticoDia1.sys.pod], // Agregamos sys.pod
+        poblacion: datos.city.population, // Agregamos city.population
       };
 
       const datosDia2 = {
+        fecha: 
+        pronosticoDia2.dt_txt,
         temperatura: pronosticoDia2.main.temp,
         sensacionTermica: pronosticoDia2.main.feels_like,
         humedad: pronosticoDia2.main.humidity,
         nubosidad: pronosticoDia2.clouds.all,
+        descripcion: pronosticoDia2.weather[0].description,
         probabilidadLluvias: redondear(pronosticoDia2.pop * 100),
         velocidadViento: pronosticoDia2.wind.speed,
         direccionViento: pronosticoDia2.wind.deg,
@@ -64,10 +79,13 @@
       };
 
       const datosDia3 = {
+        fecha: 
+        pronosticoDia3.dt_txt,
         temperatura: pronosticoDia3.main.temp,
         sensacionTermica: pronosticoDia3.main.feels_like,
         humedad: pronosticoDia3.main.humidity,
         nubosidad: pronosticoDia3.clouds.all,
+        descripcion: pronosticoDia3.weather[0].description,
         probabilidadLluvias: redondear(pronosticoDia3.pop * 100),
         velocidadViento: pronosticoDia3.wind.speed,
         direccionViento: pronosticoDia3.wind.deg,
@@ -78,26 +96,35 @@
       // Actualiza el contenido del elemento con ID "pronostico"
       document.getElementById('pronostico').innerHTML = `
         <h3>Hoy:</h3>
+        <p>Fecha: ${datosDia1.fecha}</p>
         <p>Temperatura: ${datosDia1.temperatura} °C</p>
         <p>Sensación térmica: ${datosDia1.sensacionTermica} °C</p>
         <p>Humedad: ${datosDia1.humedad}%</p>
         <p>Nubosidad: ${datosDia1.nubosidad}%</p>
+        <p>Descripción: ${datosDia1.descripcion}</p> 
         <p>Precipitación: ${datosDia1.probabilidadLluvias}%</p>
+        <p>Lluvia en las últimas 3 horas: ${datosDia1.rain3h} mm</p>
+        <p>Período del día: ${datosDia1.sysPod}</p>
+        <p>Población: ${datosDia1.poblacion}</p>
         <p>Visibilidad: ${datosDia1.visibilidad} Kilómetros</p>
         <!-- Agrega más detalles según tus necesidades -->
         <h3>Mañana:</h3>
+        <p>Fecha: ${datosDia2.fecha}</p>
         <p>Temperatura: ${datosDia2.temperatura} °C</p>
         <p>Sensación térmica: ${datosDia2.sensacionTermica} °C</p>
         <p>Humedad: ${datosDia2.humedad}%</p>
         <p>Nubosidad: ${datosDia2.nubosidad}%</p>
+        <p>Descripción: ${datosDia2.descripcion}</p>
         <p>Precipitación: ${datosDia2.probabilidadLluvias}%</p>
         <p>Visibilidad: ${datosDia2.visibilidad} Kilómetros</p>
         <!-- Agrega más detalles según tus necesidades -->
         <h3>Pasado:</h3>
+        <p>Fecha: ${datosDia3.fecha}</p>
         <p>Temperatura: ${datosDia3.temperatura} °C</p>
         <p>Sensación térmica: ${datosDia3.sensacionTermica} °C</p>
         <p>Humedad: ${datosDia3.humedad}%</p>
         <p>Nubosidad: ${datosDia3.nubosidad}%</p>
+        <p>Descripción: ${datosDia3.descripcion}</p>
         <p>Precipitación: ${datosDia3.probabilidadLluvias}%</p>
         <p>Visibilidad: ${datosDia3.visibilidad} Kilómetros</p>
         <!-- Agrega más detalles según tus necesidades -->
@@ -110,5 +137,18 @@
   // Llama a la función para obtener el pronóstico al cargar la página
   obtenerPronostico();
 </script>
+    <marquee behavior="scroll" direction="left" scrollamount="2" loop="infinite">
+        &copy; Proyecto Tigger Swan | Versión  5.0.0 | Todos los derechos reservados por Lord Balliwn's | Tema: Blue
+        | <span id="fecha"></span>
+    </marquee>
+
+    <!-- Script para mostrar la fecha actual -->
+    <script>
+        const fechaActual = new Date();
+        const mes = fechaActual.toLocaleString('es', { month: 'long' });
+        const mesConPrimeraMayuscula = mes.charAt(0).toUpperCase() + mes.slice(1);
+        const año = fechaActual.getFullYear();
+        document.getElementById('fecha').textContent = `${mesConPrimeraMayuscula} ${año}`;
+    </script>
 </body>
 </html>
