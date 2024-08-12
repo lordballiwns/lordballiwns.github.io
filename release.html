@@ -49,10 +49,9 @@
                 // Formatea la fecha como desees (por ejemplo, HH:mm:ss)
                 const horaFormateada = fechaLocal.toLocaleTimeString('es-MX', { hour12: false });
 
-      // Datos específicos para cada día
-      const datosDia1 = {
-        fecha: 
-        pronosticoDia1.dt_txt,
+                // Datos específicos para cada día
+                const datosDia1 = {
+                    fecha: fechaLocal.toISOString(),
         temperatura: pronosticoDia1.main.temp,
         sensacionTermica: pronosticoDia1.main.feels_like,
         humedad: pronosticoDia1.main.humidity,
@@ -103,7 +102,8 @@
       // Actualiza el contenido del elemento con ID "pronostico"
       document.getElementById('pronostico').innerHTML = `
         <h3>Hoy:</h3>
-        <p>Fecha: ${fechaLocal.toISOString()}</p>
+        <p>Fecha: ${datosDia1.fecha}</p>
+        <p>Hora local: ${horaFormateada}</p>
         <p>Temperatura: ${datosDia1.temperatura} °C</p>
         <p>Sensación térmica: ${datosDia1.sensacionTermica} °C</p>
         <p>Humedad: ${datosDia1.humedad}%</p>
@@ -144,8 +144,8 @@
   // Llama a la función para obtener el pronóstico al cargar la página
   obtenerPronostico();
 </script>
-    <marquee behavior="scroll" direction="left" scrollamount="2" loop="infinite">
-        &copy; Proyecto Tigger Swan | Versión  5.1.0-1.0.00| Todos los derechos reservados por Lord Balliwn's | Tema: Blue
+    <marquee behavior="scroll" direction="left" scrollamount="4" loop="infinite">
+        &copy; Proyecto Tigger Swan | Versión  5.1.0-1.0.04 | Todos los derechos reservados por Lord Balliwn's | Tema: Blue
         | <span id="fecha"></span>
     </marquee>
 
