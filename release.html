@@ -47,7 +47,7 @@
                 fechaLocal.setHours(fechaLocal.getHours() - 6);
 
                 // Formatea la fecha como desees (por ejemplo, HH:mm:ss)
-                const horaFormateada = fechaLocal.toLocaleTimeString('es-MX', { hour12: true });
+                const horaFormateada = fechaLocal.toLocaleTimeString('es-MX', { hour12: false });
 
       // Datos específicos para cada día
       const datosDia1 = {
@@ -103,7 +103,7 @@
       // Actualiza el contenido del elemento con ID "pronostico"
       document.getElementById('pronostico').innerHTML = `
         <h3>Hoy:</h3>
-        <p>Fecha: ${horaFormateada}</p>
+        <p>Fecha: ${fechaLocal.toISOString()}</p>
         <p>Temperatura: ${datosDia1.temperatura} °C</p>
         <p>Sensación térmica: ${datosDia1.sensacionTermica} °C</p>
         <p>Humedad: ${datosDia1.humedad}%</p>
