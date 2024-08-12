@@ -10,8 +10,6 @@
     <div class="neon-div" onclick="copyAccountNumber()">
         ¡Ayúdanos con tu donación! <p> Número de cuenta: 1271 8001 3023 546289
     </div>
-    <button onclick="copiarTexto()">📋</button>
-    <p id="copiar">
     <h1>Pronóstico del Tiempo<p>Ayuntamiento de San Nicolás</h1>
     <script>
         function copyAccountNumber() {
@@ -140,7 +138,7 @@
   obtenerPronostico();
 </script>
     <marquee behavior="scroll" direction="left" scrollamount="2" loop="infinite">
-        &copy; Proyecto Tigger Swan | Versión  5.0 PR1 | Todos los derechos reservados por Lord Balliwn's | Tema: Blue
+        &copy; Proyecto Tigger Swan | Versión  5.0.0 | Todos los derechos reservados por Lord Balliwn's | Tema: Blue
         | <span id="fecha"></span>
     </marquee>
 
@@ -151,19 +149,6 @@
         const mesConPrimeraMayuscula = mes.charAt(0).toUpperCase() + mes.slice(1);
         const año = fechaActual.getFullYear();
         document.getElementById('fecha').textContent = `${mesConPrimeraMayuscula} ${año}`;
-    </script>
-    </p>
-    <script>
-        function copiarTexto() {
-            const textoACopiar = document.getElementById("copiar").textContent;
-            navigator.clipboard.writeText(textoACopiar)
-                .then(() => {
-                    alert("Texto copiado al portapapeles: " + textoACopiar);
-                })
-                .catch((error) => {
-                    console.error("Error al copiar el texto: " + error);
-                });
-        }
     </script>
 </body>
 </html>
