@@ -5,46 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pronóstico del Tiempo</title>
     <link rel="stylesheet" href="styles.css">
-    <script>
-        async function obtenerDatosClima() {
-            const ciudad = "Cuajinicuilapa"; // Cambia a la ciudad de tu interés
-            const url = `https://smn.conagua.gob.mx/tools/GUI/webservices/?method=1&nes=${ciudad}`;
-
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
-
-                // Extrae los datos que necesitas
-                const temperatura = data.tmax;
-                const sensacionTermica = data.tmin;
-                const humedad = data.hum;
-                const nubosidad = data.cielo;
-                const descripcion = data.desciel;
-                const precipitacion = data.prec;
-                const lluviaUltimas3Horas = data.lluvia3h;
-                const periodoDia = data.dloc;
-                const poblacion = data.nmun;
-                const visibilidad = data.vis;
-
-                // Haz lo que necesites con los datos (por ejemplo, mostrarlos en la página)
-                console.log("Temperatura:", temperatura, "°C");
-                console.log("Sensación térmica:", sensacionTermica, "°C");
-                console.log("Humedad:", humedad, "%");
-                console.log("Nubosidad:", nubosidad, "%");
-                console.log("Descripción:", descripcion);
-                console.log("Precipitación:", precipitacion, "mm");
-                console.log("Lluvia en las últimas 3 horas:", lluviaUltimas3Horas, "mm");
-                console.log("Período del día:", periodoDia);
-                console.log("Población:", poblacion);
-                console.log("Visibilidad:", visibilidad, "km");
-            } catch (error) {
-                console.error("Error al obtener datos climáticos:", error);
-            }
-        }
-
-        // Llama a la función para obtener los datos al cargar la página
-        obtenerDatosClima();
-    </script>
 </head>
 <body>
     <div class="neon-div" onclick="copyAccountNumber()">
@@ -184,6 +144,48 @@
   // Llama a la función para obtener el pronóstico al cargar la página
   obtenerPronostico();
 </script>
+    <!--Test-->
+    script>
+        async function obtenerDatosClima() {
+            const ciudad = "Cuajinicuilapa"; // Cambia a la ciudad de tu interés
+            const url = `https://smn.conagua.gob.mx/tools/GUI/webservices/?method=1&nes=${ciudad}`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                // Extrae los datos que necesitas
+                const temperatura = data.tmax;
+                const sensacionTermica = data.tmin;
+                const humedad = data.hum;
+                const nubosidad = data.cielo;
+                const descripcion = data.desciel;
+                const precipitacion = data.prec;
+                const lluviaUltimas3Horas = data.lluvia3h;
+                const periodoDia = data.dloc;
+                const poblacion = data.nmun;
+                const visibilidad = data.vis;
+
+                // Haz lo que necesites con los datos (por ejemplo, mostrarlos en la página)
+                console.log("Temperatura:", temperatura, "°C");
+                console.log("Sensación térmica:", sensacionTermica, "°C");
+                console.log("Humedad:", humedad, "%");
+                console.log("Nubosidad:", nubosidad, "%");
+                console.log("Descripción:", descripcion);
+                console.log("Precipitación:", precipitacion, "mm");
+                console.log("Lluvia en las últimas 3 horas:", lluviaUltimas3Horas, "mm");
+                console.log("Período del día:", periodoDia);
+                console.log("Población:", poblacion);
+                console.log("Visibilidad:", visibilidad, "km");
+            } catch (error) {
+                console.error("Error al obtener datos climáticos:", error);
+            }
+        }
+
+        // Llama a la función para obtener los datos al cargar la página
+        obtenerDatosClima();
+    </script>
+    <!--fin de test-->
     <marquee behavior="scroll" direction="left" scrollamount="4" loop="infinite">
         &copy; Proyecto Tigger Swan | Versión  5.1.0-1.0.04 | Todos los derechos reservados por Lord Balliwn's | Tema: Blue
         | <span id="fecha"></span>
