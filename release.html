@@ -21,6 +21,7 @@
     </script>
     <!--Test-->
 <!-- Agrega elementos HTML para mostrar los datos -->
+    <p>Fecha y hora actual: <span id="fecha-hora"></span></p>
     <p>Temperatura: <span id="temperatura"></span> °C</p>
     <p>Sensación térmica: <span id="sensacion-termica"></span> °C</p>
     <p>Humedad: <span id="humedad"></span>%</p>
@@ -51,8 +52,12 @@
                 document.getElementById("lluvia-ultimas-3h").textContent = registro.rain ? registro.rain["3h"] : 0;
 
     document.getElementById("periodo-dia").textContent = esDeDia(registro.dt_txt) ? "Día" : "Noche";
-                document.getElementById("poblacion").textContent = "San Nicolás"; // Cambia según tu ubicación
+                document.getElementById("poblacion").textContent = data.city.population.toLocaleString(); // Muestra la población con formato de miles
                 document.getElementById("visibilidad").textContent = registro.visibility / 1000;
+    // Agrega la fecha y hora actual (sumando 3 horas)
+                const fechaHoraActual = new Date(registro.dt * 1000 + 3 * 60 * 60 * 1000);
+                const opcionesFechaHora = { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric' };
+                document.getElementById("fecha-hora").textContent = fechaHoraActual.toLocaleString('es-MX', opcionesFechaHora);
             } catch (error) {
                 console.error("Error al obtener datos climáticos:", error);
             }
