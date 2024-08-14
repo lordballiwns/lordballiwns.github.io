@@ -49,12 +49,19 @@
                 document.getElementById("descripcion").textContent = registro.weather[0].description;
                 document.getElementById("precipitacion").textContent = registro.rain ? registro.rain["3h"] : 0;
                 document.getElementById("lluvia-ultimas-3h").textContent = registro.rain ? registro.rain["3h"] : 0;
-                document.getElementById("periodo-dia").textContent = registro.dt_txt;
+
+    document.getElementById("periodo-dia").textContent = esDeDia(registro.dt_txt) ? "Día" : "Noche";
                 document.getElementById("poblacion").textContent = "San Nicolás"; // Cambia según tu ubicación
                 document.getElementById("visibilidad").textContent = registro.visibility / 1000;
             } catch (error) {
                 console.error("Error al obtener datos climáticos:", error);
             }
+        }
+        
+        // Función para determinar si es de día o de noche
+        function esDeDia(fechaHora) {
+            const hora = new Date(fechaHora).getHours();
+            return hora >= 6 && hora < 18; // Consideramos de día entre las 6:00 y las 18:00
         }
 
         // Llama a la función para obtener los datos al cargar la página
@@ -62,7 +69,7 @@
     </script>
     <!--fin de test-->
     <marquee behavior="scroll" direction="left" scrollamount="4" loop="infinite">
-        &copy; Proyecto Tigger Swan | Versión  5.1.0-1.0.11 | Todos los derechos reservados por Lord Balliwn's | Tema: Blue
+        &copy; Proyecto Tigger Swan | Versión  5.1.0-1.0.12 | Todos los derechos reservados por Lord Balliwn's | Tema: Blue
         | <span id="fecha"></span>
     </marquee>
 
