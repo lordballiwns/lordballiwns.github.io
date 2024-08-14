@@ -27,9 +27,9 @@
     <p>Humedad: <span id="humedad"></span>%</p>
     <p>Nubosidad: <span id="nubosidad"></span>%</p>
     <p>Descripción: <span id="descripcion"></span></p>
+    <p>Porcentaje de precipitaciones: <span id="porcentaje-precipitaciones"></span>%</p>
     <p>Precipitación: <span id="precipitacion"></span> mm</p>
     <p>Lluvia en las últimas 3 horas: <span id="lluvia-ultimas-3h"></span> mm</p>
-    <p>Período del día: <span id="periodo-dia"></span></p>
     <p>Población: <span id="poblacion"></span></p>
     <p>Visibilidad: <span id="visibilidad"></span> km</p>
 
@@ -58,6 +58,7 @@
                 const fechaHoraActual = new Date(registro.dt * 1000 + 3 * 60 * 60 * 1000);
                 const opcionesFechaHora = { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric' };
                 document.getElementById("fecha-hora").textContent = fechaHoraActual.toLocaleString('es-MX', opcionesFechaHora);
+            document.getElementById("porcentaje-precipitaciones").textContent = registro.pop || 0;
             } catch (error) {
                 console.error("Error al obtener datos climáticos:", error);
             }
@@ -74,7 +75,7 @@
     </script>
     <!--fin de test-->
     <marquee behavior="scroll" direction="left" scrollamount="4" loop="infinite">
-        &copy; Proyecto Tigger Swan | Versión  5.1.0-1.0.12 | Todos los derechos reservados por Lord Balliwn's | Tema: Blue
+        &copy; Proyecto Tigger Swan | Versión  5.1.0-1.0.14 | Todos los derechos reservados por Lord Balliwn's | Tema: Blue
         | <span id="fecha"></span>
     </marquee>
 
