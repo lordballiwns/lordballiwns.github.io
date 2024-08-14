@@ -145,6 +145,11 @@
   obtenerPronostico();
 </script>
     <!--Test-->
+    <!-- Agrega elementos HTML para mostrar los datos -->
+    <p>Temperatura: <span id="temperatura"></span> °C</p>
+    <p>Sensación térmica: <span id="sensacion-termica"></span> °C</p>
+    <p>Humedad: <span id="humedad"></span>%</p>
+    <!-- Agrega más elementos aquí -->
     <script>
         async function obtenerDatosClima() {
             const ciudad = "Cuajinicuilapa"; // Cambia a la ciudad de tu interés
@@ -180,6 +185,12 @@
             } catch (error) {
                 console.error("Error al obtener datos climáticos:", error);
             }
+        }
+        // Actualiza los elementos HTML con los datos
+            document.getElementById("temperatura").textContent = temperatura;
+            document.getElementById("sensacion-termica").textContent = sensacionTermica;
+            document.getElementById("humedad").textContent = humedad;
+            // Actualiza más elementos aquí
         }
 
         // Llama a la función para obtener los datos al cargar la página
