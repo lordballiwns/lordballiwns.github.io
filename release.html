@@ -20,52 +20,41 @@
         }
     </script>
     <!--Test-->
-    <!-- Agrega elementos HTML para mostrar los datos -->
+<!-- Agrega elementos HTML para mostrar los datos -->
     <p>Temperatura: <span id="temperatura"></span> °C</p>
     <p>Sensación térmica: <span id="sensacion-termica"></span> °C</p>
     <p>Humedad: <span id="humedad"></span>%</p>
-    <!-- Agrega más elementos aquí -->
+    <p>Nubosidad: <span id="nubosidad"></span>%</p>
+    <p>Descripción: <span id="descripcion"></span></p>
+    <p>Precipitación: <span id="precipitacion"></span> mm</p>
+    <p>Lluvia en las últimas 3 horas: <span id="lluvia-ultimas-3h"></span> mm</p>
+    <p>Período del día: <span id="periodo-dia"></span></p>
+    <p>Población: <span id="poblacion"></span></p>
+    <p>Visibilidad: <span id="visibilidad"></span> km</p>
+
     <script>
         async function obtenerDatosClima() {
-            const ciudad = "Cuajinicuilapa"; // Cambia a la ciudad de tu interés
-            const url = `https://smn.conagua.gob.mx/tools/GUI/webservices/?method=1&nes=${ciudad}`;
+            const url = "https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric";
 
             try {
                 const response = await fetch(url);
                 const data = await response.json();
 
-                // Extrae los datos que necesitas
-                const temperatura = data.tmax;
-                const sensacionTermica = data.tmin;
-                const humedad = data.hum;
-                const nubosidad = data.cielo;
-                const descripcion = data.desciel;
-                const precipitacion = data.prec;
-                const lluviaUltimas3Horas = data.lluvia3h;
-                const periodoDia = data.dloc;
-                const poblacion = data.nmun;
-                const visibilidad = data.vis;
-
-                // Haz lo que necesites con los datos (por ejemplo, mostrarlos en la página)
-                console.log("Temperatura:", temperatura, "°C");
-                console.log("Sensación térmica:", sensacionTermica, "°C");
-                console.log("Humedad:", humedad, "%");
-                console.log("Nubosidad:", nubosidad, "%");
-                console.log("Descripción:", descripcion);
-                console.log("Precipitación:", precipitacion, "mm");
-                console.log("Lluvia en las últimas 3 horas:", lluviaUltimas3Horas, "mm");
-                console.log("Período del día:", periodoDia);
-                console.log("Población:", poblacion);
-                console.log("Visibilidad:", visibilidad, "km");
+                // Extrae los datos que necesitas (ejemplo: primer registro)
+                const registro = data.list[0];
+                document.getElementById("temperatura").textContent = registro.main.temp;
+                document.getElementById("sensacion-termica").textContent = registro.main.feels_like;
+                document.getElementById("humedad").textContent = registro.main.humidity;
+                document.getElementById("nubosidad").textContent = registro.clouds.all;
+                document.getElementById("descripcion").textContent = registro.weather[0].description;
+                document.getElementById("precipitacion").textContent = registro.rain ? registro.rain["3h"] : 0;
+                document.getElementById("lluvia-ultimas-3h").textContent = registro.rain ? registro.rain["3h"] : 0;
+                document.getElementById("periodo-dia").textContent = registro.dt_txt;
+                document.getElementById("poblacion").textContent = "San Nicolás"; // Cambia según tu ubicación
+                document.getElementById("visibilidad").textContent = registro.visibility / 1000;
             } catch (error) {
                 console.error("Error al obtener datos climáticos:", error);
             }
-        }
-        // Actualiza los elementos HTML con los datos
-            document.getElementById("temperatura").textContent = temperatura;
-            document.getElementById("sensacion-termica").textContent = sensacionTermica;
-            document.getElementById("humedad").textContent = humedad;
-            // Actualiza más elementos aquí
         }
 
         // Llama a la función para obtener los datos al cargar la página
@@ -73,7 +62,7 @@
     </script>
     <!--fin de test-->
     <marquee behavior="scroll" direction="left" scrollamount="4" loop="infinite">
-        &copy; Proyecto Tigger Swan | Versión  5.1.0-1.0.04 | Todos los derechos reservados por Lord Balliwn's | Tema: Blue
+        &copy; Proyecto Tigger Swan | Versión  5.1.0-1.0.11 | Todos los derechos reservados por Lord Balliwn's | Tema: Blue
         | <span id="fecha"></span>
     </marquee>
 
