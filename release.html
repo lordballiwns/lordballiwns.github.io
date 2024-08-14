@@ -53,7 +53,7 @@
 
     document.getElementById("periodo-dia").textContent = esDeDia(registro.dt_txt) ? "Día" : "Noche";
                 document.getElementById("poblacion").textContent = data.city.population.toLocaleString(); // Muestra la población con formato de miles
-                document.getElementById("visibilidad").textContent = registro.visibility / 1000;
+                document.getElementById("visibilidad").textContent = registro.visibility ? (registro.visibility / 1000).toFixed(2) : "N/A";
     // Agrega la fecha y hora actual (sumando 3 horas)
                 const fechaHoraActual = new Date(registro.dt * 1000 + 3 * 60 * 60 * 1000);
                 const opcionesFechaHora = { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric' };
@@ -75,7 +75,7 @@
     </script>
     <!--fin de test-->
     <marquee behavior="scroll" direction="left" scrollamount="4" loop="infinite">
-        &copy; Proyecto Tigger Swan | Versión  5.1.0-1.0.14 | Todos los derechos reservados por Lord Balliwn's | Tema: Blue
+        &copy; Proyecto Tigger Swan | Versión  5.1.0-1.0.15 | Todos los derechos reservados por Lord Balliwn's | Tema: Blue
         | <span id="fecha"></span>
     </marquee>
 
