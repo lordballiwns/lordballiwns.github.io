@@ -21,7 +21,7 @@
                 const fechaHoy = new Date(climaHoy.dt * 1000);
                 const fechaManana = new Date(climaManana.dt * 1000);
 
-                const opcionesFecha = { weekday: 'long', day: 'numeric', month: 'long', hour: 'numeric', minute: 'numeric' };
+                const opcionesFecha = { weekday: 'long', day: 'numeric', month: 'long', hour: 'numeric', minute: 'numeric', hour12: true };
 
                 climaDiv.innerHTML = `
                     <p>${fechaHoy.toLocaleDateString('es-ES', opcionesFecha)}:</p>
@@ -43,7 +43,7 @@
 
     <!-- Footer -->
     <footer style="font-size: 10px;">
-        Proyecto Tigger Swan | Desarrollador: Lord Balliwn's | Versión 5.1.0 Compilación 3.4.02 | Tema: Dinamic Sky
+        Proyecto Tigger Swan | Desarrollador: Lord Balliwn's | Versión 5.1.0 Compilación 3.4.03 | Tema: Dinamic Sky
     </footer>
     <script src="fondo.js"></script>
 </body>
