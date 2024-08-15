@@ -9,7 +9,7 @@ function cambiarFondoSegunHora() {
             } else if (horaActual >= 18 && horaActual < 20) {
                 body.style.background = 'linear-gradient(-10deg, #23A6D5, #E73C7E)';
             } else {
-                body.style.background = 'linear-gradient(-10deg, #23A6D5, #1F1C2C)';
+                body.style.background = 'linear-gradient(-10deg, #000055, #1F1C2C)';
             }
         }
 
