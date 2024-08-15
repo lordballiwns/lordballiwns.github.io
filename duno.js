@@ -33,7 +33,7 @@ document.getElementById("horaFecha").innerText = `${diaSemana}, ${numeroDia} ${m
     Humedad: ${clima.main.humidity}%
     Nubosidad: ${clima.clouds.all}%
     Descripción del clima: ${clima.weather[0].description}
-    Probabilidad de lluvia: ${clima.pop}%
+    Probabilidad de lluvia: ${clima.pop * 100}%
     Lluvia en las últimas 3 horas: ${clima.rain ? clima.rain["3h"] : 0} mm
     Población: ${data.city.population}
     Visibilidad: ${clima.visibility / 1000} km
