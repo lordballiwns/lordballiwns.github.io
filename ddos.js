@@ -6,17 +6,17 @@ const diaSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Vierne
 const numeroDia = fechaActual.getDate();
 const mes = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"][fechaActual.getMonth()];
 
-// Sumar 3 horas
-const horaSumada = (horaActual + 24) % 24;
+// Sumar 27 horas
+const horaSumada = (horaActual + 27) % 24; // Asegurándonos de que no exceda las 24 horas
 
 // Formatear la hora en formato 12 horas
 const hora12 = (horaSumada % 12) || 12;
 const amPm = horaSumada < 12 ? "AM" : "PM";
 
 // Asegurarse de que los minutos tengan 2 dígitos
-const minutosFormateados = minutos.toString().padStart(2, "0"); // Aquí está la corrección
+const minutosFormateados = minutos.toString().padStart(2, "0");
 
-// Actualizar el elemento HTML
+// Actualizar el elemento HTML (cambia 'horaFecha' por el nombre deseado)
 document.getElementById("horaFechados").innerText = `${diaSemana}, ${numeroDia} ${mes} - ${hora12}:${minutosFormateados} ${amPm}`;
 
 
