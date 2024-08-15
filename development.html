@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-mx">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,43 +8,44 @@
 <body>
     <h1>Pronóstico Climático <br> Ayuntamiento de San Nicolás</h1>
 
-    <!-- Script para mostrar la hora y fecha sincronizada -->
+    <div id="horaFecha"></div>
+    <div id="clima"></div>
+
+    <footer style="font-size: 12px;">
+        © Proyecto Tigger Swan, desarrollador Lord Balliwn's, Versión 5.1.0 Compilación 1.0.19, Tema: Azul
+    </footer>
+
     <script>
-        const ahora = new Date();
-        const horaActual = ahora.getHours();
-        const fechaActual = ahora.getDate();
-        const sumaHoras = 3;
-        const sumaDias = 24;
+        // Obtener la hora y fecha actual
+        const fechaActual = new Date();
+        const horaActual = fechaActual.getHours();
+        const sumaHoras = (horaActual + 3) % 24;
+        const diaSiguiente = sumaHoras === 0 ? fechaActual.getDate() + 1 : fechaActual.getDate();
 
-        // Sumar horas y días
-        const horaSumada = (horaActual + sumaHoras) % 24;
-        const fechaSumada = fechaActual + Math.floor((horaActual + sumaHoras) / 24);
+        document.getElementById("horaFecha").innerText = `Hora actual: ${horaActual}:${fechaActual.getMinutes()} - Fecha: ${fechaActual.getDate()}/${fechaActual.getMonth() + 1}/${fechaActual.getFullYear()}`;
+        document.getElementById("clima").innerText = "Cargando datos del clima...";
 
-        console.log(`Hora sumada: ${horaSumada}`);
-        console.log(`Fecha sumada: ${fechaSumada}`);
-    </script>
-
-    <!-- Script para obtener datos del pronóstico del clima -->
-    <script>
-        fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric')
+        // Consultar la API del clima
+        fetch("https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric")
             .then(response => response.json())
             .then(data => {
                 const clima = data.list[0];
-                console.log('Temperatura:', clima.main.temp);
-                console.log('Sensación térmica:', clima.main.feels_like);
-                console.log('Humedad:', clima.main.humidity);
-                console.log('Nubosidad:', clima.clouds.all);
-                console.log('Descripción del clima:', clima.weather[0].description);
-                console.log('Probabilidad de lluvia:', clima.pop);
-                console.log('Lluvia en las últimas 3 horas:', clima.rain ? clima.rain['3h'] : 'No disponible');
-                console.log('Población en números:', data.city.population);
-                console.log('Visibilidad en kilómetros:', clima.visibility / 1000);
+                document.getElementById("clima").innerText = `
+                    Temperatura: ${clima.main.temp}°C
+                    Sensación térmica: ${clima.main.feels_like}°C
+                    Humedad: ${clima.main.humidity}%
+                    Nubosidad: ${clima.clouds.all}%
+                    Descripción del clima: ${clima.weather[0].description}
+                    Probabilidad de lluvia: ${clima.pop}%
+                    Lluvia en las últimas 3 horas: ${clima.rain ? clima.rain["3h"] : "N/A"} mm
+                    Población: ${data.city.population}
+                    Visibilidad: ${clima.visibility / 1000} km
+                `;
             })
-            .catch(error => console.error('Error al obtener datos del clima:', error));
+            .catch(error => {
+                console.error("Error al obtener datos del clima:", error);
+                document.getElementById("clima").innerText = "Error al cargar datos del clima.";
+            });
     </script>
-
-    <footer style="font-size: 10px;">
-        © Proyecto Tigger Swan, desarrollador Lord Balliwn's, Versión 5.1.0 Compilación 1.0.19, Tema: Azul
-    </footer>
 </body>
 </html>
