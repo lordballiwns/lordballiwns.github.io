@@ -20,12 +20,13 @@
     </script>
         <!--Test-->
         <h1>Pronóstico Climático <br> Ayuntamiento de San Nicolás</h1>
+        <br>
 
     <div id="horaFecha"></div>
     <div id="clima"></div>
 
     <footer style="font-size: 12px;">
-        © Proyecto Tigger Swan | desarrollador Lord Balliwn's | Versión 5.1.0 Compilación 1.1.02 |  Tema: Azul
+        © Proyecto Tigger Swan | desarrollador Lord Balliwn's | Versión 5.1.0 Compilación 1.1.05 |  Tema: Azul
     </footer>
     <script>
         // Obtener la hora y fecha actual
@@ -34,7 +35,7 @@ const horaActual = fechaActual.getHours();
 const minutos = fechaActual.getMinutes();
 const diaSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"][fechaActual.getDay()];
 const numeroDia = fechaActual.getDate();
-const mes = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"][fechaActual.getMonth()];
+const mes = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"][fechaActual.getMonth()];
 
 // Formatear la hora en formato 12 horas
 const hora12 = (horaActual % 12) || 12;
