@@ -17,10 +17,10 @@ const amPm = horaSumada < 12 ? "AM" : "PM";
 const minutosFormateados = minutos.toString().padStart(2, "0"); // Aquí está la corrección
 
 // Actualizar el elemento HTML
-document.getElementById("horaFecha2").innerText = `${diaSemana}, ${numeroDia} ${mes} - ${hora12}:${minutosFormateados} ${amPm}`;
+document.getElementById("horaFechados").innerText = `${diaSemana}, ${numeroDia} ${mes} - ${hora12}:${minutosFormateados} ${amPm}`;
 
 
-        document.getElementById("clima2").innerText = "Cargando datos del clima...";
+        document.getElementById("climados").innerText = "Cargando datos del clima...";
 
         // Consultar la API del clima
         fetch("https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric")
