@@ -10,7 +10,6 @@
     <div class="neon-div" onclick="copyAccountNumber()">
         ¡Ayúdanos con tu donación! <p> Número de cuenta: 1271 8001 3023 546289
     </div>
-    <h1>Pronóstico del Tiempo<p>Ayuntamiento de San Nicolás</h1>
     <script>
         function copyAccountNumber() {
             const accountNumber = '1271 8001 3023 546289';
@@ -19,75 +18,48 @@
                 .catch(error => console.error('Error al copiar el número de cuenta:', error));
         }
     </script>
-    <!--Test-->
-<!-- Agrega elementos HTML para mostrar los datos -->
-    <p>Fecha y hora actual: <span id="fecha-hora"></span></p>
-    <p>Temperatura: <span id="temperatura"></span> °C</p>
-    <p>Sensación térmica: <span id="sensacion-termica"></span> °C</p>
-    <p>Humedad: <span id="humedad"></span>%</p>
-    <p>Nubosidad: <span id="nubosidad"></span>%</p>
-    <p>Descripción: <span id="descripcion"></span></p>
-    <p>Porcentaje de precipitaciones: <span id="porcentaje-precipitaciones"></span>%</p>
-    <p>Precipitación: <span id="precipitacion"></span> mm</p>
-    <p>Lluvia en las últimas 3 horas: <span id="lluvia-ultimas-3h"></span> mm</p>
-    <p>Población: <span id="poblacion"></span></p>
-    <p>Visibilidad: <span id="visibilidad"></span> km</p>
+        <!--Test-->
+        <h1>Pronóstico Climático <br> Ayuntamiento de San Nicolás</h1>
+
+    <div id="horaFecha"></div>
+    <div id="clima"></div>
+
+    <footer style="font-size: 12px;">
+        © Proyecto Tigger Swan, desarrollador Lord Balliwn's, Versión 5.1.0 Compilación 1.0.19, Tema: Azul
+    </footer>
 
     <script>
-        async function obtenerDatosClima() {
-            const url = "https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric";
-
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
-
-                // Extrae los datos que necesitas (ejemplo: primer registro)
-                const registro = data.list[0];
-                document.getElementById("temperatura").textContent = registro.main.temp;
-                document.getElementById("sensacion-termica").textContent = registro.main.feels_like;
-                document.getElementById("humedad").textContent = registro.main.humidity;
-                document.getElementById("nubosidad").textContent = registro.clouds.all;
-                document.getElementById("descripcion").textContent = registro.weather[0].description;
-                document.getElementById("precipitacion").textContent = registro.rain ? registro.rain["3h"] : 0;
-                document.getElementById("lluvia-ultimas-3h").textContent = registro.rain ? registro.rain["3h"] : 0;
-
-    document.getElementById("periodo-dia").textContent = esDeDia(registro.dt_txt) ? "Día" : "Noche";
-                document.getElementById("poblacion").textContent = data.city.population.toLocaleString(); 
-                // Muestra la población con formato de miles
-                document.getElementById("visibilidad").textContent = registro.visibility ? (registro.visibility / 1000).toFixed(2) + " km" : "N/A";
-                
-    // Agrega la fecha y hora actual (sumando 3 horas)
-                const fechaHoraActual = new Date(registro.dt * 1000 + 3 * 60 * 60 * 1000);
-                const opcionesFechaHora = { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric' };
-                document.getElementById("fecha-hora").textContent = fechaHoraActual.toLocaleString('es-MX', opcionesFechaHora);
-            document.getElementById("porcentaje-precipitaciones").textContent = registro.pop || 0;
-            } catch (error) {
-                console.error("Error al obtener datos climáticos:", error);
-            }
-        }
-        
-        // Función para determinar si es de día o de noche
-        function esDeDia(fechaHora) {
-            const hora = new Date(fechaHora).getHours();
-            return hora >= 6 && hora < 18; // Consideramos de día entre las 6:00 y las 18:00
-        }
-
-        // Llama a la función para obtener los datos al cargar la página
-        obtenerDatosClima();
-    </script>
-    <!--fin de test-->
-    <marquee behavior="scroll" direction="left" scrollamount="4" loop="infinite">
-        &copy; Proyecto Tigger Swan | Versión  5.1.0-1.0.18 | Todos los derechos reservados por Lord Balliwn's | Tema: Blue
-        | <span id="fecha"></span>
-    </marquee>
-
-    <!-- Script para mostrar la fecha actual -->
-    <script>
+        // Obtener la hora y fecha actual
         const fechaActual = new Date();
-        const mes = fechaActual.toLocaleString('es', { month: 'long' });
-        const mesConPrimeraMayuscula = mes.charAt(0).toUpperCase() + mes.slice(1);
-        const año = fechaActual.getFullYear();
-        document.getElementById('fecha').textContent = `${mesConPrimeraMayuscula} ${año}`;
-    </script>
-</body>
+        const horaActual = fechaActual.getHours();
+        const sumaHoras = (horaActual + 3) % 24;
+        const diaSiguiente = sumaHoras === 0 ? fechaActual.getDate() + 1 : fechaActual.getDate();
+
+        document.getElementById("horaFecha").innerText = `Hora actual: ${horaActual}:${fechaActual.getMinutes()} - Fecha: ${fechaActual.getDate()}/${fechaActual.getMonth() + 1}/${fechaActual.getFullYear()}`;
+        document.getElementById("clima").innerText = "Cargando datos del clima...";
+
+        // Consultar la API del clima
+        fetch("https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric")
+            .then(response => response.json())
+            .then(data => {
+                const clima = data.list[0];
+                document.getElementById("clima").innerText = `
+                    Temperatura: ${clima.main.temp}°C
+                    Sensación térmica: ${clima.main.feels_like}°C
+                    Humedad: ${clima.main.humidity}%
+                    Nubosidad: ${clima.clouds.all}%
+                    Descripción del clima: ${clima.weather[0].description}
+                    Probabilidad de lluvia: ${clima.pop}%
+                    Lluvia en las últimas 3 horas: ${clima.rain ? clima.rain["3h"] : 0} mm
+                    Población: ${data.city.population}
+                    Visibilidad: ${clima.visibility / 1000} km
+                `;
+            })
+            .catch(error => {
+                console.error("Error al obtener datos del clima:", error);
+                document.getElementById("clima").innerText = "Error al cargar datos del clima.";
+            });
+        </script>
+        <!--fin-test-->
+    </body>
 </html>
