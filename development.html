@@ -8,16 +8,6 @@
 </head>
 <body>
     <h1>Pronóstico Climático <br> Ayuntamiento de San Nicolás</h1>
-
-    <!-- Script para mostrar la hora y fecha sincronizada -->
-    <div id="horaFecha"></div>
-    <script>
-        const horaFechaDiv = document.getElementById('horaFecha');
-        const ahora = new Date();
-        const horaSumada = new Date(ahora.getTime() + 3 * 60 * 60 * 1000);
-        horaFechaDiv.innerText = `Hora actual: ${ahora.toLocaleTimeString()} (Hora + 3 horas: ${horaSumada.toLocaleTimeString()})`;
-    </script>
-
     <!-- Script para obtener datos del clima -->
     <div id="clima"></div>
     <script>
@@ -53,7 +43,8 @@
 
     <!-- Footer -->
     <footer style="font-size: 10px;">
-        Proyecto Tigger Swan | Desarrollador: Lord Balliwn's | Versión 5.1.0 Compilación 3.4.01 | Tema: Dinamic Sky
+        Proyecto Tigger Swan | Desarrollador: Lord Balliwn's | Versión 5.1.0 Compilación 3.4.02 | Tema: Dinamic Sky
     </footer>
+    <script src="fondo.js"></script>
 </body>
 </html>
