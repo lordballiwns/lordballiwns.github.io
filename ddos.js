@@ -27,7 +27,7 @@ document.getElementById("horaFecha2").innerText = `${diaSemana}, ${numeroDia} ${
 .then(response => response.json())
 .then(data => {
     const clima = data.list[8];
-                document.getElementById("clima").innerText = `
+                document.getElementById("clima2").innerText = `
     Temperatura: ${clima.main.temp}°C
     Sensación térmica: ${clima.main.feels_like}°C
     Humedad: ${clima.main.humidity}%
