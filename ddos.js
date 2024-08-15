@@ -26,15 +26,15 @@ document.getElementById("horaFecha2").innerText = `${diaSemana}, ${numeroDia} ${
         fetch("https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric")
 .then(response => response.json())
 .then(data => {
-    const clima = data.list[8];
+    const clima2 = data.list[8];
                 document.getElementById("clima2").innerText = `
-    Temperatura: ${clima.main.temp}°C
-    Sensación térmica: ${clima.main.feels_like}°C
-    Humedad: ${clima.main.humidity}%
-    Nubosidad: ${clima.clouds.all}%
-    Descripción del clima: ${clima.weather[0].description}
-    Probabilidad de lluvia: ${clima.pop * 100}%
-    Visibilidad: ${clima.visibility / 1000} km
+    Temperatura: ${clima2.main.temp}°C
+    Sensación térmica: ${clima2.main.feels_like}°C
+    Humedad: ${clima2.main.humidity}%
+    Nubosidad: ${clima2.clouds.all}%
+    Descripción del clima: ${clima2.weather[0].description}
+    Probabilidad de lluvia: ${clima2.pop * 100}%
+    Visibilidad: ${clima2.visibility / 1000} km
                 `;
             })
 .catch(error => {
