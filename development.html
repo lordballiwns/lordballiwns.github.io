@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pronóstico Climático - Ayuntamiento de San Nicolás</title>
+</head>
+<body>
+    <h1>Pronóstico Climático <br> Ayuntamiento de San Nicolás</h1>
+
+    <!-- Script para mostrar la hora y fecha sincronizada -->
+    <script>
+        const ahora = new Date();
+        const horaActual = ahora.getHours();
+        const fechaActual = ahora.getDate();
+        const sumaHoras = 3;
+        const sumaDias = 24;
+
+        // Sumar horas y días
+        const horaSumada = (horaActual + sumaHoras) % 24;
+        const fechaSumada = fechaActual + Math.floor((horaActual + sumaHoras) / 24);
+
+        console.log(`Hora sumada: ${horaSumada}`);
+        console.log(`Fecha sumada: ${fechaSumada}`);
+    </script>
+
+    <!-- Script para obtener datos del pronóstico del clima -->
+    <script>
+        fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric')
+            .then(response => response.json())
+            .then(data => {
+                const clima = data.list[0];
+                console.log('Temperatura:', clima.main.temp);
+                console.log('Sensación térmica:', clima.main.feels_like);
+                console.log('Humedad:', clima.main.humidity);
+                console.log('Nubosidad:', clima.clouds.all);
+                console.log('Descripción del clima:', clima.weather[0].description);
+                console.log('Probabilidad de lluvia:', clima.pop);
+                console.log('Lluvia en las últimas 3 horas:', clima.rain ? clima.rain['3h'] : 'No disponible');
+                console.log('Población en números:', data.city.population);
+                console.log('Visibilidad en kilómetros:', clima.visibility / 1000);
+            })
+            .catch(error => console.error('Error al obtener datos del clima:', error));
+    </script>
+
+    <footer style="font-size: 10px;">
+        © Proyecto Tigger Swan, desarrollador Lord Balliwn's, Versión 5.1.0 Compilación 1.0.19, Tema: Azul
+    </footer>
+</body>
+</html>
