@@ -26,8 +26,16 @@
                 climaDiv.innerHTML = `
                     <p>${fechaHoy.toLocaleDateString('es-ES', opcionesFecha)}:</p>
                     <ul>
-                        <li>Temperatura actual: ${climaHoy.main.temp}°C</li>
+                        <li>Temperatura: ${climaHoy.main.temp}°C</li>
                         <li>Sensación térmica: ${climaHoy.main.feels_like}°C</li>
+                        <li>Humedad: ${climaHoy.main.humidity}%</li>
+                        <li>Nubes: ${climaHoy.clouds.all}%</li>
+                        <li>Descripcion: ${climaHoy.weather[0].description}</li>
+                        <li>Probabilidad de lluvia: ${clima.pop * 100}%</li>
+                        <li>Precipitación anterior (3 horas): ${clima.rain ? clima.rain["3h"] : 0} mm</li>
+                        <li>Población: ${data.city.population}</li>
+                        <li>Visibilidad: ${clima.visibility / 1000} km</li>
+                        
                         <!-- Agrega más detalles aquí si lo deseas -->
                     </ul>
                     <hr>
@@ -43,7 +51,7 @@
 
     <!-- Footer -->
     <footer style="font-size: 10px;">
-        Proyecto Tigger Swan | Desarrollador: Lord Balliwn's | Versión 5.1.0 Compilación 3.4.03 | Tema: Dinamic Sky
+        Proyecto Tigger Swan | Desarrollador: Lord Balliwn's | Versión 5.1.0 Compilación 3.4.05 | Tema: Dinamic Sky
     </footer>
     <script src="fondo.js"></script>
 </body>
