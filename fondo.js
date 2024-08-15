@@ -1,19 +1,17 @@
-// fondo.js
+function cambiarFondoSegunHora() {
+            const horaActual = new Date().getHours();
+            const body = document.body;
 
-function cambiarFondo() {
-    const horaActual = new Date().getHours();
-    const body = document.body;
+            if (horaActual >= 6 && horaActual < 12) {
+                body.style.background = 'linear-gradient(-10deg, #23A6D5, #23D5AB)';
+            } else if (horaActual >= 12 && horaActual < 18) {
+                body.style.background = 'linear-gradient(-10deg, #23A6D5, #EE7752)';
+            } else if (horaActual >= 18 && horaActual < 20) {
+                body.style.background = 'linear-gradient(-10deg, #23A6D5, #E73C7E)';
+            } else {
+                body.style.background = 'linear-gradient(-10deg, #23A6D5, #1F1C2C)';
+            }
+        }
 
-    // Define los colores de fondo según la hora del día
-    if (horaActual >= 6 && horaActual < 12) {
-        body.style.backgroundColor = '#f0e68c'; // Mañana
-    } else if (horaActual >= 12 && horaActual < 18) {
-        body.style.backgroundColor = '#87ceeb'; // Tarde
-    } else {
-        body.style.backgroundColor = '#191970'; // Noche
-    }
-}
-
-// Cambia el fondo cada 6 horas
-setInterval(cambiarFondo, 6 * 60 * 60 * 1000);
-cambiarFondo(); // Llama a la función al cargar la página
+        // Llama a la función al cargar la página
+        cambiarFondoSegunHora();
