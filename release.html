@@ -25,7 +25,7 @@
     <div id="clima"></div>
 
     <footer style="font-size: 12px;">
-        © Proyecto Tigger Swan, desarrollador Lord Balliwn's, Versión 5.1.0 Compilación 1.0.19, Tema: Azul
+        © Proyecto Tigger Swan | desarrollador Lord Balliwn's | Versión 5.1.0 Compilación 1.1.02 |  Tema: Azul
     </footer>
     <script>
         // Obtener la hora y fecha actual
@@ -41,7 +41,7 @@ const hora12 = (horaActual % 12) || 12;
 const amPm = horaActual < 12 ? "AM" : "PM";
 
 // Actualizar el elemento HTML
-document.getElementById("horaFecha").innerText = `Día de la semana: ${diaSemana}, ${numeroDia} ${mes} - Hora (12 h): ${hora12}:${minutos} ${amPm}`;
+document.getElementById("horaFecha").innerText = `Día de la semana: ${diaSemana}, ${numeroDia} ${mes} -  ${hora12}:${minutos} ${amPm}`;
 
         document.getElementById("clima").innerText = "Cargando datos del clima...";
 
