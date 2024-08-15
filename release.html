@@ -32,7 +32,7 @@
 const fechaActual = new Date();
 const horaActual = fechaActual.getHours();
 const minutos = fechaActual.getMinutes();
-const diaSemana = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"][fechaActual.getDay()];
+const diaSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"][fechaActual.getDay()];
 const numeroDia = fechaActual.getDate();
 const mes = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"][fechaActual.getMonth()];
 
@@ -41,7 +41,7 @@ const hora12 = (horaActual % 12) || 12;
 const amPm = horaActual < 12 ? "AM" : "PM";
 
 // Actualizar el elemento HTML
-document.getElementById("horaFecha").innerText = `Día de la semana: ${diaSemana}, ${numeroDia} ${mes} -  ${hora12}:${minutos} ${amPm}`;
+document.getElementById("horaFecha").innerText = `${diaSemana}, ${numeroDia} ${mes} -  ${hora12}:${minutos} ${amPm}`;
 
         document.getElementById("clima").innerText = "Cargando datos del clima...";
 
