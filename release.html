@@ -26,10 +26,10 @@
     <div id="clima"></div>
 
     <footer style="font-size: 12px;">
-        © Proyecto Tigger Swan | Desarrollador Lord Balliwn's | Versión 5.1.0 Compilación 1.1.06 |  Tema: Azul Rey
+        © Proyecto Tigger Swan | Desarrollador Lord Balliwn's | Versión 5.1.0 Compilación 1.1.08 |  Tema: Azul Rey
     </footer>
     <script>
-    // Obtener la hora y fecha actual
+        // Obtener la hora y fecha actual
 const fechaActual = new Date();
 const horaActual = fechaActual.getHours();
 const minutos = fechaActual.getMinutes();
@@ -45,10 +45,11 @@ const hora12 = (horaSumada % 12) || 12;
 const amPm = horaSumada < 12 ? "AM" : "PM";
 
 // Asegurarse de que los minutos tengan 2 dígitos
-const minutosFormateados = minutos.toString().padStart(2, "0");
+const minutosFormateados = minutos.toString().padStart(2, "0"); // Aquí está la corrección
 
 // Actualizar el elemento HTML
 document.getElementById("horaFecha").innerText = `${diaSemana}, ${numeroDia} ${mes} - ${hora12}:${minutosFormateados} ${amPm}`;
+
 
         document.getElementById("clima").innerText = "Cargando datos del clima...";
 
