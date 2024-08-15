@@ -6,7 +6,28 @@
 }
 body {
     font-family: Lato;
-}
+    margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(-10deg, #23A6D5, #23D5AB);
+            animation: back_animate 6h infinite linear;
+        }
+
+        @keyframes back_animate {
+            0% {
+                background: linear-gradient(-10deg, #23A6D5, #23D5AB);
+            }
+            16.67% {
+                background: linear-gradient(-10deg, #23A6D5, #EE7752);
+            }
+            33.33% {
+                background: linear-gradient(-10deg, #23A6D5, #E73C7E);
+            }
+            /* ... Add more keyframes for other times of day */
+        }
 /*Titulo*/
 h1 {
     font-size: 24px;
