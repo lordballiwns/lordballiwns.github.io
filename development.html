@@ -1,51 +1,34 @@
 <!DOCTYPE html>
-<html lang="es-mx">
+<html lang="es_mx">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pronóstico Climático - Ayuntamiento de San Nicolás</title>
+    <title>Pronóstico del Tiempo</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Pronóstico Climático <br> Ayuntamiento de San Nicolás</h1>
+    <div class="neon-div" onclick="copyAccountNumber()">
+        ¡Ayúdanos con tu donación! <p> Número de cuenta: 1271 8001 3023 546289
+    </div>
+    <script>
+        function copyAccountNumber() {
+            const accountNumber = '1271 8001 3023 546289';
+            navigator.clipboard.writeText(accountNumber)
+                .then(() => alert('Número de cuenta copiado: ' + accountNumber))
+                .catch(error => console.error('Error al copiar el número de cuenta:', error));
+        }
+    </script>
+        <!--Test-->
+        <h1>Pronóstico Climático <br> Ayuntamiento de San Nicolás</h1>
+        <br>
 
     <div id="horaFecha"></div>
     <div id="clima"></div>
-
+    <br>
     <footer style="font-size: 12px;">
-        © Proyecto Tigger Swan, desarrollador Lord Balliwn's, Versión 5.1.0 Compilación 1.0.19, Tema: Azul
+        © Proyecto Tigger Swan | Desarrollador Lord Balliwn's | Versión 5.1.0 Compilación 1.1.08 |  Tema: Azul Rey
     </footer>
-
-    <script>
-        // Obtener la hora y fecha actual
-        const fechaActual = new Date();
-        const horaActual = fechaActual.getHours();
-        const sumaHoras = (horaActual + 3) % 24;
-        const diaSiguiente = sumaHoras === 0 ? fechaActual.getDate() + 1 : fechaActual.getDate();
-
-        document.getElementById("horaFecha").innerText = `Hora actual: ${horaActual}:${fechaActual.getMinutes()} - Fecha: ${fechaActual.getDate()}/${fechaActual.getMonth() + 1}/${fechaActual.getFullYear()}`;
-        document.getElementById("clima").innerText = "Cargando datos del clima...";
-
-        // Consultar la API del clima
-        fetch("https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric")
-            .then(response => response.json())
-            .then(data => {
-                const clima = data.list[0];
-                document.getElementById("clima").innerText = `
-                    Temperatura: ${clima.main.temp}°C
-                    Sensación térmica: ${clima.main.feels_like}°C
-                    Humedad: ${clima.main.humidity}%
-                    Nubosidad: ${clima.clouds.all}%
-                    Descripción del clima: ${clima.weather[0].description}
-                    Probabilidad de lluvia: ${clima.pop}%
-                    Lluvia en las últimas 3 horas: ${clima.rain ? clima.rain["3h"] : 0} mm
-                    Población: ${data.city.population}
-                    Visibilidad: ${clima.visibility / 1000} km
-                `;
-            })
-            .catch(error => {
-                console.error("Error al obtener datos del clima:", error);
-                document.getElementById("clima").innerText = "Error al cargar datos del clima.";
-            });
-    </script>
-</body>
+    <script src="duno.js"></script>
+        <!--fin-test-->
+    </body>
 </html>
