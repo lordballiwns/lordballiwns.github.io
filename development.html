@@ -1,32 +1,58 @@
 <!DOCTYPE html>
-<html lang="es_mx">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pronóstico del Tiempo</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Pronóstico Climático - Ayuntamiento de San Nicolás</title>
 </head>
 <body>
-    <div class="neon-div" onclick="copyAccountNumber()">
-        ¡Ayúdanos con tu donación! <p> Número de cuenta: 1271 8001 3023 546289
-    </div>
-    <script src="script.js"></script>
-    <br>
-        <h1>Pronóstico Climático <br> Ayuntamiento de San Nicolás</h1>
-        <br>
+    <h1>Pronóstico Climático <br> Ayuntamiento de San Nicolás</h1>
 
+    <!-- Script para mostrar la hora y fecha sincronizada -->
     <div id="horaFecha"></div>
+    <script>
+        const horaFechaDiv = document.getElementById('horaFecha');
+        const ahora = new Date();
+        const horaSumada = new Date(ahora.getTime() + 3 * 60 * 60 * 1000);
+        horaFechaDiv.innerText = `Hora actual: ${ahora.toLocaleTimeString()} (Hora + 3 horas: ${horaSumada.toLocaleTimeString()})`;
+    </script>
+
+    <!-- Script para obtener datos del clima -->
     <div id="clima"></div>
-    <script src="duno.js"></script>
-    <br>    
-    <div id="horaFechados"></div>
-    <div id="climados"></div>
-    <br>
-    <footer style="font-size: 12px;">
-        © Proyecto Tigger Swan | Desarrollador Lord Balliwn's | Versión 5.1.0 Compilación 3.3.05 | Tema: Dinamic Sky
+    <script>
+        fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric')
+            .then(response => response.json())
+            .then(data => {
+                const climaDiv = document.getElementById('clima');
+                const climaHoy = data.list[0];
+                const climaManana = data.list[8];
+
+                const fechaHoy = new Date(climaHoy.dt * 1000);
+                const fechaManana = new Date(climaManana.dt * 1000);
+
+                const opcionesFecha = { weekday: 'long', day: 'numeric', month: 'long', hour: 'numeric', minute: 'numeric' };
+
+                climaDiv.innerHTML = `
+                    <p>${fechaHoy.toLocaleDateString('es-ES', opcionesFecha)}:</p>
+                    <ul>
+                        <li>Temperatura actual: ${climaHoy.main.temp}°C</li>
+                        <li>Sensación térmica: ${climaHoy.main.feels_like}°C</li>
+                        <!-- Agrega más detalles aquí si lo deseas -->
+                    </ul>
+                    <hr>
+                    <p>${fechaManana.toLocaleDateString('es-ES', opcionesFecha)}:</p>
+                    <ul>
+                        <li>Temperatura mañana: ${climaManana.main.temp}°C</li>
+                        <li>Sensación térmica mañana: ${climaManana.main.feels_like}°C</li>
+                        <!-- Agrega más detalles aquí si lo deseas -->
+                    </ul>
+                `;
+            });
+    </script>
+
+    <!-- Footer -->
+    <footer style="font-size: 10px;">
+        Proyecto Tigger Swan | Desarrollador: Lord Balliwn's | Versión 5.1.0 Compilación 3.4.01 | Tema: Dinamic Sky
     </footer>
-        <script src="ddos.js"></script>
-        <!--fin-test-->
-        <script src="fondo.js"></script>
-    </body>
+</body>
 </html>
