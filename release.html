@@ -27,15 +27,22 @@
     <footer style="font-size: 12px;">
         © Proyecto Tigger Swan, desarrollador Lord Balliwn's, Versión 5.1.0 Compilación 1.0.19, Tema: Azul
     </footer>
-
     <script>
         // Obtener la hora y fecha actual
-        const fechaActual = new Date();
-        const horaActual = fechaActual.getHours();
-        const sumaHoras = (horaActual + 3) % 24;
-        const diaSiguiente = sumaHoras === 0 ? fechaActual.getDate() + 1 : fechaActual.getDate();
+const fechaActual = new Date();
+const horaActual = fechaActual.getHours();
+const minutos = fechaActual.getMinutes();
+const diaSemana = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"][fechaActual.getDay()];
+const numeroDia = fechaActual.getDate();
+const mes = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"][fechaActual.getMonth()];
 
-        document.getElementById("horaFecha").innerText = `Hora actual: ${horaActual}:${fechaActual.getMinutes()} - Fecha: ${fechaActual.getDate()}/${fechaActual.getMonth() + 1}/${fechaActual.getFullYear()}`;
+// Formatear la hora en formato 12 horas
+const hora12 = (horaActual % 12) || 12;
+const amPm = horaActual < 12 ? "AM" : "PM";
+
+// Actualizar el elemento HTML
+document.getElementById("horaFecha").innerText = `Día de la semana: ${diaSemana}, ${numeroDia} ${mes} - Hora (12 h): ${hora12}:${minutos} ${amPm}`;
+
         document.getElementById("clima").innerText = "Cargando datos del clima...";
 
         // Consultar la API del clima
