@@ -26,10 +26,10 @@
     <div id="clima"></div>
 
     <footer style="font-size: 12px;">
-        © Proyecto Tigger Swan | desarrollador Lord Balliwn's | Versión 5.1.0 Compilación 1.1.05 |  Tema: Azul
+        © Proyecto Tigger Swan | Desarrollador Lord Balliwn's | Versión 5.1.0 Compilación 1.1.06 |  Tema: Azul Rey
     </footer>
     <script>
-        // Obtener la hora y fecha actual
+    // Obtener la hora y fecha actual
 const fechaActual = new Date();
 const horaActual = fechaActual.getHours();
 const minutos = fechaActual.getMinutes();
@@ -37,12 +37,18 @@ const diaSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Vierne
 const numeroDia = fechaActual.getDate();
 const mes = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"][fechaActual.getMonth()];
 
+// Sumar 3 horas
+const horaSumada = (horaActual + 3) % 24;
+
 // Formatear la hora en formato 12 horas
-const hora12 = (horaActual % 12) || 12;
-const amPm = horaActual < 12 ? "AM" : "PM";
+const hora12 = (horaSumada % 12) || 12;
+const amPm = horaSumada < 12 ? "AM" : "PM";
+
+// Asegurarse de que los minutos tengan 2 dígitos
+const minutosFormateados = minutos.toString().padStart(2, "0");
 
 // Actualizar el elemento HTML
-document.getElementById("horaFecha").innerText = `${diaSemana}, ${numeroDia} ${mes} -  ${hora12}:${minutos} ${amPm}`;
+document.getElementById("horaFecha").innerText = `${diaSemana}, ${numeroDia} ${mes} - ${hora12}:${minutosFormateados} ${amPm}`;
 
         document.getElementById("clima").innerText = "Cargando datos del clima...";
 
