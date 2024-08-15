@@ -17,7 +17,7 @@ const amPm = horaSumada < 12 ? "AM" : "PM";
 const minutosFormateados = minutos.toString().padStart(2, "0"); // Aquí está la corrección
 
 // Actualizar el elemento HTML
-document.getElementById("horaFecha").innerText = `${diaSemana}, ${numeroDia} ${mes} - ${hora12}:${minutosFormateados} ${amPm}`;
+document.getElementById("horaFecha2").innerText = `${diaSemana}, ${numeroDia} ${mes} - ${hora12}:${minutosFormateados} ${amPm}`;
 
 
         document.getElementById("clima").innerText = "Cargando datos del clima...";
