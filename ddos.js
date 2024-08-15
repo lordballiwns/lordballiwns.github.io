@@ -7,7 +7,7 @@ const numeroDia = fechaActual.getDate();
 const mes = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"][fechaActual.getMonth()];
 
 // Sumar 3 horas
-const horaSumada = (horaActual + 27) % 24;
+const horaSumada = (horaActual + 24) % 24;
 
 // Formatear la hora en formato 12 horas
 const hora12 = (horaSumada % 12) || 12;
