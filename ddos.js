@@ -7,7 +7,7 @@ const numeroDia = fechaActual.getDate();
 const mes = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"][fechaActual.getMonth()];
 
 // Sumar 3 horas
-const horaSumada = (horaActual + 3) % 24;
+const horaSumada = (horaActual + 27) % 24;
 
 // Formatear la hora en formato 12 horas
 const hora12 = (horaSumada % 12) || 12;
@@ -26,7 +26,7 @@ document.getElementById("horaFecha").innerText = `${diaSemana}, ${numeroDia} ${m
         fetch("https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric")
 .then(response => response.json())
 .then(data => {
-    const clima = data.list[0];
+    const clima = data.list[8];
                 document.getElementById("clima").innerText = `
     Temperatura: ${clima.main.temp}°C
     Sensación térmica: ${clima.main.feels_like}°C
@@ -34,12 +34,10 @@ document.getElementById("horaFecha").innerText = `${diaSemana}, ${numeroDia} ${m
     Nubosidad: ${clima.clouds.all}%
     Descripción del clima: ${clima.weather[0].description}
     Probabilidad de lluvia: ${clima.pop * 100}%
-    Lluvia en las últimas 3 horas: ${clima.rain ? clima.rain["3h"] : 0} mm
-    Población: ${data.city.population}
     Visibilidad: ${clima.visibility / 1000} km
                 `;
             })
 .catch(error => {
     console.error("Error al obtener datos del clima:", error);
-                document.getElementById("clima").innerText = "Error al cargar datos del clima.";
+                document.getElementById("clima2").innerText = "Error al cargar datos del clima.";
             });
