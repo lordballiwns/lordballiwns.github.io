@@ -34,7 +34,6 @@ h1 {
 }
 /*--hr--*/
 hr {
-    border: none;
     opacity: .5;
-    border-color:black;
+    border-color: rgb(0,0,0,.5);
 }
