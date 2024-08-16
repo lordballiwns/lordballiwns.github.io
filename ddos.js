@@ -28,8 +28,12 @@ fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-9
                     <hr>
                     <p>${fechaManana.toLocaleDateString('es-ES', opcionesFecha)}:</p>
                     <ul>
-                        <li>Temperatura mañana: ${climaManana.main.temp}°C</li>
-                        <li>Sensación térmica mañana: ${climaManana.main.feels_like}°C</li>
+                        <li>Temperatura: ${climaManana.main.temp}°C</li>
+                        <li>Sensación térmica: ${climaManana.main.feels_like}°C</li>
+                        <li>Humedad: ${climaManana.main.humidity}%</li>
+                        <li>Nubes: ${climaManana.clouds.all}%</li>
+                        <li>Descripcion: ${climaManana.weather[0].description}</li>
+                        <li>Probabilidad de lluvia: ${climaManana.pop * 100}%</li>
                         <!-- Agrega más detalles aquí si lo deseas -->
                     </ul>
                 `;
