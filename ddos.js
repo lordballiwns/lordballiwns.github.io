@@ -26,9 +26,7 @@ fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-9
                         <!-- Agrega más detalles aquí si lo deseas -->
                     </ul>
             <br>
-            <br>
-                    <hr>
-            <br>
+            <hr>
             <br>
                     <p>${fechaManana.toLocaleDateString('es-ES', opcionesFecha)}:</p>
                     <ul>
