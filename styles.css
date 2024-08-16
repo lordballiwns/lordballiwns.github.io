@@ -37,3 +37,8 @@ hr {
     opacity: .5;
     border-color: rgb(0,0,0,.5);
 }
+/*--Button--*/
+button {
+    background: none;
+    border: none;
+}
