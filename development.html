@@ -12,19 +12,10 @@
         <div id="clima"></div>
         <script src="ddos.js"></script>
         <footer style="font-size: 10px;">
-            Proyecto Tigger Swan | Desarrollador: Lord Balliwn's | Versión 5.1.0 Compilación 3.4.08 | Tema: Dinamic Sky
+            Proyecto Tigger Swan | Desarrollador: Lord Balliwn's | Versión 5.1.0 Compilación 3.4.10 | Tema: Dinamic Sky
             <span><button onclick="capture()">🥸</button></span>
         </footer>
         <script src="fondo.js"></script>
-        <script>
-  function capture() {
-    html2canvas(document.body).then(canvas => {
-      let a = document.createElement("a");
-      a.download = "clima.png";
-      a.href = canvas.toDataURL("image/png");
-      a.click(); // Puede que no siempre funcione debido a restricciones de seguridad.
-    });
-  }
-</script>
+        <script src="captura.js"></script>
     </body>
 </html>
