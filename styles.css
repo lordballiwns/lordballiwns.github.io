@@ -1,3 +1,4 @@
+/*--v3.4.6--*/
 * {
     color: rgb(225,225,225);
     text-shadow: 1px #000;
@@ -45,7 +46,7 @@ a.menu {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 50px;
+    padding: 25px;
     text-decoration: none;
     min-width: 100px;
     max-width: 100px;
