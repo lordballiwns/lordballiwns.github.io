@@ -1,4 +1,4 @@
-/*--v3.4.7--*/
+/*--v3.4.8--*/
 * {
     color: rgb(225,225,225);
     text-shadow: 1px #000;
@@ -55,8 +55,7 @@ a.menu {
 }
 .my-button {
     border-width: 4px;
-    border-style: solid;
-    border-image: linear-gradient(to right, darkblue, darkorchid) 1;
+    border-style: solid
 }
 .my-button:hover,
 .my-button:focus {
