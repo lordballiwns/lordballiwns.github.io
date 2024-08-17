@@ -1,8 +1,9 @@
+// 1.0.3
 var currentTime = new Date().getHours();
 var gradientColors = [
-    'linear-gradient(to right, #ff6347, #ffd700)', // Amanecer
-    'linear-gradient(to right, #ffd700, #87ceeb)', // Día
-    'linear-gradient(to right, #87ceeb, #00008b)'  // Anochecer
+    'linear-gradient(-10deg, #ff6347, #ffd700)', // Amanecer
+    'linear-gradient(-10deg, #ffd700, #87ceeb)', // Día
+    'linear-gradient(-10deg, #87ceeb, #00008b)'  // Anochecer
 ];
 
 var gradientIndex = 0;
