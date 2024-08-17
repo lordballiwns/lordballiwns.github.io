@@ -6,9 +6,9 @@ var gradientColors = [
 ];
 
 var gradientIndex = 0;
-if (currentTime >= 6 && currentTime < 12) {
+if (currentTime >= 6 && currentTime < 8) {
     gradientIndex = 0; // Amanecer
-} else if (currentTime >= 12 && currentTime < 18) {
+} else if (currentTime >= 8 && currentTime < 18) {
     gradientIndex = 1; // Día
 } else {
     gradientIndex = 2; // Anochecer
