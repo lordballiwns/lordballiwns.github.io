@@ -1,4 +1,4 @@
-/*--v3.4.6--*/
+/*--v3.4.7--*/
 * {
     color: rgb(225,225,225);
     text-shadow: 1px #000;
@@ -43,7 +43,7 @@ button {
 }
 /*--a--*/
 a.menu {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 25px;
