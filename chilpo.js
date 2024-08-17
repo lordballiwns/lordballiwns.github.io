@@ -1,3 +1,4 @@
+// Version 1.0.1 sunrise 
 // Obtener la hora y fecha actual
 const fechaActual = new Date();
 const horaActual = fechaActual.getHours();
@@ -23,7 +24,7 @@ document.getElementById("horaFecha").innerText = `${diaSemana}, ${numeroDia} ${m
         document.getElementById("clima").innerText = "Cargando datos del clima...";
 
         // Consultar la API del clima
-        fetch("https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric")
+        fetch("https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=17.55&lon=-99.50&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric")
 .then(response => response.json())
 .then(data => {
     const clima = data.list[0];
