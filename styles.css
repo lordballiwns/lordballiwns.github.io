@@ -46,10 +46,18 @@ a.menu {
     align-items: center;
     justify-content: center;
     padding: 50px;
-    border: 1px solid rgba(0, 0, 0, 0.5);
     text-decoration: none;
     min-width: 100px;
     max-width: 100px;
     min-height: 100px;
     max-height: 100px;
+}
+.my-button {
+    border-width: 4px;
+    border-style: solid;
+    border-image: linear-gradient(to right, darkblue, darkorchid) 1;
+}
+.my-button:hover,
+.my-button:focus {
+    border-color: #f00;
 }
