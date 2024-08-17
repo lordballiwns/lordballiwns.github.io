@@ -42,3 +42,9 @@ button {
     background: none;
     border: none;
 }
+a {
+    hight: 20px;
+    width: 20px;
+    background: none;
+    border: 1px rgb(0,0,0,.5);
+}
