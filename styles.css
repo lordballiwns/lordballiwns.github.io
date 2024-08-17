@@ -42,7 +42,7 @@ button {
 }
 /*--hr--*/
 a.menu {
-    padding: 13579020px;
-    border-radius: 5661px;
+    padding: 100px;
+    border: 50px solid rgb (0,0,0);
     text-decoration: none;
 }
