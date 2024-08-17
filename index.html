@@ -1,155 +1,25 @@
 <!DOCTYPE html>
 <html lang="es_mx">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pronóstico del Tiempo</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="neon-div" onclick="copyAccountNumber()">
-        ¡Ayúdanos con tu donación! <p> Número de cuenta: 1271 8001 3023 546289
-    </div>
-    <h1>Pronóstico del Tiempo<p>Ayuntamiento de San Nicolás</h1>
-    <script>
-        function copyAccountNumber() {
-            const accountNumber = '1271 8001 3023 546289';
-            navigator.clipboard.writeText(accountNumber)
-                .then(() => alert('Número de cuenta copiado: ' + accountNumber))
-                .catch(error => console.error('Error al copiar el número de cuenta:', error));
-        }
-    </script>
-    <div id="pronostico"></div>
-    <script>
-  async function obtenerPronostico() {
-    try {
-      const url = 'https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric';
-      const respuesta = await fetch(url);
-      const datos = await respuesta.json();
-
-      // Extrae los datos para los próximos 3 días (índices 0, 8 y 16)
-      const pronosticoDia1 = datos.list[0];
-      const pronosticoDia2 = datos.list[8];
-      const pronosticoDia3 = datos.list[16];
-    
-    // Función para redondear a dos decimales
-      const redondear = (numero) => Math.round(numero * 100) / 100;
-    
-    // Mapeo de letras a períodos del día
-                const periodoDia = {
-                    d: 'Día',
-                    t: 'Tarde',
-                    n: 'Noche',
-                    };
-
-      // Datos específicos para cada día
-      const datosDia1 = {
-        fecha: 
-        pronosticoDia1.dt_txt,
-        temperatura: pronosticoDia1.main.temp,
-        sensacionTermica: pronosticoDia1.main.feels_like,
-        humedad: pronosticoDia1.main.humidity,
-        nubosidad: pronosticoDia1.clouds.all,
-        descripcion: pronosticoDia1.weather[0].description, 
-        probabilidadLluvias: redondear(pronosticoDia1.pop * 100), 
-        // Multiplicamos por 100 y redondeamos
-        
-        velocidadViento: pronosticoDia1.wind.speed,
-        direccionViento: pronosticoDia1.wind.deg,
-        rachasViento: pronosticoDia1.wind.gust,
-        visibilidad: pronosticoDia1.visibility / 1000,
-        rain3h: pronosticoDia1.rain ? pronosticoDia1.rain['3h'] : 0, // Agregamos rain.3h
-        sysPod: periodoDia[pronosticoDia1.sys.pod], // Agregamos sys.pod
-        poblacion: datos.city.population, // Agregamos city.population
-      };
-
-      const datosDia2 = {
-        fecha: 
-        pronosticoDia2.dt_txt,
-        temperatura: pronosticoDia2.main.temp,
-        sensacionTermica: pronosticoDia2.main.feels_like,
-        humedad: pronosticoDia2.main.humidity,
-        nubosidad: pronosticoDia2.clouds.all,
-        descripcion: pronosticoDia2.weather[0].description,
-        probabilidadLluvias: redondear(pronosticoDia2.pop * 100),
-        velocidadViento: pronosticoDia2.wind.speed,
-        direccionViento: pronosticoDia2.wind.deg,
-        rachasViento: pronosticoDia2.wind.gust,
-        visibilidad: pronosticoDia2.visibility / 1000,
-      };
-
-      const datosDia3 = {
-        fecha: 
-        pronosticoDia3.dt_txt,
-        temperatura: pronosticoDia3.main.temp,
-        sensacionTermica: pronosticoDia3.main.feels_like,
-        humedad: pronosticoDia3.main.humidity,
-        nubosidad: pronosticoDia3.clouds.all,
-        descripcion: pronosticoDia3.weather[0].description,
-        probabilidadLluvias: redondear(pronosticoDia3.pop * 100),
-        velocidadViento: pronosticoDia3.wind.speed,
-        direccionViento: pronosticoDia3.wind.deg,
-        rachasViento: pronosticoDia3.wind.gust,
-        visibilidad: pronosticoDia3.visibility / 1000,
-      };
-
-      // Actualiza el contenido del elemento con ID "pronostico"
-      document.getElementById('pronostico').innerHTML = `
-        <h3>Hoy:</h3>
-        <p>Fecha: ${datosDia1.fecha}</p>
-        <p>Temperatura: ${datosDia1.temperatura} °C</p>
-        <p>Sensación térmica: ${datosDia1.sensacionTermica} °C</p>
-        <p>Humedad: ${datosDia1.humedad}%</p>
-        <p>Nubosidad: ${datosDia1.nubosidad}%</p>
-        <p>Descripción: ${datosDia1.descripcion}</p> 
-        <p>Precipitación: ${datosDia1.probabilidadLluvias}%</p>
-        <p>Lluvia en las últimas 3 horas: ${datosDia1.rain3h} mm</p>
-        <p>Período del día: ${datosDia1.sysPod}</p>
-        <p>Población: ${datosDia1.poblacion}</p>
-        <p>Visibilidad: ${datosDia1.visibilidad} Kilómetros</p>
-        <!-- Agrega más detalles según tus necesidades -->
-        <h3>Mañana:</h3>
-        <p>Fecha: ${datosDia2.fecha}</p>
-        <p>Temperatura: ${datosDia2.temperatura} °C</p>
-        <p>Sensación térmica: ${datosDia2.sensacionTermica} °C</p>
-        <p>Humedad: ${datosDia2.humedad}%</p>
-        <p>Nubosidad: ${datosDia2.nubosidad}%</p>
-        <p>Descripción: ${datosDia2.descripcion}</p>
-        <p>Precipitación: ${datosDia2.probabilidadLluvias}%</p>
-        <p>Visibilidad: ${datosDia2.visibilidad} Kilómetros</p>
-        <!-- Agrega más detalles según tus necesidades -->
-        <h3>Pasado:</h3>
-        <p>Fecha: ${datosDia3.fecha}</p>
-        <p>Temperatura: ${datosDia3.temperatura} °C</p>
-        <p>Sensación térmica: ${datosDia3.sensacionTermica} °C</p>
-        <p>Humedad: ${datosDia3.humedad}%</p>
-        <p>Nubosidad: ${datosDia3.nubosidad}%</p>
-        <p>Descripción: ${datosDia3.descripcion}</p>
-        <p>Precipitación: ${datosDia3.probabilidadLluvias}%</p>
-        <p>Visibilidad: ${datosDia3.visibilidad} Kilómetros</p>
-        <!-- Agrega más detalles según tus necesidades -->
-      `;
-    } catch (error) {
-      console.error('Error al obtener pronóstico:', error);
-    }
-  }
-
-  // Llama a la función para obtener el pronóstico al cargar la página
-  obtenerPronostico();
-</script>
-    <marquee behavior="scroll" direction="left" scrollamount="2" loop="infinite">
-        &copy; Proyecto Tigger Swan | Versión  5.0.1 c1.3.03 | Todos los derechos reservados por Lord Balliwn's | Tema: Blue
-        | <span id="fecha"></span>
-    </marquee>
-
-    <!-- Script para mostrar la fecha actual -->
-    <script>
-        const fechaActual = new Date();
-        const mes = fechaActual.toLocaleString('es', { month: 'long' });
-        const mesConPrimeraMayuscula = mes.charAt(0).toUpperCase() + mes.slice(1);
-        const año = fechaActual.getFullYear();
-        document.getElementById('fecha').textContent = `${mesConPrimeraMayuscula} ${año}`;
-    </script>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pronóstico del Tiempo</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    </head>
+    <body>
+        <h1>Pronóstico Climático <br> Ayuntamiento de San Nicolás</h1>
+        <br>
+        <div id="clima"></div>
+        <script src="ddos.js"></script>
+        <br>
+        <footer style="font-size: 10px;">
+            Proyecto Tigger Swan | Desarrollador: Lord Balliwn's | Versión 5.1.0 Compilación 214 | Tema: Dinamic Sky
+            <span>
+                <button onclick="capture()">🦢🐅🐿️</button>
+            </span>
+        </footer>
         <script src="fondo.js"></script>
-</body>
+        <script src="captura.js"></script>
+    </body>
 </html>
