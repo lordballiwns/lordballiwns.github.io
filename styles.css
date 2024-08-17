@@ -46,5 +46,6 @@ a {
     hight: 20px;
     width: 20px;
     background: none;
-    border: 1px rgb(0,0,0,.5);
+    border-color: 1px rgb(0,0,0,.5);
+    text-decoration: none;
 }
