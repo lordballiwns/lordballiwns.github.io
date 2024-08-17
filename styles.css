@@ -1,4 +1,4 @@
-/*--v3.4.8--*/
+/*--v3.4.9--*/
 * {
     color: rgb(225,225,225);
     text-shadow: 1px #000;
@@ -55,7 +55,8 @@ a.menu {
 }
 .my-button {
     border-width: 4px;
-    border-style: solid
+    border-style: solid;
+    border-image: ;
 }
 .my-button:hover,
 .my-button:focus {
