@@ -1,11 +1,10 @@
-/*--v3.5.5--*/
+/*--v3.5.6--*/
 * {
     padding: 0 auto;
     color: rgb(225,225,225);
-    text-shadow: 1px #000;
     margin: 0 auto;
-    -webkit-text-stroke: 1px #000;
-    text-stroke: 1px #000;
+    -webkit-text-stroke: .25px #000;
+    text-stroke: .25px #000;
 }
 body {
     font-family: Lato;
