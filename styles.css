@@ -1,10 +1,10 @@
-/*--v3.5.7--*/
+/*--v3.5.8--*/
 * {
     padding: 0 auto;
     color: rgb(225,225,225);
     margin: 0 auto;
-    -webkit-text-stroke: .25px #000;
-    text-stroke: .25px #000;
+    -webkit-text-stroke: .05px #000;
+    text-stroke: .05px #000;
     font-weight: bold;
 }
 body {
