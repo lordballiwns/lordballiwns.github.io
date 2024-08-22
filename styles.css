@@ -1,11 +1,10 @@
-/*--v3.6.0--*/
+/*--v3.6.1--*/
 * {
     padding: 0 auto;
-    color: #000;
+    color: #fff;
     margin: 0 auto;
-    -webkit-text-stroke: .05px #ccc;
-    text-stroke: .01px #ccc;
     font-weight: bold;
+    bacground-color: rgb(0,0,0,.25)
 }
 body {
     font-family: Lato;
