@@ -1,5 +1,8 @@
 /*--1.0.0--*/
 /* Estilo para el fondo en 3D */
+body {
+    background: #000;
+}
 .background {
     position: fixed;
     top: 0;
