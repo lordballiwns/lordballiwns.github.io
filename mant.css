@@ -1,6 +1,6 @@
 /*--1.0.0--*/
 /* Estilo para el fondo en 3D */
-body {
+.background {
     position: fixed;
     top: 0;
     left: 0;
