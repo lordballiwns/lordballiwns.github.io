@@ -5,29 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Horas</title>
 </head>
-<body>
+<body onload="calcularHoras()">
     <h1>Calculadora de Horas</h1>
-    <button onclick="calcularHoras()">Calcular</button>
+    <p id="consulta"></p>
     <p id="resultado"></p>
 
     <script>
         function calcularHoras() {
             let ahora = new Date();
             let hora = ahora.getHours();
+            let minutos = ahora.getMinutes();
 
             let horaComida = (hora + 2) % 24;
             let horaUltimaComida = (hora + 14) % 24;
             let horaEfectoTermina = (horaUltimaComida + 2) % 24;
 
+            document.getElementById('consulta').innerText = 
+                `Hora de la consulta: ${convertirA12Horas(hora, minutos)}`;
             document.getElementById('resultado').innerText = 
-                `Debes comer a las ${convertirA12Horas(horaComida)}, tu última comida es a las ${convertirA12Horas(horaUltimaComida)} y el efecto termina a las ${convertirA12Horas(horaEfectoTermina)}.`;
+                `Debes comer a las ${convertirA12Horas(horaComida, 0)}, tu última comida es a las ${convertirA12Horas(horaUltimaComida, 0)} y el efecto termina a las ${convertirA12Horas(horaEfectoTermina, 0)}.`;
         }
 
-        function convertirA12Horas(hora) {
+        function convertirA12Horas(hora, minutos) {
             let periodo = hora >= 12 ? 'PM' : 'AM';
             let hora12 = hora % 12;
             hora12 = hora12 ? hora12 : 12; // El 0 se convierte en 12
-            return `${hora12}:00 ${periodo}`;
+            let minutosStr = minutos < 10 ? '0' + minutos : minutos;
+            return `${hora12}:${minutosStr} ${periodo}`;
         }
     </script>
 </body>
