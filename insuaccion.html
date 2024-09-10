@@ -16,14 +16,14 @@
             let hora = ahora.getHours();
             let minutos = ahora.getMinutes();
 
-            let horaComida = (hora + 2) % 24;
-            let horaUltimaComida = (hora + 14) % 24;
-            let horaEfectoTermina = (horaUltimaComida + 2) % 24;
+            let horaComida = new Date(ahora.getTime() + 2 * 60 * 60 * 1000);
+            let horaUltimaComida = new Date(ahora.getTime() + 14 * 60 * 60 * 1000);
+            let horaEfectoTermina = new Date(horaUltimaComida.getTime() + 2 * 60 * 60 * 1000);
 
             document.getElementById('consulta').innerText = 
                 `Hora de la consulta: ${convertirA12Horas(hora, minutos)}`;
             document.getElementById('resultado').innerText = 
-                `Debes comer a las ${convertirA12Horas(horaComida, 0)}, tu última comida es a las ${convertirA12Horas(horaUltimaComida, 0)} y el efecto termina a las ${convertirA12Horas(horaEfectoTermina, 0)}.`;
+                `Debes comer a las ${convertirA12Horas(horaComida.getHours(), horaComida.getMinutes())}, tu última comida es a las ${convertirA12Horas(horaUltimaComida.getHours(), horaUltimaComida.getMinutes())} y el efecto termina a las ${convertirA12Horas(horaEfectoTermina.getHours(), horaEfectoTermina.getMinutes())}.`;
         }
 
         function convertirA12Horas(hora, minutos) {
