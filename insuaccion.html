@@ -7,25 +7,27 @@
 </head>
 <body>
     <h1>Calculadora de Horas</h1>
-    <label for="hora">Ingresa la hora (formato 24h):</label>
-    <input type="number" id="hora" min="0" max="23">
     <button onclick="calcularHoras()">Calcular</button>
     <p id="resultado"></p>
 
     <script>
         function calcularHoras() {
-            let hora = parseInt(document.getElementById('hora').value);
-            if (isNaN(hora) || hora < 0 || hora > 23) {
-                document.getElementById('resultado').innerText = "Por favor, ingresa una hora válida entre 0 y 23.";
-                return;
-            }
+            let ahora = new Date();
+            let hora = ahora.getHours();
 
             let horaComida = (hora + 2) % 24;
             let horaUltimaComida = (hora + 14) % 24;
             let horaEfectoTermina = (horaUltimaComida + 2) % 24;
 
             document.getElementById('resultado').innerText = 
-                `Debes comer a las ${horaComida}:00, tu última comida es a las ${horaUltimaComida}:00 y el efecto termina a las ${horaEfectoTermina}:00.`;
+                `Debes comer a las ${convertirA12Horas(horaComida)}, tu última comida es a las ${convertirA12Horas(horaUltimaComida)} y el efecto termina a las ${convertirA12Horas(horaEfectoTermina)}.`;
+        }
+
+        function convertirA12Horas(hora) {
+            let periodo = hora >= 12 ? 'PM' : 'AM';
+            let hora12 = hora % 12;
+            hora12 = hora12 ? hora12 : 12; // El 0 se convierte en 12
+            return `${hora12}:00 ${periodo}`;
         }
     </script>
 </body>
