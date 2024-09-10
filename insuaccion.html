@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Horas</title>
+</head>
+<body>
+    <h1>Calculadora de Horas</h1>
+    <label for="hora">Ingresa la hora (formato 24h):</label>
+    <input type="number" id="hora" min="0" max="23">
+    <button onclick="calcularHoras()">Calcular</button>
+    <p id="resultado"></p>
+
+    <script>
+        function calcularHoras() {
+            let hora = parseInt(document.getElementById('hora').value);
+            if (isNaN(hora) || hora < 0 || hora > 23) {
+                document.getElementById('resultado').innerText = "Por favor, ingresa una hora válida entre 0 y 23.";
+                return;
+            }
+
+            let horaComida = (hora + 2) % 24;
+            let horaUltimaComida = (hora + 14) % 24;
+            let horaEfectoTermina = (horaUltimaComida + 2) % 24;
+
+            document.getElementById('resultado').innerText = 
+                `Debes comer a las ${horaComida}:00, tu última comida es a las ${horaUltimaComida}:00 y el efecto termina a las ${horaEfectoTermina}:00.`;
+        }
+    </script>
+</body>
+</html>
