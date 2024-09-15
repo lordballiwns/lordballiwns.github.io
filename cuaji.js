@@ -1,4 +1,4 @@
-fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric')
+fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.46&lon=-98.41&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric')
             .then(response => response.json())
             .then(data => {
                 const climaDiv = document.getElementById('clima');
