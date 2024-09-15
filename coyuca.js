@@ -1,7 +1,7 @@
 // Version 1.0.3 sunrise 
 document.getElementById("clima").innerText = "Cargando datos del clima...";
 
-fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=17.55&lon=-99.50&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric')
+fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=17.03&lon=-100.03&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric')
             .then(response => response.json())
             .then(data => {
                 const climaDiv = document.getElementById('clima');
