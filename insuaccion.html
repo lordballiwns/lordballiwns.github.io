@@ -23,27 +23,29 @@
             return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
         }
 
-        function getNextArm() {
-            const lastArm = localStorage.getItem("lastArm") || "izquierdo";
-            return lastArm === "izquierdo" ? "derecho" : "izquierdo";
+        function getNextArm(currentArm) {
+            return currentArm === "izquierda" ? "derecha" : "izquierda";
         }
 
-        function updateArm() {
+        function updateArms() {
             const todayKey = getTodayKey();
             const storedDate = localStorage.getItem("date");
+            let armArriba = localStorage.getItem("armArriba") || "izquierda";
+            let armAbajo = localStorage.getItem("armAbajo") || "derecha";
 
             if (storedDate !== todayKey) {
-                const newArm = getNextArm();
-                localStorage.setItem("lastArm", newArm);
+                armArriba = getNextArm(armArriba);
+                armAbajo = getNextArm(armAbajo);
+                localStorage.setItem("armArriba", armArriba);
+                localStorage.setItem("armAbajo", armAbajo);
                 localStorage.setItem("date", todayKey);
             }
 
-            return localStorage.getItem("lastArm");
+            document.getElementById("brazoArriba").textContent = armArriba;
+            document.getElementById("brazoAbajo").textContent = armAbajo;
         }
 
-        const arm = updateArm();
-        document.getElementById("arriba").textContent = arm === "izquierdo" ? `Brazo: izquierdo` : "";
-        document.getElementById("abajo").textContent = arm === "derecho" ? `Brazo: derecho` : "";
+        updateArms();
     </script>
 
     <script>
