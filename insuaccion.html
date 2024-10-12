@@ -17,7 +17,7 @@
         <div id="arriba"></div>
     <div id="abajo"></div>
 
-    <script>
+    <script<script>
         function getTodayKey() {
             const date = new Date();
             return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
@@ -42,8 +42,8 @@
         }
 
         const arm = updateArm();
-        document.getElementById("arriba").textContent = `Brazo: ${arm}`;
-        document.getElementById("abajo").textContent = `Brazo: ${arm}`;
+        document.getElementById("arriba").textContent = arm === "izquierdo" ? `Brazo: izquierdo` : "";
+        document.getElementById("abajo").textContent = arm === "derecho" ? `Brazo: derecho` : "";
     </script>
 
     <script>
