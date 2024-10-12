@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Horas</title>
+    <title>Apoyo al diabético</title>
     <style>
         body {
-    background: linear-gradient(-45deg, 
-        #ff69b4, 
+        background: linear-gradient(-45deg, 
+        #0000ff,
         #ff00ff, 
-        #0000ff);
-    height: 100vh;
-    margin: 0;
-    overflow: auto;
-}
+        #ff69b4);
+        height: 100vh;
+        margin: 0;
+        overflow: auto;
+        }
     </style>
 </head>
 <body onload="calcularHoras()">
-    <h1>Calculadora de Horas</h1>
+    <h1>Accion de Insulina Gragina</h1>
     <p id="consulta"></p>
     <p id="resultado"></p>
-    <div id="arriba">Te toca en el brazo: <span id="brazoArriba"></span></div>
-    <div id="abajo">Te toca en el brazo: <span id="brazoAbajo"></span></div>
+    <div id="arriba">Te toca en el brazo (A): <span id="brazoArriba"></span></div>
+    <div id="abajo">Te toca en el brazo (B): <span id="brazoAbajo"></span></div>
 
     <script>
         function getTodayKey() {
