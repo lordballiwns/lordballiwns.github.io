@@ -10,6 +10,37 @@
     <h1>Calculadora de Horas</h1>
     <p id="consulta"></p>
     <p id="resultado"></p>
+        <div id="arriba"></div>
+    <div id="abajo"></div>
+
+    <script>
+        function getTodayKey() {
+            const date = new Date();
+            return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+        }
+
+        function getNextArm() {
+            const lastArm = localStorage.getItem("lastArm") || "izquierdo";
+            return lastArm === "izquierdo" ? "derecho" : "izquierdo";
+        }
+
+        function updateArm() {
+            const todayKey = getTodayKey();
+            const storedDate = localStorage.getItem("date");
+
+            if (storedDate !== todayKey) {
+                const newArm = getNextArm();
+                localStorage.setItem("lastArm", newArm);
+                localStorage.setItem("date", todayKey);
+            }
+
+            return localStorage.getItem("lastArm");
+        }
+
+        const arm = updateArm();
+        document.getElementById("arriba").textContent = `Brazo: ${arm}`;
+        document.getElementById("abajo").textContent = `Brazo: ${arm}`;
+    </script>
 
     <script>
         function calcularHoras() {
