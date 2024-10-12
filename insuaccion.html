@@ -6,18 +6,13 @@
     <title>Apoyo al diabético</title>
     <style>
         body {
-        background: linear-gradient(-45deg, 
-        #0000ff,
-        #ff00ff, 
-        #ff69b4);
-        height: 100vh;
-        margin: 0;
-        overflow: auto;
+            background: linear-gradient(-45deg, #0000ff, #ff00ff, #ff69b4);
+            margin: 0;
         }
     </style>
 </head>
 <body onload="calcularHoras()">
-    <h1>Accion de Insulina Gragina</h1>
+    <h1>Acción de Insulina Glargina</h1>
     <p id="consulta"></p>
     <p id="resultado"></p>
     <div id="arriba">Te toca en el brazo (A): <span id="brazoArriba"></span></div>
@@ -56,28 +51,23 @@
 
     <script>
         function calcularHoras() {
-            let ahora = new Date();
-            let hora = ahora.getHours();
-            let minutos = ahora.getMinutes();
+            const ahora = new Date();
+            const horaComida = new Date(ahora.getTime() + 2 * 60 * 60 * 1000);
+            const horaUltimaComida = new Date(ahora.getTime() + 14 * 60 * 60 * 1000);
+            const horaEfectoTermina = new Date(horaUltimaComida.getTime() + 2 * 60 * 60 * 1000);
 
-            let horaComida = new Date(ahora.getTime() + 2 * 60 * 60 * 1000);
-            let horaUltimaComida = new Date(ahora.getTime() + 14 * 60 * 60 * 1000);
-            let horaEfectoTermina = new Date(horaUltimaComida.getTime() + 2 * 60 * 60 * 1000);
-
-            document.getElementById('consulta').innerText = 
-                `Hora de la consulta: ${convertirA12Horas(hora, minutos)}`;
-            document.getElementById('resultado').innerText = 
+            document.getElementById('consulta').innerText =
+                `Hora de la consulta: ${convertirA12Horas(ahora.getHours(), ahora.getMinutes())}`;
+            document.getElementById('resultado').innerText =
                 `Debes comer a las ${convertirA12Horas(horaComida.getHours(), horaComida.getMinutes())}, tu última comida es a las ${convertirA12Horas(horaUltimaComida.getHours(), horaUltimaComida.getMinutes())} y el efecto termina a las ${convertirA12Horas(horaEfectoTermina.getHours(), horaEfectoTermina.getMinutes())}.`;
         }
 
         function convertirA12Horas(hora, minutos) {
-            let periodo = hora >= 12 ? 'PM' : 'AM';
-            let hora12 = hora % 12;
-            hora12 = hora12 ? hora12 : 12; // El 0 se convierte en 12
-            let minutosStr = minutos < 10 ? '0' + minutos : minutos;
+            const periodo = hora >= 12 ? 'PM' : 'AM';
+            const hora12 = hora % 12 || 12; // El 0 se convierte en 12
+            const minutosStr = minutos < 10 ? '0' + minutos : minutos;
             return `${hora12}:${minutosStr} ${periodo}`;
         }
     </script>
-    <script src="captura.js"></script>
 </body>
 </html>
