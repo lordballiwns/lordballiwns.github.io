@@ -67,6 +67,7 @@
             <label for="glucoseLevel">Nivel de Glucosa:</label>
             <input type="number" id="glucoseLevel" name="glucoseLevel" required>
             <button type="button" onclick="saveGlucoseLevel()">Guardar</button>
+            <button type="button" onclick="deleteLastMeasurement()">Eliminar Último</button>
         </form>
         <p id="lastMeasurement"></p>
     </div>
@@ -120,6 +121,12 @@
             if (glucoseLevel && measurementTime) {
                 document.getElementById('lastMeasurement').innerText = `Última medición: ${glucoseLevel} mg/dL a las ${measurementTime}`;
             }
+        }
+
+        function deleteLastMeasurement() {
+            localStorage.removeItem('glucoseLevel');
+            localStorage.removeItem('measurementTime');
+            document.getElementById('lastMeasurement').innerText = '';
         }
 
         updateArms();
