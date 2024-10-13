@@ -52,6 +52,18 @@
         button:hover {
             background-color: #0000ff;
         }
+        .glucose-normal {
+            color: green;
+        }
+        .glucose-high {
+            color: red;
+        }
+        .glucose-low {
+            color: blue;
+        }
+        .glucose-borderline {
+            color: orange;
+        }
     </style>
 </head>
 <body onload="calcularHoras()">
@@ -118,8 +130,21 @@
         function displayLastMeasurement() {
             const glucoseLevel = localStorage.getItem('glucoseLevel');
             const measurementTime = localStorage.getItem('measurementTime');
+            let glucoseClass = '';
+
+            if (glucoseLevel < 70) {
+                glucoseClass = 'glucose-low';
+            } else if (glucoseLevel >= 70 && glucoseLevel <= 140) {
+                glucoseClass = 'glucose-normal';
+            } else if (glucoseLevel > 140 && glucoseLevel <= 180) {
+                glucoseClass = 'glucose-borderline';
+            } else {
+                glucoseClass = 'glucose-high';
+            }
+
             if (glucoseLevel && measurementTime) {
-                document.getElementById('lastMeasurement').innerText = `Última medición: ${glucoseLevel} mg/dL a las ${measurementTime}`;
+                document.getElementById('lastMeasurement').innerHTML = 
+                    `Última medición: <span class="${glucoseClass}">${glucoseLevel} mg/dL</span> a las ${measurementTime}`;
             }
         }
 
