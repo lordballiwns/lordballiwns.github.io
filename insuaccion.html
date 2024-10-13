@@ -37,6 +37,21 @@
         .arm-info {
             font-weight: bold;
         }
+        input[type="number"], button {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #ff00ff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0000ff;
+        }
     </style>
 </head>
 <body onload="calcularHoras()">
@@ -46,6 +61,14 @@
         <p id="resultado"></p>
         <div class="arm-info">Te toca en el brazo (A): <span id="brazoArriba"></span></div>
         <div class="arm-info">Te toca en el brazo (B): <span id="brazoAbajo"></span></div>
+
+        <h2>Registro de Niveles de Glucosa</h2>
+        <form id="glucoseForm">
+            <label for="glucoseLevel">Nivel de Glucosa:</label>
+            <input type="number" id="glucoseLevel" name="glucoseLevel" required>
+            <button type="button" onclick="saveGlucoseLevel()">Guardar</button>
+        </form>
+        <p id="lastMeasurement"></p>
     </div>
     <script>
         const getTodayKey = () => new Date().toISOString().split('T')[0];
@@ -81,7 +104,26 @@
                 `Debes comer a las ${formatTime(horaComida)}, tu última comida es a las ${formatTime(horaUltimaComida)} y el efecto termina a las ${formatTime(horaEfectoTermina)}.`;
         }
 
+        function saveGlucoseLevel() {
+            const glucoseLevel = document.getElementById('glucoseLevel').value;
+            if (glucoseLevel) {
+                localStorage.setItem('glucoseLevel', glucoseLevel);
+                localStorage.setItem('measurementTime', new Date().toLocaleString());
+                displayLastMeasurement();
+                document.getElementById('glucoseForm').reset();
+            }
+        }
+
+        function displayLastMeasurement() {
+            const glucoseLevel = localStorage.getItem('glucoseLevel');
+            const measurementTime = localStorage.getItem('measurementTime');
+            if (glucoseLevel && measurementTime) {
+                document.getElementById('lastMeasurement').innerText = `Última medición: ${glucoseLevel} mg/dL a las ${measurementTime}`;
+            }
+        }
+
         updateArms();
+        displayLastMeasurement();
     </script>
 </body>
 </html>
