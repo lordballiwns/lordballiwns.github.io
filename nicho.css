@@ -7,8 +7,8 @@
 }
 
 body {
-    height: 90vh;
-    min-height: 90vh;
+    height: 100vh;
+    min-height: 100vh;
     overflow: auto;
     display: flex;
     flex-direction: column;
