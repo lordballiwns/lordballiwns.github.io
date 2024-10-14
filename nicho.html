@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es-mx">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pronóstico del Tiempo</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body onload="cambiarFondoSegunHora(); calcularHoras();">
+    <header>
+        <h1>Pronóstico Climático<br> Ayuntamiento de San Nicolás</h1>
+        <nav>
+            <a href="index.html">Inicio</a>
+        </nav>
+    </header>
+    <main>
+        <div id="clima"></div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            Proyecto Tigger Swan | Desarrollador: Lord Balliwn's |
+            <span id="version"></span> | <span id="compilacion"></span> | Tema: Dinamic Sky
+            <button onclick="capture()">Capturar Pantalla</button>
+        </div>
+    </footer>
+    <script src="anico.js"></script>
+    <script src="fondo.js"></script>
+    <script src="captura.js"></script>
+</body>
+</html>
