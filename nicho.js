@@ -1,7 +1,6 @@
 fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric')
     .then(response => response.json())
     .then(data => {
-        console.log(data); // Verificar la estructura de la respuesta
         const climaDiv = document.getElementById('clima');
         const climaHoy = data.list[0];
         const climaManana = data.list[8];
@@ -23,8 +22,6 @@ fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-9
                 <li>Visibilidad: ${climaHoy.visibility / 1000} km</li>
                 <li>Velocidad del viento: ${climaHoy.wind.speed} m/s</li>
                 <li>Presión atmosférica: ${climaHoy.main.pressure} hPa</li>
-                <!-- Comentado mientras verificamos --> 
-                <!-- <li>Índice UV: ${data.city.uv_index}</li> -->
             </ul>
             <hr>
             <h2>${fechaManana.toLocaleDateString('es-ES', opcionesFecha)}</h2>
@@ -37,8 +34,6 @@ fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-9
                 <li>Probabilidad de lluvia: ${climaManana.pop * 100}%</li>
                 <li>Velocidad del viento: ${climaManana.wind.speed} m/s</li>
                 <li>Presión atmosférica: ${climaManana.main.pressure} hPa</li>
-                <!-- Comentado mientras verificamos --> 
-                <!-- <li>Índice UV: ${data.city.uv_index}</li> -->
             </ul>
         `;
     });
