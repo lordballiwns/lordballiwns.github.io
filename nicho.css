@@ -13,7 +13,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background: black; /* Fondo negro */
+    background: linear-gradient(-45deg, #0000ff, #ff00ff, #ff69b4);
 }
 
 header {
@@ -24,7 +24,7 @@ header {
 }
 
 h1 {
-    font-size: 1.5em; /* Reducido de 2em */
+    font-size: 1.5em; 
     margin-bottom: 0.5em;
 }
 
@@ -48,18 +48,17 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(0, 0, 0, 0.75); /* Fondo negro */
 }
 
 #clima {
     text-align: left;
-    padding: 15px; /* Reducido de 20px */
+    padding: 15px;
     background: rgba(0, 0, 0, 0.75);
     border-radius: 10px;
     color: #fff;
     width: 80%;
     max-width: 600px;
-    font-size: 0.9em; /* Reducido de 1em */
+    font-size: 0.9em;
 }
 
 footer {
@@ -75,7 +74,7 @@ button {
     border: none;
     color: #00ff00;
     cursor: pointer;
-    font-size: 0.9em; /* Reducido de 1em */
+    font-size: 0.9em;
     padding: 5px 10px;
 }
 
@@ -86,11 +85,11 @@ button:hover {
 /* Responsivo */
 @media (max-width: 600px) {
     h1 {
-        font-size: 1.2em; /* Reducido de 1.5em */
+        font-size: 1.2em;
     }
 
     #clima {
         width: 100%;
-        font-size: 0.8em; /* Reducido para pantallas pequeñas */
+        font-size: 0.8em;
     }
 }
