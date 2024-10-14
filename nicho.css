@@ -23,7 +23,7 @@ header {
 }
 
 h1 {
-    font-size: 2em;
+    font-size: 1.5em; /* Reducido de 2em */
     margin-bottom: 0.5em;
 }
 
@@ -52,12 +52,13 @@ main {
 
 #clima {
     text-align: left;
-    padding: 20px;
+    padding: 15px; /* Reducido de 20px */
     background: rgba(0, 0, 0, 0.75);
     border-radius: 10px;
     color: #fff;
     width: 80%;
     max-width: 600px;
+    font-size: 0.9em; /* Reducido de 1em */
 }
 
 footer {
@@ -73,7 +74,7 @@ button {
     border: none;
     color: #00ff00;
     cursor: pointer;
-    font-size: 1em;
+    font-size: 0.9em; /* Reducido de 1em */
     padding: 5px 10px;
 }
 
@@ -84,10 +85,11 @@ button:hover {
 /* Responsivo */
 @media (max-width: 600px) {
     h1 {
-        font-size: 1.5em;
+        font-size: 1.2em; /* Reducido de 1.5em */
     }
 
     #clima {
         width: 100%;
+        font-size: 0.8em; /* Reducido para pantallas pequeñas */
     }
 }
