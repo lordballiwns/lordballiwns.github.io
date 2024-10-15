@@ -103,12 +103,14 @@ button#captureButton {
     text-shadow: 1px 1px #000 !important;
     text-align: center !important;
     margin-bottom: 15px !important;
+    display: block !important;
 }
 
 #forzado nav {
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden; /* Ajuste de overflow */
 }
 
 .nav-button {
