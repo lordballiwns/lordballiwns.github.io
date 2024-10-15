@@ -87,7 +87,7 @@ button:hover {
 }
 
 button#captureButton {
-    display: hidden;
+    display: none;
 }
 
 /* Responsivo */
