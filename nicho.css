@@ -29,9 +29,11 @@ h1 {
 }
 
 h2 {
-    font-size: 1.2em;
+    font-size: 1.5em;
+    color: #fff;
     text-align: center;
-    margin-bottom: 0.5em;
+    margin-bottom: 1em;
+    text-shadow: 2px 2px #000; /* Añadir sombra para mejor visibilidad */
 }
 
 nav {
@@ -46,10 +48,11 @@ nav a.menu {
     font-weight: bold;
     padding: 15px 20px;
     margin: 10px 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7);
     border: 2px solid transparent;
-    border-radius: 5px;
+    border-radius: 10px;
     transition: all 0.3s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Añadir sombra a los botones */
 }
 
 nav a.menu:hover {
@@ -101,16 +104,11 @@ button:hover {
     }
     
     h2 {
-        font-size: 1em;
+        font-size: 1.2em; /* Ajustado para pantallas pequeñas */
     }
 
     nav a.menu {
         padding: 10px 15px;
         margin: 5px 0;
-    }
-    
-    #clima {
-        width: 100%;
-        font-size: 0.8em;
     }
 }
