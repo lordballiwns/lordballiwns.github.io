@@ -69,6 +69,10 @@ footer {
     padding: 7.5px;
 }
 
+.footer-content p {
+    margin: 5px 0;
+}
+
 button {
     background: none;
     border: none;
