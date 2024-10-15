@@ -23,15 +23,20 @@
             <a href="ome.html" class="nav-button">Ometepec</a>
         </nav>
     </main>
-    <footer style="font-size: 10px;">
-        Proyecto Tigger Swan | Desarrollador: Lord Balliwn's | 
-        <span id="version"></span> | 
-        <span id="compilacion"></span> | Tema: Dinamic Sky
-        <span>
-            <button id="captureButton" onclick="capture()">️</button>
-        </span>
+    <footer>
+        <div class="footer-content">
+            <p>Proyecto Tigger Swan | Desarrollador: Lord Balliwn's</p>
+            <p><span id="version"></span> | <span id="compilacion"></span> | Tema: Cosmic Breeze</p>
+            <button id="captureButton" onclick="capture()">Capturar Pantalla</button>
+        </div>
     </footer>
-    <script src="fondo.js"></script>
-    <script src="captura.js"></script>
+    <script src="script.js"></script>
+    <script>
+        const footer = document.querySelector('footer');
+        footer.addEventListener('click', () => {
+            const captureButton = document.getElementById('captureButton');
+            captureButton.style.display = captureButton.style.display === 'none' ? 'block' : 'none';
+        });
+    </script>
 </body>
 </html>
