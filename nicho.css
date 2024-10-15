@@ -24,38 +24,21 @@ header {
 }
 
 h1 {
-    font-size: 1.5em;
+    font-size: 1.5em; 
     margin-bottom: 0.1em;
 }
 
-h2 {
-    font-size: 1.5em;
-    color: #fff;
-    text-align: center;
-    margin-bottom: 1em;
-    text-shadow: 2px 2px #000; /* Añadir sombra para mejor visibilidad */
-}
-
-nav {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-nav a.menu {
+nav a {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
-    padding: 15px 20px;
-    margin: 10px 0;
-    background: rgba(0, 0, 0, 0.7);
+    padding: 5px 10px;
     border: 2px solid transparent;
-    border-radius: 10px;
+    border-radius: 5px;
     transition: all 0.3s;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Añadir sombra a los botones */
 }
 
-nav a.menu:hover {
+nav a:hover {
     background: #00ff00;
     color: #000;
 }
@@ -63,9 +46,19 @@ nav a.menu:hover {
 main {
     flex-grow: 1;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+#clima {
+    text-align: left;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+    color: #fff;
+    width: 80%;
+    max-width: 600px;
+    font-size: 0.9em;
 }
 
 footer {
@@ -74,14 +67,6 @@ footer {
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
     padding: 7.5px;
-}
-
-.footer-content p {
-    margin: 5px 0;
-}
-
-button#captureButton {
-    display: none;
 }
 
 button {
@@ -102,13 +87,8 @@ button:hover {
     h1 {
         font-size: 1.2em;
     }
-    
-    h2 {
-        font-size: 1.2em; /* Ajustado para pantallas pequeñas */
-    }
-
-    nav a.menu {
-        padding: 10px 15px;
-        margin: 5px 0;
+    #clima {
+        width: 100%;
+        font-size: 0.8em;
     }
 }
