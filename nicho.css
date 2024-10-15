@@ -97,7 +97,6 @@ button#captureButton {
     }
 }
 /*-Etiquetas Nuevas-*/
-/* Para destacar el título de la página */
 .header-title {
     font-size: 2em;
     color: #ffffff;
@@ -106,7 +105,6 @@ button#captureButton {
     text-align: center;
 }
 
-/* Para mejorar la visibilidad del subtítulo */
 .subtitle {
     font-size: 1.5em;
     color: #ffffff;
@@ -115,18 +113,17 @@ button#captureButton {
     margin-bottom: 15px;
 }
 
-/* Estilo de botones para la navegación */
 .nav-button {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
     padding: 15px 20px;
-    margin: 10px;
+    margin: 10px 0;
     background: rgba(0, 0, 0, 0.6);
     border: 2px solid transparent;
     border-radius: 8px;
     transition: all 0.3s;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
 }
 
 .nav-button:hover {
@@ -139,13 +136,13 @@ button#captureButton {
     .header-title {
         font-size: 1.5em;
     }
-    
+
     .subtitle {
         font-size: 1.2em;
     }
 
     .nav-button {
         padding: 10px 15px;
-        margin: 5px;
+        margin: 5px 0;
     }
 }
