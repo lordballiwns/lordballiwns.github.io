@@ -110,6 +110,7 @@ h2 {
     display: inline-flex !important;
     flex-direction: column !important;
     align-items: center !important;
+    margin-top: 20px !important;
 }
 
 .nav-button {
@@ -117,7 +118,7 @@ h2 {
     text-decoration: none !important;
     font-weight: bold !important;
     padding: 15px 20px !important;
-    margin: 10px 0 !important;
+    margin: 15px 0 !important;
     background: rgba(0, 0, 0, 0.6) !important;
     border: 2px solid transparent !important;
     border-radius: 8px !important;
@@ -138,6 +139,6 @@ h2 {
 
     .nav-button {
         padding: 10px 15px !important;
-        margin: 5px 0 !important;
+        margin: 10px 0 !important;
     }
 }
