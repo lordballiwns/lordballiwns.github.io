@@ -6,21 +6,22 @@
     <title>Pronóstico del Tiempo</title>
     <link rel="stylesheet" href="nicho.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="script.js"></script>
 </head>
 <body onload="cambiarFondoSegunHora(); calcularHoras();">
     <header>
         <h1>Pronóstico Climático</h1>
-        <h2>Elige una opción:</h2>
     </header>
     <main>
-        <div class="menu-container">
-            <a href="anico.html" class="menu my-button">San Nicolás</a>
-            <a href="aca.html" class="menu my-button">Acapulco</a>
-            <a href="chilpo.html" class="menu my-button">Chilpancingo</a>
-            <a href="coyuca.html" class="menu my-button">Coyuca</a>
-            <a href="cuaji.html" class="menu my-button">Cuajinicuilapa</a>
-            <a href="ome.html" class="menu my-button">Ometepec</a>
-        </div>
+        <h2>Elige una opción:</h2>
+        <nav>
+            <a href="anico.html" class="menu">San Nicolás</a>
+            <a href="aca.html" class="menu">Acapulco</a>
+            <a href="chilpo.html" class="menu">Chilpancingo</a>
+            <a href="coyuca.html" class="menu">Coyuca</a>
+            <a href="cuaji.html" class="menu">Cuajinicuilapa</a>
+            <a href="ome.html" class="menu">Ometepec</a>
+        </nav>
     </main>
     <footer>
         <div class="footer-content">
@@ -29,14 +30,8 @@
             <button id="captureButton" onclick="capture()">Capturar Pantalla</button>
         </div>
     </footer>
-    <script src="script.js"></script>
-    <script>
-        // Toggle button visibility with a tap on the footer
-        const footer = document.querySelector('footer');
-        footer.addEventListener('click', () => {
-            const captureButton = document.getElementById('captureButton');
-            captureButton.style.display = captureButton.style.display === 'none' ? 'block' : 'none';
-        });
-    </script>
+    <script src="fondo.js"></script>
+    <script src="captura.js"></script>
+    <script src="script.js"></script> <!-- Moved script.js here -->
 </body>
 </html>
