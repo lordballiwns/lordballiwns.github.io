@@ -28,11 +28,10 @@
     </footer>
     <script src="script.js"></script>
     <script>
-        // Toggle button visibility with a tap on the footer
         const footer = document.querySelector('footer');
         footer.addEventListener('click', () => {
             const captureButton = document.getElementById('captureButton');
-            captureButton.style.visibility = captureButton.style.visibility === 'visible' ? 'hidden' : 'visible';
+            captureButton.style.display = captureButton.style.display === 'none' ? 'block' : 'none';
         });
     </script>
 </body>
