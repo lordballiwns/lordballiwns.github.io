@@ -97,20 +97,19 @@ button#captureButton {
     }
 }
 /*-Etiquetas Nuevas-*/
-.subtitle {
+h2 {
     font-size: 1.5em !important;
     color: #ffffff !important;
     text-shadow: 1px 1px #000 !important;
     text-align: center !important;
     margin-bottom: 15px !important;
-    display: block !important;
+    overflow: auto !important;
 }
 
 #forzado nav {
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: hidden; /* Ajuste de overflow */
 }
 
 .nav-button {
@@ -133,7 +132,7 @@ button#captureButton {
 
 /* Responsive para pantallas más pequeñas */
 @media (max-width: 600px) {
-    .subtitle {
+    h2 {
         font-size: 1.2em !important;
     }
 
