@@ -107,7 +107,7 @@ h2 {
 }
 
 #forzado nav {
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
     align-items: center;
 }
