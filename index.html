@@ -1,46 +1,42 @@
 <!DOCTYPE html>
-<html lang="es_mx">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Pronóstico del Tiempo</title>
-        <link rel="stylesheet" href="styles.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-        <script src="script.js"></script>
-    </head>
-    <body>
+<html lang="es-mx">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pronóstico del Tiempo</title>
+    <link rel="stylesheet" href="nicho.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body onload="cambiarFondoSegunHora(); calcularHoras();">
+    <header>
         <h1>Pronóstico Climático</h1>
-        <br>
         <h2>Elige una opción:</h2>
-        <br>
-        <a href="anico.html" class="menu my-button">
-            San Nicolás
-        </a>
-        <a href="aca.html" class="menu my-button">
-            Acapulco
-        </a>
-        <a href="chilpo.html" class="menu my-button">
-            Chilpancingo
-        </a>
-        <a href="coyuca.html" class="menu my-button">
-            Coyuca
-        </a>
-        <a href="cuaji.html" class="menu my-button">
-            Cuajinicuilapa
-        </a>
-        <a href="ome.html" class="menu my-button">
-            Ometepec
-        </a>
-        <br>
-        <footer style="font-size: 10px;">
-            Proyecto Tigger Swan | Desarrollador: Lord Balliwn's | 
-            <span id="version"></span> | 
-            <span id="compilacion"></span> | Tema: Dinamic Sky
-            <span>
-                <button onclick="capture()">🦢🐅🐿️</button>
-            </span>
-        </footer>
-        <script src="fondo.js"></script>
-        <script src="captura.js"></script>
-    </body>
+    </header>
+    <main>
+        <div class="menu-container">
+            <a href="anico.html" class="menu my-button">San Nicolás</a>
+            <a href="aca.html" class="menu my-button">Acapulco</a>
+            <a href="chilpo.html" class="menu my-button">Chilpancingo</a>
+            <a href="coyuca.html" class="menu my-button">Coyuca</a>
+            <a href="cuaji.html" class="menu my-button">Cuajinicuilapa</a>
+            <a href="ome.html" class="menu my-button">Ometepec</a>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <p>Proyecto Tigger Swan | Desarrollador: Lord Balliwn's</p>
+            <p><span id="version"></span> | <span id="compilacion"></span> | Tema: Cosmic Breeze</p>
+            <button id="captureButton" onclick="capture()">Capturar Pantalla</button>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+        // Toggle button visibility with a tap on the footer
+        const footer = document.querySelector('footer');
+        footer.addEventListener('click', () => {
+            const captureButton = document.getElementById('captureButton');
+            captureButton.style.display = captureButton.style.display === 'none' ? 'block' : 'none';
+        });
+    </script>
+</body>
 </html>
