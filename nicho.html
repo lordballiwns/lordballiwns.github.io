@@ -27,5 +27,13 @@
         </div>
     </footer>
     <script src="script.js"></script>
+    <script>
+        // Toggle button visibility with a tap on the footer
+        const footer = document.querySelector('footer');
+        footer.addEventListener('click', () => {
+            const captureButton = document.getElementById('captureButton');
+            captureButton.style.visibility = captureButton.style.visibility === 'hidden' ? 'visible' : 'hidden';
+        });
+    </script>
 </body>
 </html>
