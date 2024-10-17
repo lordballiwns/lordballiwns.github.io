@@ -1,4 +1,4 @@
-/*--2.1.0--*/
+/*--2.0.2--*/
 /* Estilo para el fondo */
 body {
     background: #2c2c2c; /* Color de fondo oscuro */
@@ -35,4 +35,9 @@ p {
 #countdown {
     font-size: 24px;
     font-weight: bold;
+    color: #ffcc00; /* Color dorado para resaltar */
+    background: #444;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
 }
