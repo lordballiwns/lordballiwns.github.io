@@ -1,18 +1,30 @@
-const countdownElement = document.getElementById('countdown');
+document.addEventListener("DOMContentLoaded", function() {
+    // Establecer el tiempo final para la cuenta regresiva
+    var countdownDate = new Date("Nov 1, 2024 00:00:00").getTime();
 
-function updateCountdown() {
-    const now = new Date();
-    const nextMonday = new Date(now);
-    nextMonday.setDate(now.getDate() + (1 + 7 - now.getDay()) % 7); // Calcula el próximo lunes
-    nextMonday.setHours(0, 0, 0, 0); // Establece la hora a las 00:00
+    // Actualizar la cuenta regresiva cada 1 segundo
+    var x = setInterval(function() {
 
-    const timeLeft = nextMonday - now;
-    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        // Obtener la fecha y hora de ahora
+        var now = new Date().getTime();
 
-    countdownElement.innerHTML = `${days} días ${hours} horas ${minutes} minutos ${seconds} segundos`;
-}
+        // Encontrar la distancia entre ahora y la fecha de cuenta regresiva
+        var distance = countdownDate - now;
 
-setInterval(updateCountdown, 1000); // Actualiza cada segundo
+        // Cálculos de tiempo para días, horas, minutos y segundos
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Mostrar el resultado en el elemento con id="countdown"
+        document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+        + minutes + "m " + seconds + "s ";
+
+        // Si la cuenta regresiva termina, mostrar un mensaje
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("countdown").innerHTML = "LAUNCH DAY!";
+        }
+    }, 1000);
+});
