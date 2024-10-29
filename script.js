@@ -1,6 +1,6 @@
 // informacion.js
-const version = "6.1 (7.0)";
-const compilacion = "3.93";
+const version = "7.0";
+const compilacion = "4.00";
 
 document.addEventListener("DOMContentLoaded", () => {
     const versionElement = document.getElementById("version");
