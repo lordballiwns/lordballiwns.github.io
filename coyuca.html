@@ -1,33 +1,38 @@
 <!DOCTYPE html>
-<html lang="es_mx">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Pronóstico del Tiempo</title>
-        <link rel="stylesheet" href="styles.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-        <script src="script.js"></script>
-    </head>
-    <body>
-        <h1>Pronóstico Climático 
-            <br> Coyuca de Benítez
-            <span>
-                <a href="index.html">🇲🇽</a>
-            </span>
-        </h1>
-        <br>
+<html lang="es-mx">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pronóstico del Tiempo</title>
+    <link rel="stylesheet" href="todo.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="todo.js"></script>
+    <script src="coyuca.js"></script>
+</head>
+<body onload="cambiarFondoSegunHora(); calcularHoras();">
+    <header>
+        <h1>Pronóstico Climático<br><br>Coyuca de Benítez<br></h1>
+        <nav>
+            <a href="clima.html">Inicio</a>
+        </nav>
+    </header>
+    <main>
         <div id="clima"></div>
-        <script src="coyuca.js"></script>
-        <br>
-        <footer style="font-size: 10px;">
-            Proyecto Tigger Swan | Desarrollador: Lord Balliwn's | 
-            <span id="version"></span> | 
-            <span id="compilacion"></span> | Tema: Dinamic Sky
-            <span>
-                <button onclick="capture()">🦢🐅🐿️</button>
-            </span>
-        </footer>
-        <script src="fondo.js"></script>
-        <script src="captura.js"></script>
-    </body>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <p>Proyecto Tigger Swan | Desarrollador: Lord Balliwn's</p>
+            <p><span id="version"></span> | <span id="compilacion"></span> | Tema: Cosmic Breeze</p>
+            <button id="captureButton" onclick="capture()">Capturar Pantalla</button>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+        const footer = document.querySelector('footer');
+        footer.addEventListener('click', () => {
+            const captureButton = document.getElementById('captureButton');
+            captureButton.style.display = captureButton.style.display === 'none' ? 'block' : 'none';
+        });
+    </script>
+</body>
 </html>
