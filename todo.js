@@ -24,3 +24,11 @@ function capture() {
         a.click();
     });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    const captureLink = document.getElementById("captureLink");
+    captureLink.addEventListener("click", (event) => {
+        event.preventDefault();
+        capture();
+    });
+});
