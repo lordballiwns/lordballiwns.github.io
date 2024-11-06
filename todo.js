@@ -17,9 +17,14 @@ cambiarFondoSegunHora();
 
 // captura.js
 function capture() {
-    html2canvas(document.body).then(canvas => {
+    // Ajuste de la resolución del canvas
+    const scale = 2; // Aumenta el factor de escala para mayor resolución
+    html2canvas(document.body, {
+        scale: scale,
+        useCORS: true, // Para habilitar la captura de imágenes cargadas desde otros dominios si es necesario
+    }).then(canvas => {
         let a = document.createElement("a");
-        a.download = "clima.png";
+        a.download = "clima-alta-definicion.png";
         a.href = canvas.toDataURL("image/png");
         a.click();
     });
