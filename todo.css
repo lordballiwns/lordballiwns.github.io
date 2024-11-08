@@ -149,3 +149,7 @@ h2 {
         height: auto !important; /* Ajusta la altura automáticamente */
     }
 }
+#captureLink {
+    color: inherit;
+    text-decoration: none;
+}
