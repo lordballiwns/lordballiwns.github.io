@@ -21,18 +21,12 @@
     </main>
     <footer>
         <div class="footer-content">
-            <p>Proyecto Tigger Swan | Desarrollador: Lord Balliwn's</p>
+            <p>
+                <a href="#" id="captureLink">Proyecto Tigger Swan</a> | Desarrollador: Lord Balliwn's
+            </p>
             <p><span id="version"></span> | <span id="compilacion"></span> | Tema: Cosmic Breeze</p>
-            <button id="captureButton" onclick="capture()">Capturar Pantalla</button>
         </div>
     </footer>
     <script src="script.js"></script>
-    <script>
-        const footer = document.querySelector('footer');
-        footer.addEventListener('click', () => {
-            const captureButton = document.getElementById('captureButton');
-            captureButton.style.display = captureButton.style.display === 'none' ? 'block' : 'none';
-        });
-    </script>
 </body>
 </html>
