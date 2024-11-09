@@ -20,11 +20,12 @@ h1 {
 
 .container {
     background-color: rgba(255, 255, 255, 0.9);
-    padding: 30px;
+    padding: 20px;
     border-radius: 15px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     width: 80%;
-    max-width: 700px;
+    max-width: 600px;
+    margin: 10px; /* Agregar margen para mejor visualización */
 }
 
 button {
@@ -37,4 +38,16 @@ button {
 
 button:hover {
     background-color: #005bb5;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 90%; /* Ajuste para pantallas pequeñas */
+        max-width: none;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
 }
