@@ -19,7 +19,7 @@ function capture() {
         useCORS: true, // Para habilitar la captura de imágenes cargadas desde otros dominios si es necesario
     }).then(canvas => {
         let a = document.createElement("a");
-        a.download = "clima-alta-definicion.png";
+        a.download = "pronostico.png";
         a.href = canvas.toDataURL("image/png");
         a.click();
     });
