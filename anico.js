@@ -1,10 +1,4 @@
 fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Error al obtener los datos del clima');
-        }
-        return response.json();
-    })
     .then(data => {
         const climaDiv = document.getElementById('clima');
         const climaAhora = data.list[0];
