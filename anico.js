@@ -1,42 +1,42 @@
 fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric')
-            .then(response => response.json())
-            .then(data => {
-                const climaDiv = document.getElementById('clima');
-                const climaHoy = data.list[0];
-                const climaManana = data.list[8];
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error al obtener los datos del clima');
+        }
+        return response.json();
+    })
+    .then(data => {
+        const climaDiv = document.getElementById('clima');
+        const climaAhora = data.list[0];
+        const clima12Horas = data.list[4];
+        const clima9Horas = data.list[7];
 
-                const fechaHoy = new Date(climaHoy.dt * 1000);
-                const fechaManana = new Date(climaManana.dt * 1000);
+        const opcionesFecha = { weekday: 'long', day: 'numeric', month: 'long', hour: 'numeric', minute: 'numeric', hour12: true };
 
-                const opcionesFecha = { weekday: 'long', day: 'numeric', month: 'long', hour: 'numeric', minute: 'numeric', hour12: true };
+        const generarPronosticoHTML = (fecha, clima) => `
+            <p>${fecha.toLocaleDateString('es-ES', opcionesFecha)}:</p>
+            <ul>
+                <li>Temperatura: ${clima.main.temp}°C</li>
+                <li>Sensación térmica: ${clima.main.feels_like}°C</li>
+                <li>Humedad: ${clima.main.humidity}%</li>
+                <li>Nubes: ${clima.clouds.all}%</li>
+                <li>Descripción: ${clima.weather[0].description}</li>
+                <li>Probabilidad de lluvia: ${clima.pop * 100}%</li>
+            </ul>
+        `;
 
-                climaDiv.innerHTML = `
-                    <p>${fechaHoy.toLocaleDateString('es-ES', opcionesFecha)}:</p>
-                    <ul>
-                        <li>Temperatura: ${climaHoy.main.temp}°C</li>
-                        <li>Sensación térmica: ${climaHoy.main.feels_like}°C</li>
-                        <li>Humedad: ${climaHoy.main.humidity}%</li>
-                        <li>Nubes: ${climaHoy.clouds.all}%</li>
-                        <li>Descripcion: ${climaHoy.weather[0].description}</li>
-                        <li>Probabilidad de lluvia: ${climaHoy.pop * 100}%</li>
-                        <li>Precipitación anterior (3 horas): ${climaHoy.rain ? climaHoy.rain["3h"] : 0} mm</li>
-                        <li>Población: ${data.city.population}</li>
-                        <li>Visibilidad: ${climaHoy.visibility / 1000} km</li>
-                        
-                        <!-- Agrega más detalles aquí si lo deseas -->
-                    </ul>
-            <br>
-            <hr>
-            <br>
-                    <p>${fechaManana.toLocaleDateString('es-ES', opcionesFecha)}:</p>
-                    <ul>
-                        <li>Temperatura: ${climaManana.main.temp}°C</li>
-                        <li>Sensación térmica: ${climaManana.main.feels_like}°C</li>
-                        <li>Humedad: ${climaManana.main.humidity}%</li>
-                        <li>Nubes: ${climaManana.clouds.all}%</li>
-                        <li>Descripcion: ${climaManana.weather[0].description}</li>
-                        <li>Probabilidad de lluvia: ${climaManana.pop * 100}%</li>
-                        <!-- Agrega más detalles aquí si lo deseas -->
-                    </ul>
-                `;
-            });
+        climaDiv.innerHTML = `
+            <h2>Pronóstico Actual</h2>
+            ${generarPronosticoHTML(new Date(climaAhora.dt * 1000), climaAhora)}
+            <br><hr><br>
+            <h2>Pronóstico a 12 Horas</h2>
+            ${generarPronosticoHTML(new Date(clima12Horas.dt * 1000), clima12Horas)}
+            <br><hr><br>
+            <h2>Pronóstico a 9 Horas</h2>
+            ${generarPronosticoHTML(new Date(clima9Horas.dt * 1000), clima9Horas)}
+        `;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        document.getElementById('clima').innerHTML = '<p>Error al cargar los datos del clima.</p>';
+    });
