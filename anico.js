@@ -8,8 +8,9 @@ fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-9
     .then(data => {
         const climaDiv = document.getElementById('clima');
         const climaAhora = data.list[0];
+        const clima6Horas = data.list[2];
         const clima12Horas = data.list[4];
-        const clima9Horas = data.list[7];
+        const clima18Horas = data.list[6];
 
         const opcionesFecha = { weekday: 'long', day: 'numeric', month: 'long', hour: 'numeric', minute: 'numeric', hour12: true };
 
@@ -29,11 +30,14 @@ fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-9
             <h2>Pronóstico Actual</h2>
             ${generarPronosticoHTML(new Date(climaAhora.dt * 1000), climaAhora)}
             <br><hr><br>
+            <h2>Pronóstico a 6 Horas</h2>
+            ${generarPronosticoHTML(new Date(clima6Horas.dt * 1000), clima6Horas)}
+            <br><hr><br>
             <h2>Pronóstico a 12 Horas</h2>
             ${generarPronosticoHTML(new Date(clima12Horas.dt * 1000), clima12Horas)}
             <br><hr><br>
-            <h2>Pronóstico a 9 Horas</h2>
-            ${generarPronosticoHTML(new Date(clima9Horas.dt * 1000), clima9Horas)}
+            <h2>Pronóstico a 18 Horas</h2>
+            ${generarPronosticoHTML(new Date(clima18Horas.dt * 1000), clima18Horas)}
         `;
     })
     .catch(error => {
