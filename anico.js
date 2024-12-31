@@ -3,8 +3,8 @@ fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=17.55&lon=-9
     .then(data => {
         const climaDiv = document.getElementById('clima');
         const clima0 = data.list[0];
-        const clima6 = data.list[3];
-        const clima12 = data.list[6];
+        const clima6 = data.list[2];
+        const clima12 = data.list[4];
         const fecha = new Date(clima0.dt * 1000);
         const opcionesFecha = { weekday: 'long', day: 'numeric', month: 'long', hour: 'numeric', minute: 'numeric', hour12: true };
 
