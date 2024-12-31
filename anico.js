@@ -1,41 +1,40 @@
-fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=16.41&lon=-98.51&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric')
-    .then(response => response.json())
+//v8.0 nightly
+fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=17.55&lon=-99.50&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric')
+            .then(response => response.json())
     .then(data => {
         const climaDiv = document.getElementById('clima');
-        const climaAhora = data.list[0];
-        const clima6Horas = data.list[2];
-        const clima12Horas = data.list[4];
-        const clima18Horas = data.list[6];
-
+        const clima0 = data.list[0];
+        const clima9 = data.list[3];
+        const clima18 = data.list[6];
+        const fecha = new Date(climaHoy.dt * 1000);
         const opcionesFecha = { weekday: 'long', day: 'numeric', month: 'long', hour: 'numeric', minute: 'numeric', hour12: true };
-
-        const generarPronosticoHTML = (fecha, clima) => `
-            <p>${fecha.toLocaleDateString('es-ES', opcionesFecha)}:</p>
+        
+        climaDiv.innerHTML = `
+            <h2>${fecha.toLocaleDateString('es-ES', opcionesFecha)}:</h2>
             <ul>
-                <li>Temperatura: ${clima.main.temp}°C</li>
-                <li>Sensación térmica: ${clima.main.feels_like}°C</li>
-                <li>Humedad: ${clima.main.humidity}%</li>
-                <li>Nubes: ${clima.clouds.all}%</li>
-                <li>Descripción: ${clima.weather[0].description}</li>
-                <li>Probabilidad de lluvia: ${clima.pop * 100}%</li>
+                <li>Temperatura: ${clima0.main.temp}°C</li>
+                <li>Sensación térmica: ${clima0.main.feels_like}°C</li>
+                <li>Humedad: ${clima0.main.humidity}%</li>
+                <li>Nubes: ${clima0.clouds.all}%</li>
+                <li>Descripción: ${clima0.weather[0].description}</li>
+                <li>Probabilidad de lluvia: ${clima0.pop * 100}%</li>
+                <li>Precipitación anterior (3 horas): ${clima0.rain ? clima0.rain["3h"] : 0} mm</li>
+                <li>Población: ${data.city.population}</li>
+                <li>Visibilidad: ${clima0.visibility / 1000} km</li>
+                <li>Velocidad del viento: ${clima0.wind.speed} m/s</li>
+                <li>Presión atmosférica: ${clima0.main.pressure} hPa</li>
+            </ul>
+            <hr>
+            <h2>${fecha.toLocaleDateString('es-ES', opcionesFecha)}</h2>
+            <ul>
+                <li>Temperatura: ${clima9.main.temp}°C</li>
+                <li>Sensación térmica: ${clima9.main.feels_like}°C</li>
+                <li>Humedad: ${clima9.main.humidity}%</li>
+                <li>Nubes: ${clima9.clouds.all}%</li>
+                <li>Descripción: ${clima9.weather[3].description}</li>
+                <li>Probabilidad de lluvia: ${clima9.pop * 100}%</li>
+                <li>Velocidad del viento: ${clima9.wind.speed} m/s</li>
+                <li>Presión atmosférica: ${clima9.main.pressure} hPa</li>
             </ul>
         `;
-
-        climaDiv.innerHTML = `
-            <h2>Pronóstico Actual</h2>
-            ${generarPronosticoHTML(new Date(climaAhora.dt * 1000), climaAhora)}
-            <br><hr><br>
-            <h2>Pronóstico a 6 Horas</h2>
-            ${generarPronosticoHTML(new Date(clima6Horas.dt * 1000), clima6Horas)}
-            <br><hr><br>
-            <h2>Pronóstico a 12 Horas</h2>
-            ${generarPronosticoHTML(new Date(clima12Horas.dt * 1000), clima12Horas)}
-            <br><hr><br>
-            <h2>Pronóstico a 18 Horas</h2>
-            ${generarPronosticoHTML(new Date(clima18Horas.dt * 1000), clima18Horas)}
-        `;
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        document.getElementById('clima').innerHTML = '<p>Error al cargar los datos del clima.</p>';
     });
