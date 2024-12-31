@@ -1,4 +1,3 @@
-//v8.0 nightly
 fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=17.55&lon=-99.50&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric')
     .then(response => response.json())
     .then(data => {
@@ -6,8 +5,13 @@ fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=17.55&lon=-9
         const clima0 = data.list[0];
         const clima9 = data.list[3];
         const clima18 = data.list[6];
-        const fecha = new Date(clima0.dt * 1000);  // Aquí cambié climaHoy por clima0
+        const fecha = new Date(clima0.dt * 1000);
         const opcionesFecha = { weekday: 'long', day: 'numeric', month: 'long', hour: 'numeric', minute: 'numeric', hour12: true };
+
+        // Obtener la hora actual y sumarle 9 horas
+        const horaConsulta = new Date();
+        horaConsulta.setHours(horaConsulta.getHours() + 9);
+        const opcionesHora = { hour: 'numeric', minute: 'numeric', hour12: true };
 
         climaDiv.innerHTML = `
             <h2>${fecha.toLocaleDateString('es-ES', opcionesFecha)}:</h2>
@@ -35,5 +39,6 @@ fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=17.55&lon=-9
                 <li>Velocidad del viento: ${clima9.wind.speed} m/s</li>
                 <li>Presión atmosférica: ${clima9.main.pressure} hPa</li>
             </ul>
+            <p>Hora de consulta: ${horaConsulta.toLocaleTimeString('es-ES', opcionesHora)}</p>
         `;
     });
