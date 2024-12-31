@@ -25,13 +25,12 @@ fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=17.55&lon=-9
                 <li>Presión atmosférica: ${clima0.main.pressure} hPa</li>
             </ul>
             <hr>
-            <h2>${fecha.toLocaleDateString('es-ES', opcionesFecha)}</h2>
             <ul>
                 <li>Temperatura: ${clima9.main.temp}°C</li>
                 <li>Sensación térmica: ${clima9.main.feels_like}°C</li>
                 <li>Humedad: ${clima9.main.humidity}%</li>
                 <li>Nubes: ${clima9.clouds.all}%</li>
-                <li>Descripción: ${clima9.weather[3].description}</li>
+                <li>Descripción: ${clima9.weather[0].description}</li>
                 <li>Probabilidad de lluvia: ${clima9.pop * 100}%</li>
                 <li>Velocidad del viento: ${clima9.wind.speed} m/s</li>
                 <li>Presión atmosférica: ${clima9.main.pressure} hPa</li>
