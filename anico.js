@@ -3,8 +3,8 @@ fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=17.55&lon=-9
     .then(data => {
         const climaDiv = document.getElementById('clima');
         const clima0 = data.list[0];
-        const clima9 = data.list[3];
-        const clima18 = data.list[6];
+        const clima6 = data.list[3];
+        const clima12 = data.list[6];
         const fecha = new Date(clima0.dt * 1000);
         const opcionesFecha = { weekday: 'long', day: 'numeric', month: 'long', hour: 'numeric', minute: 'numeric', hour12: true };
 
@@ -30,16 +30,28 @@ fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=17.55&lon=-9
                 <li>Presión atmosférica: ${clima0.main.pressure} hPa</li>
             </ul>
             <hr>
+            <h2>Pronóstico 6 Horas: ${horaConsulta.toLocaleTimeString('es-ES', opcionesHora)}</h2>
             <ul>
-                <li>Temperatura: ${clima9.main.temp}°C</li>
-                <li>Sensación térmica: ${clima9.main.feels_like}°C</li>
-                <li>Humedad: ${clima9.main.humidity}%</li>
-                <li>Nubes: ${clima9.clouds.all}%</li>
-                <li>Descripción: ${clima9.weather[0].description}</li>
-                <li>Probabilidad de lluvia: ${clima9.pop * 100}%</li>
-                <li>Velocidad del viento: ${clima9.wind.speed} m/s</li>
-                <li>Presión atmosférica: ${clima9.main.pressure} hPa</li>
+                <li>Temperatura: ${clima6.main.temp}°C</li>
+                <li>Sensación térmica: ${clima6.main.feels_like}°C</li>
+                <li>Humedad: ${clima6.main.humidity}%</li>
+                <li>Nubes: ${clima6.clouds.all}%</li>
+                <li>Descripción: ${clima6.weather[0].description}</li>
+                <li>Probabilidad de lluvia: ${clima6.pop * 100}%</li>
+                <li>Velocidad del viento: ${clima6.wind.speed} m/s</li>
+                <li>Presión atmosférica: ${clima6.main.pressure} hPa</li>
             </ul>
-            <p>Hora de consulta: ${horaConsulta.toLocaleTimeString('es-ES', opcionesHora)}</p>
+            <hr>
+            <h2>Pronóstico 12 Horas: ${horaConsulta.toLocaleTimeString('es-ES', opcionesHora)}</h2>
+            <ul>
+                <li>Temperatura: ${clima12.main.temp}°C</li>
+                <li>Sensación térmica: ${clima12.main.feels_like}°C</li>
+                <li>Humedad: ${clima12.main.humidity}%</li>
+                <li>Nubes: ${clima12.clouds.all}%</li>
+                <li>Descripción: ${clima12.weather[0].description}</li>
+                <li>Probabilidad de lluvia: ${clima12.pop * 100}%</li>
+                <li>Velocidad del viento: ${clima12.wind.speed} m/s</li>
+                <li>Presión atmosférica: ${clima12.main.pressure} hPa</li>
+            </ul>
         `;
     });
