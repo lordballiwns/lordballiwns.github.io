@@ -10,12 +10,12 @@ fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=17.55&lon=-9
 
         // Obtener la hora actual y redondearla hacia abajo al múltiplo de 3 más cercano
         const horaActual = new Date();
-        const horas = horaActual.getHours();
+        let horas = horaActual.getHours();
 
         // Redondeo hacia abajo al múltiplo de 3 más cercano
-        const horaRedondeada = Math.floor(horas / 3) * 3;
+        horas = Math.floor(horas / 3) * 3;
 
-        horaActual.setHours(horaRedondeada, 0, 0, 0);
+        horaActual.setHours(horas, 0, 0, 0);
         
         // Calcular horas de pronóstico
         const horaConsulta6 = new Date(horaActual);
