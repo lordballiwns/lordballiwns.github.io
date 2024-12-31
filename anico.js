@@ -1,3 +1,4 @@
+//Nightly v8 c500
 fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=17.55&lon=-99.50&appid=c930acc727dc9fd57adb722dd5f93b74&units=metric')
     .then(response => response.json())
     .then(data => {
@@ -13,11 +14,19 @@ fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=17.55&lon=-9
         
         // Redondeo hacia abajo al múltiplo de 3 más cercano
         const horasRedondeadas = Math.floor(horas / 3) * 3;
-
         horaActual.setHours(horasRedondeadas, 0, 0, 0);
         
         const opcionesFecha = { weekday: 'long', day: 'numeric', month: 'long', hour: 'numeric', minute: 'numeric', hour12: true };
         const fechaFormateada = horaActual.toLocaleDateString('es-ES', opcionesFecha);
+
+        // Calcular horas de pronóstico
+        const horaConsulta6 = new Date(horaActual);
+        horaConsulta6.setHours(horaConsulta6.getHours() + 6);
+        const fechaConsulta6 = horaConsulta6.toLocaleDateString('es-ES', opcionesFecha);
+
+        const horaConsulta12 = new Date(horaActual);
+        horaConsulta12.setHours(horaConsulta12.getHours() + 12);
+        const fechaConsulta12 = horaConsulta12.toLocaleDateString('es-ES', opcionesFecha);
 
         climaDiv.innerHTML = `
             <h2>${fechaFormateada}:</h2>
@@ -35,7 +44,7 @@ fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=17.55&lon=-9
                 <li>Presión atmosférica: ${clima0.main.pressure} hPa</li>
             </ul>
             <hr>
-            <h2>Pronóstico 6 Horas:</h2>
+            <h2>Pronóstico 6 Horas (${fechaConsulta6}):</h2>
             <ul>
                 <li>Temperatura: ${clima6.main.temp}°C</li>
                 <li>Sensación térmica: ${clima6.main.feels_like}°C</li>
@@ -47,7 +56,7 @@ fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=17.55&lon=-9
                 <li>Presión atmosférica: ${clima6.main.pressure} hPa</li>
             </ul>
             <hr>
-            <h2>Pronóstico 12 Horas:</h2>
+            <h2>Pronóstico 12 Horas (${fechaConsulta12}):</h2>
             <ul>
                 <li>Temperatura: ${clima12.main.temp}°C</li>
                 <li>Sensación térmica: ${clima12.main.feels_like}°C</li>
