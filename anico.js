@@ -5,34 +5,22 @@ fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=17.55&lon=-9
         const clima0 = data.list[0];
         const clima6 = data.list[1];
         const clima12 = data.list[3];
-        const fecha = new Date(clima0.dt * 1000);
-        const opcionesFecha = { weekday: 'long', day: 'numeric', month: 'long', hour: 'numeric', minute: 'numeric', hour12: true };
-
-        // Obtener la hora actual y redondearla hacia abajo al múltiplo de 3 más cercano
-        const horaActual = new Date();
-        let horas = horaActual.getHours();
-        const minutos = horaActual.getMinutes();
-
-        // Redondeo hacia abajo al múltiplo de 3 más cercano
-        if (minutos > 0) {
-            horas = Math.floor(horas / 3) * 3;
-        } else {
-            horas = horas - (horas % 3);
-        }
-
-        horaActual.setHours(horas, 0, 0, 0);
         
-        // Calcular horas de pronóstico
-        const horaConsulta6 = new Date(horaActual);
-        horaConsulta6.setHours(horaConsulta6.getHours() + 6);
+        // Obtener la hora actual redondeada al múltiplo de 3 más cercano inferior
+        const horaActual = new Date();
+        const horas = horaActual.getHours();
+        const minutos = horaActual.getMinutes();
+        
+        // Redondeo hacia abajo al múltiplo de 3 más cercano
+        const horasRedondeadas = Math.floor(horas / 3) * 3;
 
-        const horaConsulta12 = new Date(horaActual);
-        horaConsulta12.setHours(horaConsulta12.getHours() + 12);
-
-        const opcionesHora = { hour: 'numeric', minute: 'numeric', hour12: true };
+        horaActual.setHours(horasRedondeadas, 0, 0, 0);
+        
+        const opcionesFecha = { weekday: 'long', day: 'numeric', month: 'long', hour: 'numeric', minute: 'numeric', hour12: true };
+        const fechaFormateada = horaActual.toLocaleDateString('es-ES', opcionesFecha);
 
         climaDiv.innerHTML = `
-            <h2>${fecha.toLocaleDateString('es-ES', opcionesFecha)}:</h2>
+            <h2>${fechaFormateada}:</h2>
             <ul>
                 <li>Temperatura: ${clima0.main.temp}°C</li>
                 <li>Sensación térmica: ${clima0.main.feels_like}°C</li>
@@ -47,7 +35,7 @@ fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=17.55&lon=-9
                 <li>Presión atmosférica: ${clima0.main.pressure} hPa</li>
             </ul>
             <hr>
-            <h2>Pronóstico 6 Horas: ${horaConsulta6.toLocaleTimeString('es-ES', opcionesHora)}</h2>
+            <h2>Pronóstico 6 Horas:</h2>
             <ul>
                 <li>Temperatura: ${clima6.main.temp}°C</li>
                 <li>Sensación térmica: ${clima6.main.feels_like}°C</li>
@@ -59,7 +47,7 @@ fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=17.55&lon=-9
                 <li>Presión atmosférica: ${clima6.main.pressure} hPa</li>
             </ul>
             <hr>
-            <h2>Pronóstico 12 Horas: ${horaConsulta12.toLocaleTimeString('es-ES', opcionesHora)}</h2>
+            <h2>Pronóstico 12 Horas:</h2>
             <ul>
                 <li>Temperatura: ${clima12.main.temp}°C</li>
                 <li>Sensación térmica: ${clima12.main.feels_like}°C</li>
