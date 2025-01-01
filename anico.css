@@ -1,39 +1,41 @@
 * {
-    padding: 0 auto;
-    margin: 0 auto;
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
 
 body {
-    height: 100vh;
-    min-height: 100vh;
-    overflow: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     background: linear-gradient(-45deg, #0000ff, #ff00ff, #ff69b4);
+    color: #fff;
+    min-height: 100vh;
+    overflow: auto;
+    transition: background 0.5s ease;
 }
 
 header {
     text-align: center;
-    padding: 10px;
-    background: rgba(0, 0, 0, 0.5);
-    color: #fff;
+    padding: 20px 10px;
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 h1 {
-    font-size: 1.5em; 
-    margin-bottom: 0.1em;
+    font-size: 2em; 
+    margin-bottom: 0.5em;
 }
 
 nav a {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
-    padding: 5px 10px;
+    padding: 10px 15px;
     border: 2px solid transparent;
     border-radius: 5px;
+    margin: 0 10px;
     transition: all 0.3s;
 }
 
@@ -47,25 +49,45 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 
-#pronostico {
+#pronostico-section {
     text-align: left;
-    padding: 15px;
-    background: rgba(0, 0, 0, 0.75);
+    padding: 25px;
+    background: rgba(0, 0, 0, 0.85);
     border-radius: 10px;
     color: #fff;
     width: 80%;
     max-width: 600px;
-    font-size: 0.9em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+    animation: fadeIn 1s ease-in-out;
+}
+
+h2 {
+    font-size: 1.8em;
+    color: #ffffff;
+    text-shadow: 1px 1px #000;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
+    line-height: 1.5;
 }
 
 footer {
     text-align: center;
-    font-size: 10px;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.8);
     color: #fff;
-    padding: 7.5px;
+    padding: 15px;
+    font-size: 0.9em;
 }
 
 #captureLink {
@@ -73,22 +95,28 @@ footer {
     text-decoration: none;
 }
 
-/* Responsivo */
 @media (max-width: 600px) {
     h1 {
-        font-size: 1.2em;
+        font-size: 1.5em;
     }
-    #pronostico {
+    #pronostico-section {
         width: 100%;
-        font-size: 0.8em;
+        font-size: 0.9em;
+        padding: 15px;
+    }
+    nav a {
+        padding: 8px 10px;
+        margin: 0 5px;
     }
 }
 
-h2 {
-    font-size: 1.5em !important;
-    color: #ffffff !important;
-    text-shadow: 1px 1px #000 !important;
-    text-align: center !important;
-    margin-bottom: 15px !important;
-    overflow: auto !important;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
