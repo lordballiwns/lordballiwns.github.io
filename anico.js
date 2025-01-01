@@ -22,11 +22,11 @@ fetch('https://api.openweathermap.org/data/2.5/forecast?lang=es&lat=17.55&lon=-9
         // Calcular horas de pronóstico
         const horaConsulta6 = new Date(horaActual);
         horaConsulta6.setHours(horaConsulta6.getHours() + 6);
-        const horaFormateada6 = horaConsulta6.toLocaleTimeString('es-ES', opcionesFecha);
+        const horaFormateada6 = horaConsulta6.toLocaleTimeString('es-ES', { hour: 'numeric', minute: 'numeric', hour12: true });
 
         const horaConsulta12 = new Date(horaActual);
         horaConsulta12.setHours(horaConsulta12.getHours() + 12);
-        const horaFormateada12 = horaConsulta12.toLocaleTimeString('es-ES', opcionesFecha);
+        const horaFormateada12 = horaConsulta12.toLocaleTimeString('es-ES', { hour: 'numeric', minute: 'numeric', hour12: true });
 
         climaDiv.innerHTML = `
             <h2>${fechaFormateada}:</h2>
