@@ -1,4 +1,3 @@
-/*--v7.0--*/
 * {
     padding: 0 auto;
     margin: 0 auto;
@@ -50,7 +49,7 @@ main {
     align-items: center;
 }
 
-#clima {
+#pronostico {
     text-align: left;
     padding: 15px;
     background: rgba(0, 0, 0, 0.75);
@@ -69,21 +68,9 @@ footer {
     padding: 7.5px;
 }
 
-button {
-    background: none;
-    border: none;
-    color: #00ff00;
-    cursor: pointer;
-    font-size: 0.9em;
-    padding: 5px 10px;
-}
-
-button:hover {
-    color: #0000ff;
-}
-
-button#captureButton {
-    display: none;
+#captureLink {
+    color: inherit;
+    text-decoration: none;
 }
 
 /* Responsivo */
@@ -91,12 +78,12 @@ button#captureButton {
     h1 {
         font-size: 1.2em;
     }
-    #clima {
+    #pronostico {
         width: 100%;
         font-size: 0.8em;
     }
 }
-/*-Etiquetas Nuevas-*/
+
 h2 {
     font-size: 1.5em !important;
     color: #ffffff !important;
@@ -104,52 +91,4 @@ h2 {
     text-align: center !important;
     margin-bottom: 15px !important;
     overflow: auto !important;
-}
-
-#forzado nav {
-    display: inline-flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    margin-top: 20px !important;
-}
-
-.nav-button {
-    color: #fff !important;
-    text-decoration: none !important;
-    font-weight: bold !important;
-    padding: 15px 20px !important;
-    margin: 15px 0 !important;
-    background: rgba(0, 0, 0, 0.6) !important;
-    border: 2px solid transparent !important;
-    border-radius: 8px !important;
-    transition: all 0.3s !important;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7) !important;
-    width: 200px !important; /* Asegura el mismo ancho */
-    height: 60px !important; /* Asegura la misma altura */
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-}
-
-.nav-button:hover {
-    background: #00ff00 !important;
-    color: #000 !important;
-}
-
-/* Responsive para pantallas más pequeñas */
-@media (max-width: 600px) {
-    h2 {
-        font-size: 1.2em !important;
-    }
-
-    .nav-button {
-        padding: 10px 15px !important;
-        margin: 10px 0 !important;
-        width: 100% !important; /* Asegura el mismo ancho en pantallas pequeñas */
-        height: auto !important; /* Ajusta la altura automáticamente */
-    }
-}
-#captureLink {
-    color: inherit;
-    text-decoration: none;
 }
