@@ -28,22 +28,6 @@ h1 {
     margin-bottom: 0.5em;
 }
 
-nav a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 8px 12px;
-    border: 2px solid transparent;
-    border-radius: 5px;
-    margin: 0 8px;
-    transition: all 0.3s;
-}
-
-nav a:hover {
-    background: #00ff00;
-    color: #000;
-}
-
 main {
     flex-grow: 1;
     display: flex;
@@ -104,10 +88,6 @@ footer {
         width: 100%;
         font-size: 0.8em;
         padding: 15px;
-    }
-    nav a {
-        padding: 6px 8px;
-        margin: 0 4px;
     }
 }
 
