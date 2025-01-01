@@ -9,7 +9,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background: linear-gradient(-45deg, #0000ff, #ff00ff, #ff69b4);
+    background: linear-gradient(-45deg, #022c43, #053f5e, #115173, #06a77d);
     color: #fff;
     min-height: 100vh;
     overflow: auto;
