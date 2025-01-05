@@ -31,6 +31,7 @@ h1 {
 main {
     flex-grow: 1;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
@@ -46,7 +47,23 @@ main {
     max-width: 600px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
     font-size: 0.9em; /* Tamaño de letra ajustado */
-    animation: fadeIn 1s ease-in-out;
+}
+
+button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #00ff00;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+    color: #fff;
 }
 
 h2 {
@@ -88,16 +105,5 @@ footer {
         width: 100%;
         font-size: 0.8em;
         padding: 15px;
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
     }
 }
