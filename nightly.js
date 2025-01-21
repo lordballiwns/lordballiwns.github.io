@@ -11,11 +11,14 @@ async function fetchTwitterData() {
             }
         });
 
+        console.log(response); // Log de respuesta HTTP
+
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(`HTTP error! status: ${response.status}, text: ${response.statusText}`);
         }
 
         const data = await response.json();
+        console.log(data); // Log de datos recibidos
         checkForSevereWeather(data);
     } catch (error) {
         console.error('Error al consultar los datos de X:', error);
