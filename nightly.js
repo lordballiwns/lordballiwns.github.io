@@ -14,8 +14,10 @@ async function fetchTwitterData() {
         const resultElement = document.getElementById('result');
 
         if (!response.ok) {
-            resultElement.textContent = `Error HTTP! Status: ${response.status}`;
-            throw new Error(`HTTP error! status: ${response.status}, text: ${response.statusText}`);
+            const errorText = `Error HTTP! Status: ${response.status}`;
+            resultElement.textContent = errorText;
+            console.error(errorText);
+            return;
         }
 
         const data = await response.json();
