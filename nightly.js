@@ -11,14 +11,11 @@ async function fetchTwitterData() {
             }
         });
 
-        console.log(response); // Log de respuesta HTTP
-
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}, text: ${response.statusText}`);
         }
 
         const data = await response.json();
-        console.log(data); // Log de datos recibidos
         checkForSevereWeather(data);
     } catch (error) {
         console.error('Error al consultar los datos de X:', error);
@@ -27,7 +24,11 @@ async function fetchTwitterData() {
 }
 
 function checkForSevereWeather(data) {
-    const severeWeatherKeywords = ['huracán', 'tormenta', 'monzón tropical', 'ciclón', 'tifón', 'depresión tropical', 'marea alta', 'inundación', 'deslave', 'tsunami', 'vientos fuertes', 'granizo'];
+    const severeWeatherKeywords = [
+        'huracán', 'tormenta', 'monzón tropical', 'ciclón', 'tifón', 
+        'depresión tropical', 'marea alta', 'inundación', 'deslave', 
+        'tsunami', 'vientos fuertes', 'granizo'
+    ];
     const locations = ['Guerrero', 'Oaxaca', 'océano Pacífico'];
     let hasSevereWeather = false;
 
