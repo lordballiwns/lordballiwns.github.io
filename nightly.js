@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const url = 'https://www.accuweather.com/es/hurricane';
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/https://www.accuweather.com/es/hurricane';
 
-    fetch(url)
+    fetch(proxyUrl)
         .then(response => response.text())
         .then(data => {
             const parser = new DOMParser();
@@ -15,9 +15,8 @@ document.addEventListener("DOMContentLoaded", function() {
     function extractHurricaneData(doc) {
         let hurricanes = [];
 
-        // Aquí deberías escribir el código para extraer la información de los huracanes de la página HTML `doc`
-        // Este código es solo un ejemplo y debería ser adaptado según la estructura de la página de AccuWeather.
-        const hurricaneElements = doc.querySelectorAll('.hurricane-class'); // Asegúrate de buscar la clase correcta
+        // La lógica para extraer la información de los huracanes de 'doc'
+        const hurricaneElements = doc.querySelectorAll('.hurricane-class'); // Ajustar según la estructura real
 
         hurricaneElements.forEach(element => {
             const name = element.querySelector('.hurricane-name').textContent;
