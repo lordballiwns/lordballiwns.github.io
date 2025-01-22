@@ -1,31 +1,59 @@
-async function fetchTwitterData() {
-    const url = 'https://api.twitter.com/2/tweets/search/recent?query=from:conagua_clima';
-    const bearerToken = 'AAAAAAAAAAAAAAAAAAAAAFwxvQEAAAAA4hU20rG7e9BA3Vr4lnT1ed2ujz0%3DEsvbZ0Q4syRXVmCVPKFIp4Ols3bEYs2OxrEHIE9sweFqI0U2LD'; // Reemplaza esto por tu Bearer Token
+document.addEventListener("DOMContentLoaded", function() {
+    const url = 'https://www.accuweather.com/es/hurricane';
 
-    try {
-        const response = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${bearerToken}`,
-                'Content-Type': 'application/json'
-            }
+    fetch(url)
+        .then(response => response.text())
+        .then(data => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(data, 'text/html');
+            const hurricanes = extractHurricaneData(doc);
+
+            displayHurricanes(hurricanes);
+        })
+        .catch(error => console.log('Error:', error));
+    
+    function extractHurricaneData(doc) {
+        let hurricanes = [];
+
+        // Aquí deberías escribir el código para extraer la información de los huracanes de la página HTML `doc`
+        // Este código es solo un ejemplo y debería ser adaptado según la estructura de la página de AccuWeather.
+        const hurricaneElements = doc.querySelectorAll('.hurricane-class'); // Asegúrate de buscar la clase correcta
+
+        hurricaneElements.forEach(element => {
+            const name = element.querySelector('.hurricane-name').textContent;
+            const status = element.querySelector('.hurricane-status').textContent;
+            const location = element.querySelector('.hurricane-location').textContent;
+            const landLocation = element.querySelector('.hurricane-land-location').textContent;
+            const category = element.querySelector('.hurricane-category').textContent;
+
+            hurricanes.push({
+                name,
+                status,
+                location,
+                landLocation,
+                category
+            });
         });
 
-        const resultElement = document.getElementById('result');
-
-        if (!response.ok) {
-            const errorText = `Error HTTP! Status: ${response.status}`;
-            resultElement.textContent = errorText;
-            console.error(errorText);
-            return;
-        }
-
-        const data = await response.json();
-        resultElement.textContent = JSON.stringify(data, null, 2); // Mostramos el JSON recibido
-    } catch (error) {
-        console.error('Error al consultar los datos de X:', error);
-        document.getElementById('result').textContent = 'Error al consultar los datos.';
+        return hurricanes;
     }
-}
 
-fetchTwitterData();
+    function displayHurricanes(hurricanes) {
+        const container = document.getElementById('hurricanes');
+
+        hurricanes.forEach(hurricane => {
+            const hurricaneDiv = document.createElement('div');
+            hurricaneDiv.classList.add('hurricane');
+
+            hurricaneDiv.innerHTML = `
+                <h2>${hurricane.name}</h2>
+                <p>Estado: ${hurricane.status}</p>
+                <p>Ubicación: ${hurricane.location}</p>
+                <p>Ubicación Terrestre: ${hurricane.landLocation}</p>
+                <p>Categoría: ${hurricane.category}</p>
+            `;
+
+            container.appendChild(hurricaneDiv);
+        });
+    }
+});
