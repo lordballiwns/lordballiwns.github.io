@@ -1,8 +1,13 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const proxyUrl = 'https://cors-anywhere.herokuapp.com/https://www.accuweather.com/es/hurricane';
+    const proxyUrl = 'https://lordballiwns-0e6cffa738e8.herokuapp.com/https://www.accuweather.com/es/hurricane';
 
     fetch(proxyUrl)
-        .then(response => response.text())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Network response was not ok: ${response.statusText}`);
+            }
+            return response.text();
+        })
         .then(data => {
             const parser = new DOMParser();
             const doc = parser.parseFromString(data, 'text/html');
@@ -10,13 +15,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
             displayHurricanes(hurricanes);
         })
-        .catch(error => console.log('Error:', error));
+        .catch(error => {
+            console.error('Detailed Error:', error);
+            const container = document.getElementById('hurricanes');
+            container.innerHTML = `<p>Error al obtener la información de los huracanes: ${error.message}. Verifica la configuración del proxy.</p>`;
+        });
     
     function extractHurricaneData(doc) {
         let hurricanes = [];
 
-        // La lógica para extraer la información de los huracanes de 'doc'
-        const hurricaneElements = doc.querySelectorAll('.hurricane-class'); // Ajustar según la estructura real
+        // Asegúrate de ajustar los selectores según la estructura real de AccuWeather
+        const hurricaneElements = doc.querySelectorAll('.hurricane-class'); // Cambia esto según la estructura real
 
         hurricaneElements.forEach(element => {
             const name = element.querySelector('.hurricane-name').textContent;
