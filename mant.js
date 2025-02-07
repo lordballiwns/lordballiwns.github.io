@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Establecer el tiempo final para la cuenta regresiva
-    var countdownDate = new Date("Nov 1, 2025 00:00:00").getTime();
+    var countdownDate = new Date("Feb 15, 2025 00:00:00").getTime();
 
     // Actualizar la cuenta regresiva cada 1 segundo
     var x = setInterval(function() {
