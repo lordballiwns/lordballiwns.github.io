@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Establecer el tiempo final para la cuenta regresiva
-    var countdownDate = new Date("Nov 1, 2024 00:00:00").getTime();
+    var countdownDate = new Date("Nov 1, 2025 00:00:00").getTime();
 
     // Actualizar la cuenta regresiva cada 1 segundo
     var x = setInterval(function() {
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Si la cuenta regresiva termina, mostrar un mensaje
         if (distance < 0) {
             clearInterval(x);
-            document.getElementById("countdown").innerHTML = "LAUNCH DAY!";
+            document.getElementById("countdown").innerHTML = "¡LLEGÓ EL DÍA!";
         }
     }, 1000);
 });
