@@ -146,14 +146,14 @@
     // getDay() retorna 0 para domingo, 1 para lunes, ..., 6 para sábado
     const dayIndex = now.getDay();
     
-    const fullGreeting = `<br> ${timeGreeting}, ${userName}! ${dayGreetings[dayIndex]}!`;
+    const fullGreeting = `${timeGreeting}, ${userName}! ${dayGreetings[dayIndex]}!`;
     
     // Insertar el saludo personalizado en la parte superior de la página
     const greetingDiv = document.createElement("div");
     greetingDiv.style.textAlign = "center";
     greetingDiv.style.fontSize = "1.2rem";
     greetingDiv.style.marginBottom = "20px";
-    greetingDiv.textContent = fullGreeting;
+    grettingDiv.innerHTML = fullGreeting;
     document.body.insertBefore(greetingDiv, document.body.firstChild);
     
     
