@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Barras de Progreso Independientes Actualizadas</title>
+  <title>Página Privada - Progreso & Saludo Personalizado</title>
   <style>
     /* Estilos generales para centrar el contenido */
     body {
@@ -30,7 +30,7 @@
       border-radius: 8px;
       box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
     }
-    /* Texto introductorio */
+    /* Texto introductorio antes de la barra */
     .intro-text {
       text-align: center;
       font-size: 1rem;
@@ -68,6 +68,7 @@
   </style>
 </head>
 <body>
+  
   <h2>Barras de Progreso</h2>
   
   <!-- Barra 1: Del 9 de abril de 2025 al 14 de mayo de 2025 -->
@@ -101,6 +102,59 @@
   </div>
   
   <script>
+    // Preguntar quién visita la página usando emoji de identificación
+    const guillermoEmojis = ["😇", "🙍🏻‍♂️", "🤵🏻"];
+    const anaEmojis = ["🌹", "❤️", "👰🏽"];
+    
+    let userEmoji = prompt("Para acceder, ingresa tu emoji de identificación:\n\nOpciones: [😇, 🙍🏻‍♂️, 🤵🏻] o [🌹, ❤️, 👰🏽]");
+    
+    let userName;
+    if (guillermoEmojis.includes(userEmoji)) {
+      userName = "Guillermo";
+    } else if (anaEmojis.includes(userEmoji)) {
+      userName = "Ana";
+    } else {
+      alert("Acceso no autorizado");
+      document.body.innerHTML = "<h1 style='text-align: center;color: red;'>Acceso no autorizado</h1>";
+      throw new Error("Acceso no autorizado");
+    }
+    
+    // Obtener el saludo según la hora
+    const now = new Date();
+    let hour = now.getHours();
+    let timeGreeting;
+    if (hour < 12) {
+      timeGreeting = "Buenos días";
+    } else if (hour < 18) {
+      timeGreeting = "Buenas tardes";
+    } else {
+      timeGreeting = "Buenas noches";
+    }
+    
+    // Array de 7 bienvenidas, una para cada día de la semana
+    const dayGreetings = [
+      "Te deseo un espléndido domingo",
+      "Que tengas un inspirador lunes",
+      "Un maravilloso martes para ti",
+      "Que tu miércoles esté lleno de éxitos",
+      "Disfruta de un brillante jueves",
+      "Feliz viernes, sigue brillando",
+      "Que tengas un relajante sábado"
+    ];
+    // getDay() retorna 0 para domingo, 1 para lunes, ..., 6 para sábado
+    const dayIndex = now.getDay();
+    
+    const fullGreeting = `${timeGreeting}, ${userName}! ${dayGreetings[dayIndex]}!`;
+    
+    // Insertar el saludo personalizado en la parte superior de la página
+    const greetingDiv = document.createElement("div");
+    greetingDiv.style.textAlign = "center";
+    greetingDiv.style.fontSize = "1.2rem";
+    greetingDiv.style.marginBottom = "20px";
+    greetingDiv.textContent = fullGreeting;
+    document.body.insertBefore(greetingDiv, document.body.firstChild);
+    
+    
     /**
      * Actualiza una barra de progreso basada en su fecha de inicio y de meta.
      * @param {string} containerId - El ID del contenedor de la barra.
@@ -119,7 +173,7 @@
         // No ha iniciado el periodo
         progress = 0;
       } else if (now > endDate) {
-        // Excedió la fecha meta
+        // Se superó la fecha meta
         progress = 100;
       } else {
         // Cálculo lineal del progreso
@@ -142,7 +196,7 @@
       
       // Barra 1: Desde 9 de abril de 2025 hasta 14 de mayo de 2025
       const start1 = new Date(year, 3, 9);    // Abril es mes 3
-      const end1   = new Date(year, 4, 14);     // Mayo es mes 4
+      const end1   = new Date(year, 4, 14);    // Mayo es mes 4
       
       // Barra 2: Desde 9 de abril de 2025 hasta 23 de mayo de 2025
       const start2 = new Date(year, 3, 9);
@@ -157,7 +211,7 @@
       updateProgressBar("progress3", start3, end3);
     }
     
-    // Actualizamos las barras cada segundo
+    // Actualizar las barras cada segundo para visualizar el avance en tiempo real
     setInterval(updateAllProgressBars, 1000);
     updateAllProgressBars();
   </script>
