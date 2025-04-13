@@ -126,11 +126,11 @@
     let hour = now.getHours();
     let timeGreeting;
     if (hour < 12) {
-      timeGreeting = "<br>Buenos días";
+      timeGreeting = "Buenos días";
     } else if (hour < 18) {
-      timeGreeting = "<br>Buenas tardes";
+      timeGreeting = "Buenas tardes";
     } else {
-      timeGreeting = "<br>Buenas noches";
+      timeGreeting = "Buenas noches";
     }
     
     // Array de 7 bienvenidas, una para cada día de la semana
@@ -146,7 +146,7 @@
     // getDay() retorna 0 para domingo, 1 para lunes, ..., 6 para sábado
     const dayIndex = now.getDay();
     
-    const fullGreeting = `${timeGreeting}, ${userName}! ${dayGreetings[dayIndex]}!`;
+    const fullGreeting = `<br> ${timeGreeting}, ${userName}! ${dayGreetings[dayIndex]}!`;
     
     // Insertar el saludo personalizado en la parte superior de la página
     const greetingDiv = document.createElement("div");
