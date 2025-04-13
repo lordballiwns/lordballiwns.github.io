@@ -93,14 +93,14 @@
     <div class="progress-label">Meta: 23 de mayo de 2025 (desde 9 de abril)</div>
   </div>
   
-  <!-- Barra 3: Del 1 de abril de 2025 al 30 de abril de 2026 -->
+  <!-- Barra 3: Del 7 de marzo de 2025 al 30 de abril de 2026 -->
   <div class="progress-container" id="progress3">
-    <p class="intro-text">Un recorrido largo y lleno de logros: de 1 de abril de 2025 al 30 de abril de 2026.</p>
+    <p class="intro-text">Un recorrido largo y lleno de logros: de 7 de marzo de 2025 al 30 de abril de 2026.</p>
     <div class="progress-bar-wrapper">
       <div class="progress-bar"></div>
     </div>
     <div class="progress-text"></div>
-    <div class="progress-label">Meta: 30 de abril de 2026 (desde 1 de abril de 2025)</div>
+    <div class="progress-label">Meta: 30 de abril de 2026 (desde 7 de marzo de 2025)</div>
   </div>
   
   <script>
@@ -126,11 +126,11 @@
     let hour = now.getHours();
     let timeGreeting;
     if (hour < 12) {
-      timeGreeting = "Buenos días";
+      timeGreeting = "<br>Buenos días";
     } else if (hour < 18) {
-      timeGreeting = "Buenas tardes";
+      timeGreeting = "<br>Buenas tardes";
     } else {
-      timeGreeting = "Buenas noches";
+      timeGreeting = "<br>Buenas noches";
     }
     
     // Array de 7 bienvenidas, una para cada día de la semana
@@ -204,8 +204,8 @@
       const start2 = new Date(year, 3, 9);
       const end2   = new Date(year, 4, 23);
       
-      // Barra 3: Desde 1 de abril de 2025 hasta 30 de abril de 2026
-      const start3 = new Date(2025, 3, 1);
+      // Barra 3: Desde 7 de marzo de 2025 hasta 30 de abril de 2026
+      const start3 = new Date(2025, 2, 7);
       const end3   = new Date(2026, 3, 30);
       
       updateProgressBar("progress1", start1, end1);
