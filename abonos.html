@@ -65,71 +65,69 @@
   <h2>Progreso de Préstamos</h2>
 
   <div class="progress-container" id="loan1">
-    <p class="intro-text">Préstamo grande, pero ya va bajando.</p>
+    <p class="intro-text">Préstamo correspondiente a Luis.</p>
     <div class="progress-bar-wrapper">
       <div class="progress-bar"></div>
     </div>
     <div class="progress-text"></div>
-    <div class="progress-label">Deuda original: $17,000 — Restante: $4,930</div>
+    <div class="progress-label">Deuda con Luis — Monto original: $17,000 — Saldo actual: $4,930</div>
   </div>
 
   <div class="progress-container" id="loan2">
-    <p class="intro-text">Este ya casi se liquida.</p>
+    <p class="intro-text">Préstamo correspondiente a Beatris.</p>
     <div class="progress-bar-wrapper">
       <div class="progress-bar"></div>
     </div>
     <div class="progress-text"></div>
-    <div class="progress-label">Deuda original: $2,400 — Restante: $1,800</div>
+    <div class="progress-label">Deuda con Beatris — Monto original: $2,400 — Saldo actual: $1,800</div>
   </div>
 
   <script>
-    const nombresPermitidos = ["Ana", "Guillermo", "Armando", "Andy"];
-    let nombre = prompt("¿Quién eres? (Escribe tu nombre)");
+    const nombresAutorizados = ["Guillermo", "Ana", "Armando", "Andy"];
+    let nombreIngresado = prompt("Por favor, indique su nombre para continuar:");
 
-    if (!nombresPermitidos.includes(nombre)) {
-      alert("No estás en la lista, sorry.");
+    if (!nombresAutorizados.includes(nombreIngresado)) {
+      alert("Acceso denegado.");
       document.body.innerHTML = "<h1 style='text-align: center;color: red;'>Acceso denegado</h1>";
       throw new Error("Acceso denegado");
     }
 
-    // Saludo según hora
-    const ahora = new Date();
-    const hora = ahora.getHours();
-    let saludo;
-    if (hora < 12) {
-      saludo = "Buen día";
-    } else if (hora < 18) {
-      saludo = "Buenas tardes";
+    const fechaActual = new Date();
+    const horaActual = fechaActual.getHours();
+    let saludoTemporal;
+
+    if (horaActual < 12) {
+      saludoTemporal = "Buenos días";
+    } else if (horaActual < 18) {
+      saludoTemporal = "Buenas tardes";
     } else {
-      saludo = "Buenas noches";
+      saludoTemporal = "Buenas noches";
     }
 
-    const saludoFinal = `<br>${saludo}, ${nombre}! Aquí va tu avance 💸`;
+    const saludoCompleto = `<br>${saludoTemporal}, ${nombreIngresado}. A continuación se muestra el estado actual de los préstamos.`;
 
     const saludoDiv = document.createElement("div");
     saludoDiv.style.textAlign = "center";
     saludoDiv.style.fontSize = "1.2rem";
     saludoDiv.style.marginBottom = "20px";
-    saludoDiv.innerHTML = saludoFinal;
+    saludoDiv.innerHTML = saludoCompleto;
     document.body.insertBefore(saludoDiv, document.body.firstChild);
 
-    // Función para actualizar barra
-    function actualizarBarra(id, deudaOriginal, deudaRestante) {
-      const container = document.getElementById(id);
-      const barra = container.querySelector(".progress-bar");
-      const texto = container.querySelector(".progress-text");
+    function actualizarBarra(id, montoOriginal, saldoActual) {
+      const contenedor = document.getElementById(id);
+      const barra = contenedor.querySelector(".progress-bar");
+      const texto = contenedor.querySelector(".progress-text");
 
-      let pagado = deudaOriginal - deudaRestante;
-      let progreso = (pagado / deudaOriginal) * 100;
-      progreso = Math.min(Math.max(progreso, 0), 100);
+      const montoPagado = montoOriginal - saldoActual;
+      let porcentaje = (montoPagado / montoOriginal) * 100;
+      porcentaje = Math.min(Math.max(porcentaje, 0), 100);
 
-      barra.style.width = progreso.toFixed(2) + "%";
-      texto.textContent = progreso.toFixed(2) + "% pagado — $" + deudaRestante + " por liquidar";
+      barra.style.width = porcentaje.toFixed(2) + "%";
+      texto.textContent = porcentaje.toFixed(2) + "% pagado — $" + saldoActual + " restantes";
     }
 
-    // Actualizar ambas barras
     actualizarBarra("loan1", 17000, 4930);
-    actualizarBarra("loan2", 2400, 1800);
+    actualizarBarra("loan2", 2400, 1600);
   </script>
 </body>
 </html>
