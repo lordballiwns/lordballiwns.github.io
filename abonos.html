@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seguimiento de Préstamos</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background-color: #444;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+    .progress-container {
+      width: 90%;
+      max-width: 400px;
+      margin-bottom: 30px;
+      padding: 10px;
+      background-color: #666;
+      border-radius: 8px;
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+    }
+    .intro-text {
+      text-align: center;
+      font-size: 1rem;
+      margin-bottom: 5px;
+    }
+    .progress-bar-wrapper {
+      background: #222;
+      border-radius: 20px;
+      overflow: hidden;
+      height: 30px;
+      position: relative;
+    }
+    .progress-bar {
+      background: #00c853;
+      height: 100%;
+      width: 0%;
+      transition: width 1s ease-out;
+    }
+    .progress-text {
+      text-align: center;
+      margin-top: 8px;
+      font-size: 1rem;
+    }
+    .progress-label {
+      text-align: center;
+      margin-top: 5px;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Progreso de Préstamos</h2>
+
+  <div class="progress-container" id="loan1">
+    <p class="intro-text">Préstamo grande, pero ya va bajando.</p>
+    <div class="progress-bar-wrapper">
+      <div class="progress-bar"></div>
+    </div>
+    <div class="progress-text"></div>
+    <div class="progress-label">Deuda original: $17,000 — Restante: $4,930</div>
+  </div>
+
+  <div class="progress-container" id="loan2">
+    <p class="intro-text">Este ya casi se liquida.</p>
+    <div class="progress-bar-wrapper">
+      <div class="progress-bar"></div>
+    </div>
+    <div class="progress-text"></div>
+    <div class="progress-label">Deuda original: $2,400 — Restante: $1,800</div>
+  </div>
+
+  <script>
+    const nombresPermitidos = ["Ana", "Guillermo", "Armando", "Andy"];
+    let nombre = prompt("¿Quién eres? (Escribe tu nombre)");
+
+    if (!nombresPermitidos.includes(nombre)) {
+      alert("No estás en la lista, sorry.");
+      document.body.innerHTML = "<h1 style='text-align: center;color: red;'>Acceso denegado</h1>";
+      throw new Error("Acceso denegado");
+    }
+
+    // Saludo según hora
+    const ahora = new Date();
+    const hora = ahora.getHours();
+    let saludo;
+    if (hora < 12) {
+      saludo = "Buen día";
+    } else if (hora < 18) {
+      saludo = "Buenas tardes";
+    } else {
+      saludo = "Buenas noches";
+    }
+
+    const saludoFinal = `<br>${saludo}, ${nombre}! Aquí va tu avance 💸`;
+
+    const saludoDiv = document.createElement("div");
+    saludoDiv.style.textAlign = "center";
+    saludoDiv.style.fontSize = "1.2rem";
+    saludoDiv.style.marginBottom = "20px";
+    saludoDiv.innerHTML = saludoFinal;
+    document.body.insertBefore(saludoDiv, document.body.firstChild);
+
+    // Función para actualizar barra
+    function actualizarBarra(id, deudaOriginal, deudaRestante) {
+      const container = document.getElementById(id);
+      const barra = container.querySelector(".progress-bar");
+      const texto = container.querySelector(".progress-text");
+
+      let pagado = deudaOriginal - deudaRestante;
+      let progreso = (pagado / deudaOriginal) * 100;
+      progreso = Math.min(Math.max(progreso, 0), 100);
+
+      barra.style.width = progreso.toFixed(2) + "%";
+      texto.textContent = progreso.toFixed(2) + "% pagado — $" + deudaRestante + " por liquidar";
+    }
+
+    // Actualizar ambas barras
+    actualizarBarra("loan1", 17000, 4930);
+    actualizarBarra("loan2", 2400, 1800);
+  </script>
+</body>
+</html>
