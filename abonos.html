@@ -9,7 +9,7 @@
       margin: 0;
       padding: 0;
       min-height: 100vh;
-      background-color: #0a1f44; /* Azul oscuro suave para la vista nocturna */
+      background-color: #0a1f44;
       font-family: Arial, sans-serif;
       display: flex;
       flex-direction: column;
@@ -25,7 +25,7 @@
       max-width: 400px;
       margin-bottom: 30px;
       padding: 10px;
-      background-color: #1c2e4a; /* Azul más claro para contraste */
+      background-color: #1c2e4a;
       border-radius: 8px;
       box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.4);
     }
@@ -46,7 +46,7 @@
       height: 100%;
       width: 0%;
       transition: width 1s ease-out;
-      box-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff, 0 0 40px #00f0ff; /* efecto neón intenso */
+      box-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff, 0 0 40px #00f0ff;
     }
     .progress-text {
       text-align: center;
@@ -69,7 +69,7 @@
       width: 100%;
     }
     footer span {
-      color: #00f0ff; /* Azul neón elegante */
+      color: #00f0ff;
       font-weight: bold;
     }
   </style>
@@ -78,7 +78,16 @@
 
   <h2>Progreso de Préstamos</h2>
 
-  <!-- Ordenados de mayor a menor -->
+  <!-- Ordenados según porcentaje pagado -->
+  <div class="progress-container" id="loan3">
+    <p class="intro-text">Préstamo correspondiente a PayJoy.</p>
+    <div class="progress-bar-wrapper">
+      <div class="progress-bar"></div>
+    </div>
+    <div class="progress-text"></div>
+    <div class="progress-label">Deuda con PayJoy — Monto original: $4,416 — Saldo actual: $1,566</div>
+  </div>
+
   <div class="progress-container" id="loan1">
     <p class="intro-text">Préstamo correspondiente a Luis.</p>
     <div class="progress-bar-wrapper">
@@ -86,24 +95,6 @@
     </div>
     <div class="progress-text"></div>
     <div class="progress-label">Deuda con Luis — Monto original: $17,000 — Saldo actual: $4,930</div>
-  </div>
-
-  <div class="progress-container" id="loan4">
-    <p class="intro-text">Préstamo correspondiente a Andy.</p>
-    <div class="progress-bar-wrapper">
-      <div class="progress-bar"></div>
-    </div>
-    <div class="progress-text"></div>
-    <div class="progress-label">Deuda con Andy — Monto original: $6,700 — Saldo actual: $6,700</div>
-  </div>
-
-  <div class="progress-container" id="loan3">
-    <p class="intro-text">Préstamo correspondiente a PayJoy.</p>
-    <div class="progress-bar-wrapper">
-      <div class="progress-bar"></div>
-    </div>
-    <div class="progress-text"></div>
-    <div class="progress-label">Deuda con PayJoy — Monto original: $4,524 — Saldo actual: $1,566</div>
   </div>
 
   <div class="progress-container" id="loan2">
@@ -115,8 +106,17 @@
     <div class="progress-label">Deuda con Beatris — Monto original: $2,400 — Saldo actual: $1,800</div>
   </div>
 
+  <div class="progress-container" id="loan4">
+    <p class="intro-text">Préstamo correspondiente a Andy.</p>
+    <div class="progress-bar-wrapper">
+      <div class="progress-bar"></div>
+    </div>
+    <div class="progress-text"></div>
+    <div class="progress-label">Deuda con Andy — Monto original: $6,700 — Saldo actual: $6,700</div>
+  </div>
+
   <footer>
-    Versión <span>3.0</span> © <span id="year"></span> — Desarrollado por <span>Lord Balliwn's</span>
+    Versión <span>3.1</span> © <span id="year"></span> — Desarrollado por <span>Lord Balliwn's</span>
   </footer>
 
   <script>
@@ -163,12 +163,11 @@
       texto.textContent = porcentaje.toFixed(2) + "% pagado — $" + saldoActual + " restantes";
     }
 
-    actualizarBarra("loan1", 17000, 4930);
-    actualizarBarra("loan4", 6700, 6700);
-    actualizarBarra("loan3", 4524, 1566);
-    actualizarBarra("loan2", 2400, 1800);
+    actualizarBarra("loan3", 4416, 1566); // PayJoy ajustado
+    actualizarBarra("loan1", 17000, 4930); // Luis
+    actualizarBarra("loan2", 2400, 1800);  // Beatris
+    actualizarBarra("loan4", 6700, 6700);  // Andy
 
-    // Footer dinámico con año actual
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
