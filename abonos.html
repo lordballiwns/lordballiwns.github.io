@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Seguimiento de Préstamos</title>
   <style>
     body {
@@ -22,20 +22,20 @@
     }
     .progress-container {
       width: 90%;
-      max-width: 400px;
-      margin-bottom: 30px;
-      padding: 10px;
+      max-width: 480px;
+      margin-bottom: 24px;
+      padding: 12px;
       background-color: #1c2e4a;
-      border-radius: 8px;
-      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.4);
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     }
     .intro-text {
       text-align: center;
       font-size: 1rem;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
     }
     .progress-bar-wrapper {
-      background: #111;
+      background: #0b0b0b;
       border-radius: 20px;
       overflow: hidden;
       height: 30px;
@@ -56,21 +56,22 @@
     .progress-label {
       text-align: center;
       margin-top: 5px;
-      font-size: 0.9rem;
-      color: #ccc;
+      font-size: 0.92rem;
+      color: #cfd8dc;
     }
     footer {
-      margin-top: 40px;
-      padding: 15px;
+      margin-top: 36px;
+      padding: 16px 12px;
       text-align: center;
-      font-size: 0.9rem;
-      color: #aaa;
-      border-top: 1px solid #333;
+      font-size: 0.95rem;
+      color: #b0bec5;
+      border-top: 1px solid #30465f;
       width: 100%;
     }
-    footer span {
+    footer .brand {
       color: #00f0ff;
       font-weight: bold;
+      letter-spacing: 0.4px;
     }
   </style>
 </head>
@@ -78,50 +79,15 @@
 
   <h2>Progreso de Préstamos</h2>
 
-  <!-- Ordenados según porcentaje pagado -->
-  <div class="progress-container" id="loan3">
-    <p class="intro-text">Préstamo correspondiente a PayJoy.</p>
-    <div class="progress-bar-wrapper">
-      <div class="progress-bar"></div>
-    </div>
-    <div class="progress-text"></div>
-    <div class="progress-label">Deuda con PayJoy — Monto original: $4,416 — Saldo actual: $1,566</div>
-  </div>
-
-  <div class="progress-container" id="loan1">
-    <p class="intro-text">Préstamo correspondiente a Luis.</p>
-    <div class="progress-bar-wrapper">
-      <div class="progress-bar"></div>
-    </div>
-    <div class="progress-text"></div>
-    <div class="progress-label">Deuda con Luis — Monto original: $17,000 — Saldo actual: $4,930</div>
-  </div>
-
-  <div class="progress-container" id="loan2">
-    <p class="intro-text">Préstamo correspondiente a Beatris.</p>
-    <div class="progress-bar-wrapper">
-      <div class="progress-bar"></div>
-    </div>
-    <div class="progress-text"></div>
-    <div class="progress-label">Deuda con Beatris — Monto original: $2,400 — Saldo actual: $1,800</div>
-  </div>
-
-  <div class="progress-container" id="loan4">
-    <p class="intro-text">Préstamo correspondiente a Andy.</p>
-    <div class="progress-bar-wrapper">
-      <div class="progress-bar"></div>
-    </div>
-    <div class="progress-text"></div>
-    <div class="progress-label">Deuda con Andy — Monto original: $6,700 — Saldo actual: $6,700</div>
-  </div>
+  <div id="loans-root"></div>
 
   <footer>
-    Versión <span>3.1</span> © <span id="year"></span> — Desarrollado por <span>Lord Balliwn's</span>
+    Versión <span class="brand">3.3</span> © <span id="year"></span> — Desarrollado por <span class="brand">Lord Balliwn's</span>
   </footer>
 
   <script>
     const nombresAutorizados = ["Guillermo", "Ana", "Armando", "Andy"];
-    let nombreIngresado = prompt("Por favor, indique su nombre para continuar:");
+    const nombreIngresado = prompt("Por favor, indique su nombre para continuar:");
 
     if (!nombresAutorizados.includes(nombreIngresado)) {
       alert("Acceso denegado.");
@@ -129,18 +95,10 @@
       throw new Error("Acceso denegado");
     }
 
+    // Saludo dinámico
     const fechaActual = new Date();
     const horaActual = fechaActual.getHours();
-    let saludoTemporal;
-
-    if (horaActual < 12) {
-      saludoTemporal = "Buenos días";
-    } else if (horaActual < 18) {
-      saludoTemporal = "Buenas tardes";
-    } else {
-      saludoTemporal = "Buenas noches";
-    }
-
+    const saludoTemporal = horaActual < 12 ? "Buenos días" : horaActual < 18 ? "Buenas tardes" : "Buenas noches";
     const saludoCompleto = `<br>${saludoTemporal}, ${nombreIngresado}. A continuación se muestra el estado actual de los préstamos.`;
 
     const saludoDiv = document.createElement("div");
@@ -149,6 +107,42 @@
     saludoDiv.style.marginBottom = "20px";
     saludoDiv.innerHTML = saludoCompleto;
     document.body.insertBefore(saludoDiv, document.body.firstChild);
+
+    // Datos de préstamos (PayJoy ajustado a monto original 4416)
+    const loans = [
+      { id: "luis",    nombre: "Luis",    montoOriginal: 17000, saldoActual: 4930, intro: "Préstamo correspondiente a Luis." },
+      { id: "payjoy",  nombre: "PayJoy",  montoOriginal: 4416,  saldoActual: 1566, intro: "Préstamo correspondiente a PayJoy." },
+      { id: "beatris", nombre: "Beatris", montoOriginal: 2400,  saldoActual: 1800, intro: "Préstamo correspondiente a Beatris." },
+      { id: "andy",    nombre: "Andy",    montoOriginal: 6700,  saldoActual: 6700, intro: "Préstamo correspondiente a Andy." }
+    ];
+
+    // Calcular porcentaje pagado y ordenar dinámicamente
+    loans.forEach(l => {
+      const pagado = l.montoOriginal - l.saldoActual;
+      l.porcentajePagado = Math.min(Math.max((pagado / l.montoOriginal) * 100, 0), 100);
+    });
+
+    loans.sort((a, b) => b.porcentajePagado - a.porcentajePagado);
+
+    // Render dinámico
+    const root = document.getElementById("loans-root");
+
+    loans.forEach(l => {
+      const cont = document.createElement("div");
+      cont.className = "progress-container";
+      cont.id = l.id;
+
+      cont.innerHTML = `
+        <p class="intro-text">${l.intro}</p>
+        <div class="progress-bar-wrapper">
+          <div class="progress-bar"></div>
+        </div>
+        <div class="progress-text"></div>
+        <div class="progress-label">Deuda con ${l.nombre} — Monto original: $${l.montoOriginal.toLocaleString()} — Saldo actual: $${l.saldoActual.toLocaleString()}</div>
+      `;
+
+      root.appendChild(cont);
+    });
 
     function actualizarBarra(id, montoOriginal, saldoActual) {
       const contenedor = document.getElementById(id);
@@ -160,14 +154,12 @@
       porcentaje = Math.min(Math.max(porcentaje, 0), 100);
 
       barra.style.width = porcentaje.toFixed(2) + "%";
-      texto.textContent = porcentaje.toFixed(2) + "% pagado — $" + saldoActual + " restantes";
+      texto.textContent = `${porcentaje.toFixed(2)}% pagado — $${saldoActual.toLocaleString()} restantes`;
     }
 
-    actualizarBarra("loan3", 4416, 1566); // PayJoy ajustado
-    actualizarBarra("loan1", 17000, 4930); // Luis
-    actualizarBarra("loan2", 2400, 1800);  // Beatris
-    actualizarBarra("loan4", 6700, 6700);  // Andy
+    loans.forEach(l => actualizarBarra(l.id, l.montoOriginal, l.saldoActual));
 
+    // Footer dinámico con año actual
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
