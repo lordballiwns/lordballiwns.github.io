@@ -14,7 +14,9 @@ body {
   align-items: center;
   justify-content: flex-start;
   position: relative;
-  overflow: hidden;
+  /* Antes: overflow: hidden; */
+  overflow-x: hidden;   /* evita scroll horizontal */
+  overflow-y: auto;     /* permite scroll vertical */
   background: var(--bg-dark);
 }
 
@@ -58,7 +60,9 @@ h2 {
   height: 100%;
   width: 0%;
   transition: width 1s ease-out;
-  box-shadow: 0 0 10px var(--neon), 0 0 20px var(--neon), 0 0 40px var(--neon);
+  box-shadow: 0 0 10px var(--neon),
+              0 0 20px var(--neon),
+              0 0 40px var(--neon);
 }
 
 .progress-text {
