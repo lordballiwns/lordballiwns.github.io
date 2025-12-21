@@ -5,91 +5,142 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Seguimiento de Préstamos</title>
   <style>
+    :root{
+      --bg1:#cfe8ff;   /* azul claro base */
+      --bg2:#a9d3ff;   /* degradado suave */
+      --bg3:#8ac3ff;   /* degradado suave */
+      --neon:#00f0ff;  /* azul neón barras */
+    }
+
+    /* Fondo con canvas de nieve detrás */
     body {
       margin: 0;
       padding: 0;
       min-height: 100vh;
-      background-color: #0a1f44;
       font-family: Arial, sans-serif;
+      color: #0b1a2b;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      color: #fff;
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(1200px 800px at 20% 0%, var(--bg1), var(--bg2)), 
+                  linear-gradient(180deg, var(--bg2), var(--bg3));
     }
+
+    /* Canvas al fondo sin saturar */
+    #snow-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      filter: blur(0.3px) opacity(0.7);
+      pointer-events: none;
+    }
+
     h2 {
       margin: 20px 0;
+      color:#0b1a2b;
     }
+
     .progress-container {
       width: 90%;
       max-width: 480px;
       margin-bottom: 24px;
       padding: 12px;
-      background-color: #1c2e4a;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      background-color: rgba(255,255,255,0.75);
+      backdrop-filter: saturate(120%) blur(4px);
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0, 40, 80, 0.15);
+      border: 1px solid rgba(0, 60, 120, 0.12);
     }
     .intro-text {
       text-align: center;
       font-size: 1rem;
       margin-bottom: 6px;
+      color:#0b1a2b;
     }
     .progress-bar-wrapper {
-      background: #0b0b0b;
+      background: rgba(10, 25, 50, 0.35);
       border-radius: 20px;
       overflow: hidden;
       height: 30px;
       position: relative;
     }
     .progress-bar {
-      background: #00f0ff; /* Azul neón */
+      background: var(--neon);
       height: 100%;
       width: 0%;
       transition: width 1s ease-out;
-      box-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff, 0 0 40px #00f0ff;
+      box-shadow: 0 0 10px var(--neon), 0 0 20px var(--neon), 0 0 40px var(--neon);
     }
     .progress-text {
       text-align: center;
       margin-top: 8px;
       font-size: 1rem;
+      color:#0b1a2b;
     }
     .progress-label {
       text-align: center;
       margin-top: 5px;
       font-size: 0.92rem;
-      color: #cfd8dc;
+      color: #163350;
     }
     footer {
       margin-top: 36px;
       padding: 16px 12px;
       text-align: center;
       font-size: 0.95rem;
-      color: #b0bec5;
-      border-top: 1px solid #30465f;
+      color: #163350;
+      border-top: 1px solid rgba(0, 60, 120, 0.18);
       width: 100%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0));
     }
     footer .brand {
-      color: #00f0ff;
+      color: var(--neon);
       font-weight: bold;
       letter-spacing: 0.4px;
     }
+
+    /* Botón discreto para alternar animación si fuera necesario */
+    .controls {
+      position: fixed;
+      right: 10px;
+      bottom: 10px;
+      z-index: 10;
+    }
+    .btn {
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(0, 60, 120, 0.18);
+      color: #0b1a2b;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .btn:hover { background: rgba(255,255,255,0.95); }
   </style>
 </head>
 <body>
+
+  <canvas id="snow-canvas"></canvas>
 
   <h2>Progreso de Préstamos</h2>
 
   <div id="loans-root"></div>
 
   <footer>
-    Versión <span class="brand">3.4</span> © <span id="year"></span> — Desarrollado por <span class="brand">Lord Balliwn's</span>
+    Versión <span class="brand">4.0a</span> © <span id="year"></span> — Desarrollado por <span class="brand">Lord Balliwn's</span>
   </footer>
 
+  <div class="controls">
+    <button class="btn" id="toggleSnow">Alternar nieve</button>
+  </div>
+
   <script>
+    // Autorización con nombre saneado (de v3.4)
     const nombresAutorizados = ["Guillermo", "Ana", "Armando", "Andy"];
     let nombreIngresado = prompt("Por favor, indique su nombre para continuar:");
-
-    // Normalizar entrada eliminando espacios
     nombreIngresado = nombreIngresado ? nombreIngresado.trim() : "";
 
     if (!nombresAutorizados.includes(nombreIngresado)) {
@@ -98,7 +149,7 @@
       throw new Error("Acceso denegado");
     }
 
-    // Saludo dinámico
+    // Saludo
     const fechaActual = new Date();
     const horaActual = fechaActual.getHours();
     const saludoTemporal = horaActual < 12 ? "Buenos días" : horaActual < 18 ? "Buenas tardes" : "Buenas noches";
@@ -111,7 +162,7 @@
     saludoDiv.innerHTML = saludoCompleto;
     document.body.insertBefore(saludoDiv, document.body.firstChild);
 
-    // Datos de préstamos (PayJoy ajustado a monto original 4416)
+    // Datos (PayJoy ajustado a 4416 para 67% pagado)
     const loans = [
       { id: "luis",    nombre: "Luis",    montoOriginal: 17000, saldoActual: 4930, intro: "Préstamo correspondiente a Luis." },
       { id: "payjoy",  nombre: "PayJoy",  montoOriginal: 4416,  saldoActual: 1566, intro: "Préstamo correspondiente a PayJoy." },
@@ -119,22 +170,19 @@
       { id: "andy",    nombre: "Andy",    montoOriginal: 6700,  saldoActual: 6700, intro: "Préstamo correspondiente a Andy." }
     ];
 
-    // Calcular porcentaje pagado y ordenar dinámicamente
+    // Calcular porcentajes y ordenar (descendente por % pagado)
     loans.forEach(l => {
       const pagado = l.montoOriginal - l.saldoActual;
       l.porcentajePagado = Math.min(Math.max((pagado / l.montoOriginal) * 100, 0), 100);
     });
-
     loans.sort((a, b) => b.porcentajePagado - a.porcentajePagado);
 
-    // Render dinámico
+    // Render UI
     const root = document.getElementById("loans-root");
-
     loans.forEach(l => {
       const cont = document.createElement("div");
       cont.className = "progress-container";
       cont.id = l.id;
-
       cont.innerHTML = `
         <p class="intro-text">${l.intro}</p>
         <div class="progress-bar-wrapper">
@@ -143,7 +191,6 @@
         <div class="progress-text"></div>
         <div class="progress-label">Deuda con ${l.nombre} — Monto original: $${l.montoOriginal.toLocaleString()} — Saldo actual: $${l.saldoActual.toLocaleString()}</div>
       `;
-
       root.appendChild(cont);
     });
 
@@ -151,19 +198,90 @@
       const contenedor = document.getElementById(id);
       const barra = contenedor.querySelector(".progress-bar");
       const texto = contenedor.querySelector(".progress-text");
-
       const montoPagado = montoOriginal - saldoActual;
       let porcentaje = (montoPagado / montoOriginal) * 100;
       porcentaje = Math.min(Math.max(porcentaje, 0), 100);
-
       barra.style.width = porcentaje.toFixed(2) + "%";
       texto.textContent = `${porcentaje.toFixed(2)}% pagado — $${saldoActual.toLocaleString()} restantes`;
     }
-
     loans.forEach(l => actualizarBarra(l.id, l.montoOriginal, l.saldoActual));
 
-    // Footer dinámico con año actual
+    // Footer año
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // -------------------------
+    // Fondo animado: copos de nieve adaptativos
+    // -------------------------
+    (function snowBackground(){
+      const canvas = document.getElementById('snow-canvas');
+      const ctx = canvas.getContext('2d');
+      let w, h, flakes = [], running = true;
+
+      function resize(){
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      // Heurística adaptativa según dispositivo
+      const memGB = (navigator.deviceMemory || 4); // suposición razonable
+      const cores = (navigator.hardwareConcurrency || 4);
+      const area = Math.min((window.innerWidth * window.innerHeight) / (1280*720), 2.0); // normalizado
+      const perfScore = (memGB/4) * (cores/4) * (0.6 + 0.4*area); // ponderación suave
+
+      const baseFlakes = 80; // base discreta para no saturar
+      const maxMultiplier = 3.0; // límite superior
+      const count = Math.round(baseFlakes * Math.min(perfScore, maxMultiplier));
+
+      // Generar copos
+      for (let i=0;i<count;i++){
+        flakes.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: Math.random() * 1.6 + 0.6,    // radio pequeño para suavidad
+          d: Math.random() * 0.6 + 0.2,    // densidad/velocidad vertical
+          sway: Math.random() * 0.6 + 0.2, // movimiento lateral
+          alpha: Math.random() * 0.35 + 0.35 // visibilidad moderada
+        });
+      }
+
+      // Animación suave
+      function draw(){
+        if(!running) return;
+        ctx.clearRect(0,0,w,h);
+
+        // Fondo leve de “bruma” azul para efecto inmersivo sin saturar
+        ctx.fillStyle = 'rgba(180,210,255,0.06)';
+        ctx.fillRect(0,0,w,h);
+
+        for (let i=0;i<flakes.length;i++){
+          const f = flakes[i];
+          ctx.beginPath();
+          ctx.arc(f.x, f.y, f.r, 0, Math.PI*2);
+          ctx.fillStyle = `rgba(255,255,255,${f.alpha})`;
+          ctx.fill();
+
+          // Movimiento
+          f.y += f.d;                         // cae
+          f.x += Math.sin(performance.now()/1000 + i) * (f.sway * 0.2); // deriva suave
+
+          // Reciclaje al salir
+          if (f.y > h + 5) { f.y = -5; f.x = Math.random() * w; }
+          if (f.x < -10) { f.x = w + 10; }
+          if (f.x > w + 10) { f.x = -10; }
+        }
+
+        requestAnimationFrame(draw);
+      }
+      requestAnimationFrame(draw);
+
+      // Alternar animación por si se desea pausar
+      document.getElementById('toggleSnow').addEventListener('click', ()=>{
+        running = !running;
+        if (running) requestAnimationFrame(draw);
+      });
+    })();
   </script>
 </body>
 </html>
