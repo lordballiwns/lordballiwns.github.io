@@ -22,13 +22,13 @@ saludoDiv.style.marginBottom = "20px";
 saludoDiv.innerHTML = saludoCompleto;
 document.body.insertBefore(saludoDiv, document.body.firstChild);
 
-// Datos de préstamos (incluye Pedro)
+// Datos de préstamos actualizados (v4.1.1)
 const loans = [
-  { id: "luis",    nombre: "Luis",    montoOriginal: 17000, saldoActual: 4930, intro: "Préstamo correspondiente a Luis." },
+  { id: "luis",    nombre: "Luis",    montoOriginal: 17000, saldoActual: 4430, intro: "Préstamo correspondiente a Luis." },
   { id: "payjoy",  nombre: "PayJoy",  montoOriginal: 4416,  saldoActual: 1566, intro: "Préstamo correspondiente a PayJoy." },
   { id: "beatris", nombre: "Beatris", montoOriginal: 2400,  saldoActual: 1800, intro: "Préstamo correspondiente a Beatris." },
   { id: "andy",    nombre: "Andy",    montoOriginal: 6700,  saldoActual: 6700, intro: "Préstamo correspondiente a Andy." },
-  { id: "pedro",   nombre: "Pedro",   montoOriginal: 1360,  saldoActual: 860,  intro: "Préstamo correspondiente a Pedro." }
+  { id: "pedro",   nombre: "Pedro",   montoOriginal: 1460,  saldoActual: 960,  intro: "Préstamo correspondiente a Pedro." }
 ];
 
 // Calcular porcentaje pagado y ordenar dinámicamente
@@ -74,7 +74,6 @@ document.getElementById("year").textContent = new Date().getFullYear();
 // Fondo animado: copos de nieve adaptativos con ahorro de batería
 // -------------------------
 
-// Detección más precisa de Safari/iOS
 const isAppleSafari = /Mac|iPhone|iPad|iPod/.test(navigator.platform) &&
                       /Safari/.test(navigator.userAgent) &&
                       !/Chrome/.test(navigator.userAgent) &&
