@@ -73,8 +73,14 @@ document.getElementById("year").textContent = new Date().getFullYear();
 // -------------------------
 // Fondo animado: copos de nieve adaptativos con ahorro de batería
 // -------------------------
-const isApple = /Mac|iPhone|iPad|iPod/.test(navigator.platform) || /Safari/.test(navigator.userAgent);
-if (!isApple) {
+
+// Detección más precisa de Safari/iOS
+const isAppleSafari = /Mac|iPhone|iPad|iPod/.test(navigator.platform) &&
+                      /Safari/.test(navigator.userAgent) &&
+                      !/Chrome/.test(navigator.userAgent) &&
+                      !/Edg/.test(navigator.userAgent);
+
+if (!isAppleSafari) {
   (function snowBackground(){
     const canvas = document.getElementById('snow-canvas');
     const ctx = canvas.getContext('2d');
@@ -113,24 +119,29 @@ if (!isApple) {
 
     const statusEl = document.getElementById('battery-status');
     function applyBatteryPolicy(battery){
-      const level = battery.level;
-      const charging = battery.charging;
-      const low = level <= 0.20 && !charging;
-      const saveMode = (navigator.deviceMemory && navigator.deviceMemory < 2);
+      try {
+        const level = battery.level;
+        const charging = battery.charging;
+        const low = level <= 0.20 && !charging;
+        const saveMode = (navigator.deviceMemory && navigator.deviceMemory < 2);
 
-      let multiplier = 1.0;
-      if (low) multiplier *= 0.4;
-      if (saveMode) multiplier *= 0.6;
+        let multiplier = 1.0;
+        if (low) multiplier *= 0.4;
+        if (saveMode) multiplier *= 0.6;
 
-      const adjusted = Math.max(20, Math.round(count * multiplier));
-      generateFlakes(adjusted);
+        const adjusted = Math.max(20, Math.round(count * multiplier));
+        generateFlakes(adjusted);
 
-      const pct = Math.round(level * 100);
-      let msg = `Batería: ${pct}%`;
-      if (charging) msg += " (cargando)";
-      if (low) msg += " — modo batería baja";
-      if (saveMode) msg += " — modo ahorro";
-      statusEl.textContent = msg;
+        const pct = Math.round(level * 100);
+        let msg = `Batería: ${pct}%`;
+        if (charging) msg += " (cargando)";
+        if (low) msg += " — modo batería baja";
+        if (saveMode) msg += " — modo ahorro";
+        statusEl.textContent = msg;
+      } catch(e) {
+        generateFlakes(count);
+        statusEl.textContent = "Error al leer batería";
+      }
     }
 
     if ('getBattery' in navigator) {
