@@ -82,12 +82,15 @@
   <div id="loans-root"></div>
 
   <footer>
-    Versión <span class="brand">3.3</span> © <span id="year"></span> — Desarrollado por <span class="brand">Lord Balliwn's</span>
+    Versión <span class="brand">3.4</span> © <span id="year"></span> — Desarrollado por <span class="brand">Lord Balliwn's</span>
   </footer>
 
   <script>
     const nombresAutorizados = ["Guillermo", "Ana", "Armando", "Andy"];
-    const nombreIngresado = prompt("Por favor, indique su nombre para continuar:");
+    let nombreIngresado = prompt("Por favor, indique su nombre para continuar:");
+
+    // Normalizar entrada eliminando espacios
+    nombreIngresado = nombreIngresado ? nombreIngresado.trim() : "";
 
     if (!nombresAutorizados.includes(nombreIngresado)) {
       alert("Acceso denegado.");
