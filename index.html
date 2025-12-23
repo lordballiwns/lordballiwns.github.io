@@ -12,7 +12,7 @@
       align-items: center;
       height: 100vh;
       background: url('IMG_3522_Original.jpeg') no-repeat center center fixed;
-      background-size: cover; /* cubre toda la pantalla */
+      background-size: cover;
       background-color: #0a1f44;
       text-align: center;
       font-family: 'Segoe UI', Arial, sans-serif;
@@ -44,16 +44,22 @@
       font-size: 1rem;
       margin-bottom: 20px;
     }
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
     .button {
-      display: inline-block;
+      display: block;
       padding: 12px 24px;
-      margin: 8px;
       border: 2px solid #00f0ff;
       border-radius: 6px;
       text-decoration: none;
       color: #00f0ff;
       font-weight: bold;
       transition: all 0.3s ease;
+      text-align: center;
     }
     .button:hover, .button:focus {
       background-color: #00f0ff;
@@ -69,6 +75,10 @@
       margin-top: 20px;
       font-size: 0.8rem;
       color: #888;
+    }
+    footer span {
+      color: #00aaff; /* azul institucional, ajustable */
+      font-weight: bold;
     }
     footer a {
       color: #00f0ff;
@@ -88,29 +98,19 @@
       Estamos en constante renovación para ofrecerte transparencia y claridad.</p>
     </div>
 
-    <a href="#" class="button">🌩️ SAP</a>
-    <div class="description">
-      Sistema de Alerta Preventiva de tipo ciclónica y pluvial, que monitorea ciclones y el desbordamiento de ríos, lagos, lagunas y arroyos para proteger la vida humana.
+    <div class="button-grid">
+      <a href="#" class="button">🌩️ SAP</a>
+      <a href="#" class="button">📦 Lank</a>
+      <a href="#" class="button">🔒 Tigcis</a>
+      <a href="abonos.html" class="button">💰 Finanzas</a>
     </div>
 
-    <a href="#" class="button">📦 Lank</a>
     <div class="description">
-      Plataforma intermediaria que ofrece suscripciones a servicios de distintas rúbricas como Google One, HBO, Duolingo, entre otros.
-    </div>
-
-    <a href="#" class="button">🔒 Suscripción Tigcis</a>
-    <div class="description">
-      Medio intermediario propio, gestionado bajo estricto control de cuentas. A diferencia de Lank, Tigcis no anexa cuentas externas, solo propias y sin intervención directa del usuario.
-    </div>
-
-    <a href="abonos.html" class="button">💰 Finanzas</a>
-    <div class="description">
-      Sección dedicada a la gestión de pagos, deudas y abonos realizados. Aquí podrás consultar tu estado financiero dentro del sistema.
+      Sistema de Alerta Preventiva, suscripciones externas, plataforma propia y gestión financiera en un solo lugar.
     </div>
 
     <footer>
-      <p>© 2025 Proyecto Tigger Swan — Dinastía Irbiloc</p>
-      <p>Última actualización: 23 diciembre 2025</p>
+      <p><span>Versión 3.5 © 2025 — Desarrollado por Dinastía Irbiloc</span></p>
       <a href="history.html">Historial de cambios</a>
     </footer>
   </div>
