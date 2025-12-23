@@ -7,6 +7,7 @@
   <style>
     :root {
       --neon: #00aaff; /* azul institucional */
+      --accent: #ffcc00;
     }
     body {
       margin: 0;
@@ -16,19 +17,16 @@
       height: 100vh;
       background: url('IMG_3522_Original.jpeg') no-repeat center center fixed;
       background-size: cover;
-      background-color: #0a1f44;
-      text-align: center;
       font-family: 'Segoe UI', Arial, sans-serif;
       color: #fff;
+      text-align: center;
     }
     .container {
       background-color: rgba(10, 31, 68, 0.85);
       padding: 30px;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-      max-width: 700px;
-    }
-    .fade-in {
+      max-width: 720px;
       animation: fadeIn 1.2s ease-in-out;
     }
     @keyframes fadeIn {
@@ -36,12 +34,12 @@
       to { opacity: 1; transform: translateY(0); }
     }
     h1 {
-      color: #00f0ff;
+      color: var(--neon);
       margin-bottom: 10px;
     }
     .welcome-message h2 {
       margin: 10px 0;
-      color: #ffcc00;
+      color: var(--accent);
     }
     .welcome-message p {
       font-size: 1rem;
@@ -50,29 +48,28 @@
     .button-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      gap: 16px;
       margin-bottom: 20px;
     }
     .button {
       display: block;
-      padding: 12px 24px;
-      border: 2px solid #00f0ff;
+      padding: 14px;
+      border: 2px solid var(--neon);
       border-radius: 6px;
       text-decoration: none;
-      color: #00f0ff;
+      color: var(--neon);
       font-weight: bold;
       transition: all 0.3s ease;
-      text-align: center;
     }
     .button:hover, .button:focus {
-      background-color: #00f0ff;
+      background-color: var(--neon);
       color: #0a1f44;
       outline: none;
     }
     .description {
       font-size: 0.9rem;
       color: #ccc;
-      margin-bottom: 15px;
+      margin-top: 6px;
     }
     footer {
       margin-top: 36px;
@@ -91,28 +88,36 @@
   </style>
 </head>
 <body>
-  <div class="container fade-in">
+  <div class="container">
     <h1>Dinastía Irbiloc</h1>
     <div class="welcome-message">
       <h2>Bienvenido a Proyecto Tigger Swan</h2>
-      <p>Explora nuestras secciones principales: SAP, Lank, Suscripción Tigcis y Finanzas.  
-      Estamos en constante renovación para ofrecerte transparencia y claridad.</p>
+      <p>Tu plataforma integral para alertas, suscripciones y gestión financiera.  
+      Innovación y transparencia al alcance de tu mano.</p>
     </div>
 
     <div class="button-grid">
-      <a href="#" class="button">🌩️ SAP</a>
-      <a href="#" class="button">📦 Lank</a>
-      <a href="#" class="button">🔒 Tigcis</a>
-      <a href="abonos.html" class="button">💰 Finanzas</a>
+      <div>
+        <a href="#" class="button">🌩️ SAP</a>
+        <div class="description">Protección inmediata contra ciclones y lluvias intensas. Seguridad que cuida tu entorno.</div>
+      </div>
+      <div>
+        <a href="#" class="button">📦 Lank</a>
+        <div class="description">Accede a tus servicios favoritos (Google, HBO, Duolingo) desde un solo lugar.</div>
+      </div>
+      <div>
+        <a href="#" class="button">🔒 Tigcis</a>
+        <div class="description">Suscripciones propias bajo control total. Sin terceros, sin complicaciones.</div>
+      </div>
+      <div>
+        <a href="abonos.html" class="button">💰 Finanzas</a>
+        <div class="description">Consulta pagos, deudas y abonos realizados. Tu información financiera clara y segura.</div>
+      </div>
     </div>
 
-    <div class="description">
-      Sistema de Alerta Preventiva, suscripciones externas, plataforma propia y gestión financiera en un solo lugar.
-    </div>
-
-    <!-- Footer replicado sin batería -->
+    <!-- Footer replicado -->
     <footer>
-      Versión <span class="brand">3.5.1</span> © <span id="year"></span> — Desarrollado por <span class="brand">Dinastía Irbiloc</span>
+      Versión <span class="brand">3.5.2</span> © <span id="year"></span> — Desarrollado por <span class="brand">Dinastía Irbiloc</span>
     </footer>
   </div>
 
