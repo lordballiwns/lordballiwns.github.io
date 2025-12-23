@@ -11,7 +11,7 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background: url('IMG_3522_Original.jpeg') no-repeat center center fixed;
+      background: url('IMG3522Original.jpeg') no-repeat center center fixed;
       background-size: contain;
       background-color: #0a1f44;
       text-align: center;
@@ -25,9 +25,23 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.6);
       max-width: 700px;
     }
+    .fade-in {
+      animation: fadeIn 1.2s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
     h1 {
       color: #00f0ff;
       margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    h1 img {
+      height: 40px;
     }
     .welcome-message h2 {
       margin: 10px 0;
@@ -48,45 +62,67 @@
       font-weight: bold;
       transition: all 0.3s ease;
     }
-    .button:hover {
+    .button:hover, .button:focus {
       background-color: #00f0ff;
       color: #0a1f44;
+      outline: none;
     }
     .description {
       font-size: 0.9rem;
       color: #ccc;
       margin-bottom: 15px;
     }
+    footer {
+      margin-top: 20px;
+      font-size: 0.8rem;
+      color: #888;
+    }
+    footer a {
+      color: #00f0ff;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Dinastía Irbiloc</h1>
+  <div class="container fade-in">
+    <h1>
+      <img src="logo.png" alt="Logo Proyecto Tigger Swan">
+      Dinastía Irbiloc
+    </h1>
     <div class="welcome-message">
       <h2>Bienvenido a Proyecto Tigger Swan</h2>
       <p>Explora nuestras secciones principales: SAP, Lank, Suscripción Tigcis y Finanzas.  
       Estamos en constante renovación para ofrecerte transparencia y claridad.</p>
     </div>
 
-    <a href="#" class="button">SAP</a>
+    <a href="#" class="button">🌩️ SAP</a>
     <div class="description">
       Sistema de Alerta Preventiva de tipo ciclónica y pluvial, que monitorea ciclones y el desbordamiento de ríos, lagos, lagunas y arroyos para proteger la vida humana.
     </div>
 
-    <a href="#" class="button">Lank</a>
+    <a href="#" class="button">📦 Lank</a>
     <div class="description">
       Plataforma intermediaria que ofrece suscripciones a servicios de distintas rúbricas como Google One, HBO, Duolingo, entre otros.
     </div>
 
-    <a href="#" class="button">Suscripción Tigcis</a>
+    <a href="#" class="button">🔒 Suscripción Tigcis</a>
     <div class="description">
       Medio intermediario propio, gestionado bajo estricto control de cuentas. A diferencia de Lank, Tigcis no anexa cuentas externas, solo propias y sin intervención directa del usuario.
     </div>
 
-    <a href="abonos.html" class="button">Finanzas</a>
+    <a href="abonos.html" class="button">💰 Finanzas</a>
     <div class="description">
       Sección dedicada a la gestión de pagos, deudas y abonos realizados. Aquí podrás consultar tu estado financiero dentro del sistema.
     </div>
+
+    <footer>
+      <p>© 2025 Proyecto Tigger Swan — Dinastía Irbiloc</p>
+      <p>Última actualización: 23 diciembre 2025</p>
+      <a href="history.html">Historial de cambios</a>
+    </footer>
   </div>
 </body>
 </html>
