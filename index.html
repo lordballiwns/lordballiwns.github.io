@@ -9,12 +9,16 @@
       --neon: #00aaff; /* azul institucional */
       --accent: #ffcc00;
     }
-    body {
+    html, body {
       margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden; /* evita scroll innecesario */
+    }
+    body {
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
       background: url('IMG_3522_Original.jpeg') no-repeat center center fixed;
       background-size: cover;
       font-family: 'Segoe UI', Arial, sans-serif;
@@ -111,13 +115,13 @@
       </div>
       <div>
         <a href="abonos.html" class="button">💰 Finanzas</a>
-        <div class="description">Consulta pagos, deudas y abonos realizados. Tu información financiera clara y segura.</div>
+        <div class="description">Accede al registro de pagos, deudas y abonos de la empresa. Disponible solo con clave de acceso.</div>
       </div>
     </div>
 
     <!-- Footer replicado -->
     <footer>
-      Versión <span class="brand">3.5.2</span> © <span id="year"></span> — Desarrollado por <span class="brand">Dinastía Irbiloc</span>
+      Versión <span class="brand">3.5.3</span> © <span id="year"></span> — Desarrollado por <span class="brand">Dinastía Irbiloc</span>
     </footer>
   </div>
 
