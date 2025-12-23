@@ -1,53 +1,71 @@
 <!DOCTYPE html>
 <html lang="es-mx">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyecto Tigger Swan</title>
-    <style>
-        body {
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: url('IMG_3522_Original.jpeg') no-repeat center center fixed;
-            background-size: cover;
-            text-align: center;
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 10px;
-        }
-        .button {
-            padding: 10px 20px;
-            margin: 10px;
-            border: 2px solid #000;
-            border-radius: 5px;
-            text-decoration: none;
-            color: #000;
-            font-weight: bold;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        .button:hover {
-            background-color: #000;
-            color: #fff;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyecto Tigger Swan</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: url('logo_tigger_swan.png') no-repeat center center fixed;
+      background-size: contain;
+      background-color: #0a1f44; /* fondo oscuro detrás del logo */
+      text-align: center;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: #fff;
+    }
+    .container {
+      background-color: rgba(10, 31, 68, 0.85);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+      max-width: 600px;
+    }
+    h1 {
+      color: #00f0ff;
+      margin-bottom: 10px;
+    }
+    .welcome-message h2 {
+      margin: 10px 0;
+      color: #ffcc00;
+    }
+    .welcome-message p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+    .button {
+      display: inline-block;
+      padding: 12px 24px;
+      margin: 8px;
+      border: 2px solid #00f0ff;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #00f0ff;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    .button:hover {
+      background-color: #00f0ff;
+      color: #0a1f44;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Dinastía Irbiloc</h1>
-        <div class="welcome-message">
-            <h2>¡Bienvenido a Proyecto Tigger Swan!</h2>
-            <p>Nos alegra tenerte aquí. Explora nuestras nuevas opciones: SAP, Lank, Suscripción Tigcis y Abonos. ¡Esperamos que disfrutes tu visita!</p>
-        </div>
-        <a href="sap.html" class="button">SAP</a>
-        <a href="lank.html" class="button">Lank</a>
-        <a href="tigcis.html" class="button">Suscripción Tigcis</a>
-        <a href="abonos.html" class="button">Abonos</a>
+  <div class="container">
+    <h1>Dinastía Irbiloc</h1>
+    <div class="welcome-message">
+      <h2>Bienvenido a Proyecto Tigger Swan</h2>
+      <p>Explora nuestras secciones principales: SAP, Lank, Suscripción Tigcis y Abonos.  
+      Estamos en constante renovación para ofrecerte transparencia y claridad.</p>
     </div>
+    <a href="#" class="button">SAP</a>
+    <a href="#" class="button">Lank</a>
+    <a href="#" class="button">Suscripción Tigcis</a>
+    <a href="abonos.html" class="button">Abonos</a>
+  </div>
 </body>
 </html>
