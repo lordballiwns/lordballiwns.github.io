@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Proyecto Tigger Swan</title>
   <style>
+    :root {
+      --neon: #00aaff; /* azul institucional */
+    }
     body {
       margin: 0;
       display: flex;
@@ -72,20 +75,18 @@
       margin-bottom: 15px;
     }
     footer {
-      margin-top: 20px;
-      font-size: 0.8rem;
-      color: #888;
+      margin-top: 36px;
+      padding: 16px 12px;
+      text-align: center;
+      font-size: 0.95rem;
+      color: #aaa;
+      border-top: 1px solid #333;
+      width: 100%;
     }
-    footer span {
-      color: #00aaff; /* azul institucional, ajustable */
+    footer .brand {
+      color: var(--neon);
       font-weight: bold;
-    }
-    footer a {
-      color: #00f0ff;
-      text-decoration: none;
-    }
-    footer a:hover {
-      text-decoration: underline;
+      letter-spacing: 0.4px;
     }
   </style>
 </head>
@@ -109,10 +110,15 @@
       Sistema de Alerta Preventiva, suscripciones externas, plataforma propia y gestión financiera en un solo lugar.
     </div>
 
+    <!-- Footer replicado sin batería -->
     <footer>
-      <p><span>Versión 3.5 © 2025 — Desarrollado por Dinastía Irbiloc</span></p>
-      <a href="history.html">Historial de cambios</a>
+      Versión <span class="brand">3.5.1</span> © <span id="year"></span> — Desarrollado por <span class="brand">Dinastía Irbiloc</span>
     </footer>
   </div>
+
+  <script>
+    // Actualiza el año automáticamente
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
