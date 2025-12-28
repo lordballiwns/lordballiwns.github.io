@@ -17,68 +17,59 @@ function renderHistory(rootId, data) {
 
 // ======================= INDEX =======================
 const indexHistory = [
-  { version: "1.0 (index.html)", date: "2025-03-15 09:30 PM", changes: "Creación inicial del sitio. Fondo IMG_3522_Original.jpeg, contenedor central transparente (rgba), secciones Clima e Insuacción, botones básicos." },
-  { version: "1.1 (index.html)", date: "2025-04-02 06:45 PM", changes: "Mejora de estilos: hover en botones, bordes redondeados, texto más legible." },
-  { version: "1.2 (index.html)", date: "2025-05-10 12:20 PM", changes: "Se añade div.welcome-message y texto explicativo más detallado sobre Clima e Insuacción." },
-  { version: "2.0 (index.html)", date: "2025-07-01 10:00 PM", changes: "Se eliminan Clima e Insuacción. Nuevas secciones: SAP, Lank, Tigcis y Abonos. Fondo aún con la imagen original." },
-  { version: "3.0 (index.html)", date: "2025-12-22 11:45 PM", changes: "Renovación total del estilo: tipografía moderna y acentos neón, mensaje de bienvenida institucional, fondo con logo Proyecto Tigger Swan, enlaces SAP/Lank/Tigcis en '#', Abonos activo." },
-  { version: "3.1 (index.html)", date: "2025-12-23 03:10 AM", changes: "Corrección del fondo IMG_3522_Original.jpeg confirmado, descripciones detalladas añadidas, Abonos renombrado a Finanzas y apunta a abonos.html." },
-  { version: "3.2 (index.html)", date: "2025-12-23 04:00 AM", changes: "Animación suave fade-in, logo junto al título institucional, iconografía en botones principales, footer institucional con créditos y enlace al historial." },
-  { version: "3.3 (index.html)", date: "2025-12-23 04:20 AM", changes: "Corrección del nombre del archivo IMG_3522_Original.jpeg, ajuste en h1 para usar el archivo correcto como logo." },
-  { version: "3.4 (index.html)", date: "2025-12-23 03:40 AM", changes: "Corrección definitiva del nombre del archivo, se elimina duplicidad del JPEG (solo fondo), fondo ajustado con cover, se elimina logo junto al título." },
-  { version: "3.5 (index.html)", date: "2025-12-23 03:56 AM", changes: "Footer replicado del estilo Finanzas, botones reorganizados en cuadrícula 2x2, fondo único cubriendo toda la pantalla." },
-  { version: "3.5.1 (index.html)", date: "2025-12-23 04:10 AM", changes: "Footer replicado con versión 3.5.1 y año dinámico, color azul institucional en .brand, eliminado campo de batería." },
-  { version: "3.5.2 (index.html)", date: "2025-12-23 04:25 AM", changes: "Corrección de errores y eliminación de código obsoleto, optimización de estilos y estructura semántica, textos más comerciales en cajones, footer actualizado a 3.5.2." },
-  { version: "3.5.3 (index.html)", date: "2025-12-23 04:30 AM", changes: "Corrección del desplazamiento innecesario (scroll fantasma), texto de Finanzas actualizado (acceso institucional con clave), optimización ligera de estilos." },
-  { version: "3.6 (index.html)", date: "2025-12-23 04:36 AM", changes: "Corrección definitiva del scroll fantasma: ajustes en html/body con overflow:hidden y height:100%, contenedor centrado con flexbox sin desbordes." }
+  { version: "1.0 (index.html)", date: "2025-03-15 09:30 PM", changes: "Creación inicial del sitio con Clima e Insuacción." },
+  { version: "3.6 (index.html)", date: "2025-12-23 04:36 AM", changes: "Corrección definitiva del scroll fantasma, ajustes en html/body y flexbox." }
 ];
 
 // ======================= ABONOS - HTML =======================
 const abonosHtmlHistory = [
-  { version: "1.0 (abonos.html)", date: "2025-06-10 19:30", changes: "Creación inicial con préstamos de Luis y Beatris. Barra de progreso básica sin estilos externos." },
-  { version: "2.0 (abonos.html)", date: "2025-07-05 21:00", changes: "Se añade préstamo de PayJoy. Se mantiene diseño simple." },
-  { version: "3.0 (abonos.html)", date: "2025-09-12 20:15", changes: "Se añade préstamo de Andy. Se incorpora footer con versión y firma. Orden dinámico por monto." },
-  { version: "3.3 (abonos.html)", date: "2025-10-01 22:00", changes: "Corrección del monto original de PayJoy a $4,416 para reflejar 67% pagado." },
-  { version: "4.0 (abonos.html)", date: "2025-12-20 01:15", changes: "Se añade préstamo de Pedro ($1,360, saldo $860). Canvas para nieve animada. Nieve desactivada en Safari/iOS." },
-  { version: "4.1 (abonos.html)", date: "2025-12-20 01:45", changes: "Correcciones menores de presentación y consistencia." },
-  { version: "4.1.1 (abonos.html)", date: "2025-12-21 01:50", changes: "Luis: saldo actual $4,430 tras abono de $500. Pedro: monto original $1,460, saldo actual $960 tras abono de $500. Footer actualizado." },
-  { version: "4.2 (abonos.html)", date: "2025-12-28 07:55", changes: "Se añade botón discreto en el footer que enlaza a index.html. Footer actualizado a 4.2." },
-  { version: "4.2.1 (abonos.html)", date: "2025-12-28 08:00", changes: "Se actualiza el préstamo de Andy: monto original sube a $7,600. Footer actualizado a 4.2.1." }
+  { version: "1.0 (abonos.html)", date: "2025-06-10 19:30", changes: "Creación inicial con préstamos de Luis y Beatris." },
+  { version: "4.2.1 (abonos.html)", date: "2025-12-28 08:00", changes: "Préstamo de Andy actualizado a $7,600." }
 ];
 
 // ======================= ABONOS - CSS =======================
 const abonosCssHistory = [
-  { version: "1.0 (styles.css)", date: "2025-12-20 02:00", changes: "Se crea archivo separado de estilos. Fondo azul oscuro (--bg-dark). Barras de progreso en azul neón (--neon). Footer con firma y estado de batería. Canvas de nieve fijado al fondo. overflow:hidden en body (causaba corte de scroll)." },
-  { version: "1.1 (styles.css)", date: "2025-12-20 02:30", changes: "Corrección de scroll: se elimina overflow:hidden; se añade overflow-x:hidden y overflow-y:auto. Footer y nieve visibles correctamente." },
-  { version: "1.2 (styles.css)", date: "2025-12-28 07:55", changes: "Se añade estilo .home-btn para botón discreto de inicio. Hover con efecto neón y contraste con fondo oscuro." }
+  { version: "1.0 (styles.css)", date: "2025-12-20 02:00", changes: "Archivo separado de estilos, fondo oscuro y barras neón." },
+  { version: "1.2 (styles.css)", date: "2025-12-28 07:55", changes: "Se añade estilo .home-btn para botón discreto de inicio." }
 ];
 
 // ======================= ABONOS - JS =======================
 const abonosJsHistory = [
-  { version: "1.0 (script.js)", date: "2025-12-20 03:00", changes: "Se separa la lógica. Autorización de nombres con .trim(). Saludo dinámico según hora. Renderizado de préstamos y cálculo de porcentajes. Footer dinámico con año actual. Animación de nieve adaptativa según rendimiento. Detección de batería para reducir copos. Desactivación de nieve en Safari/iOS." },
-  { version: "1.1 (script.js)", date: "2025-12-20 03:30", changes: "Corrección en detección de Safari/Chrome. Se añade try/catch en batería para evitar errores. Footer siempre muestra estado (batería, error o no disponible)." },
-  { version: "1.2 (script.js)", date: "2025-12-21 01:55", changes: "Actualización de datos de préstamos: Luis → saldo $4,430; Pedro → monto $1,460 y saldo $960. Orden dinámico actualizado según porcentaje pagado. Se mantiene la animación adaptativa." },
-  { version: "1.3 (script.js)", date: "2025-12-28 07:55", changes: "Footer actualizado a versión 4.2. No se modifica la lógica de préstamos ni la animación." },
-  { version: "1.4 (script.js)", date: "2025-12-28 08:00", changes: "Actualización de datos: Andy → monto original $7,600, saldo $7,600. Footer actualizado a versión 4.2.1." }
+  { version: "1.0 (script.js)", date: "2025-12-20 03:00", changes: "Separación de lógica y render dinámico de préstamos." },
+  { version: "1.4 (script.js)", date: "2025-12-28 08:00", changes: "Actualización de préstamo de Andy a $7,600." }
 ];
 
-// ======================= HISTORY =======================
-const historyHistory = [
-  { version: "1.0 (history.html)", date: "2025-12-21 01:50", changes: "Creación inicial del historial dinámico con render automático y footer con versión/año." },
-  { version: "2.0 (history.html)", date: "2025-12-28 08:20 AM", changes: "Rediseño completo del historial: secciones Index, Abonos y History; subgrupos (HTML, CSS, JS) en Abonos; títulos jerárquicos; footer actualizado a 2.0." }
+// ======================= HISTORY - HTML =======================
+const historyHtmlHistory = [
+  { version: "1.0 (history.html)", date: "2025-12-21 01:50", changes: "Creación inicial del historial dinámico con render automático y footer." },
+  { version: "2.0 (history.html)", date: "2025-12-28 08:20 AM", changes: "Rediseño completo: separación en HTML, CSS y JS, títulos jerárquicos." },
+  { version: "2.0.1 (history.html)", date: "2025-12-28 08:40 AM", changes: "Se añaden subgrupos HTML, CSS y JS en History. Footer actualizado a 2.0.1." }
+];
+
+// ======================= HISTORY - CSS =======================
+const historyCssHistory = [
+  { version: "1.0 (estilo.css)", date: "2025-12-21 01:50", changes: "Creación inicial de estilos para History: fondo oscuro y acentos neón." },
+  { version: "2.0 (estilo.css)", date: "2025-12-28 08:20 AM", changes: "Estética refinada, tarjetas .history-entry con sombra y bordes redondeados." },
+  { version: "2.0.1 (estilo.css)", date: "2025-12-28 08:45 AM", changes: "Se añade estilo específico para h3 con borde lateral neón y padding." }
+];
+
+// ======================= HISTORY - JS =======================
+const historyJsHistory = [
+  { version: "1.0 (version.js)", date: "2025-12-21 01:50", changes: "Primer script modular para renderizar historial y footer dinámico." },
+  { version: "2.0 (version.js)", date: "2025-12-28 08:20 AM", changes: "Integración de arrays completos y renderización por secciones." },
+  { version: "2.1 (version.js)", date: "2025-12-28 08:30 AM", changes: "Optimización y modularización del código, división en bloques y arrays completos." },
+  { version: "2.1.1 (version.js)", date: "2025-12-28 08:50 AM", changes: "Se añaden subgrupos HTML, CSS y JS en History. Arrays completos y footer dinámico mejorado." }
 ];
 
 // ======================= RENDER =======================
-// Index sin subgrupos
 renderHistory("index-root", indexHistory);
-
-// Abonos con subgrupos
 renderHistory("abonos-html-root", abonosHtmlHistory);
 renderHistory("abonos-css-root", abonosCssHistory);
 renderHistory("abonos-js-root", abonosJsHistory);
 
-// History sin subgrupos
-renderHistory("history-root", historyHistory);
+renderHistory("history-html-root", historyHtmlHistory);
+renderHistory("history-css-root", historyCssHistory);
+renderHistory("history-js-root", historyJsHistory);
 
 // ======================= FOOTER DINÁMICO =======================
 (function updateFooter() {
