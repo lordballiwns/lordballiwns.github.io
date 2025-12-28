@@ -4,111 +4,43 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Historial de Cambios</title>
-  <style>
-    :root {
-      --bg-dark: #0a1f44;
-      --neon: #00f0ff;
-    }
-
-    body {
-      margin: 0;
-      padding: 20px;
-      font-family: Arial, sans-serif;
-      background: var(--bg-dark);
-      color: #fff;
-      overflow-x: hidden;
-      overflow-y: auto;
-    }
-
-    h1 {
-      text-align: center;
-      color: var(--neon);
-      margin-bottom: 30px;
-    }
-
-    .history-entry {
-      background: #1c2e4a;
-      border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 15px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-    }
-
-    .history-entry h2 {
-      margin: 0;
-      color: var(--neon);
-    }
-
-    .history-entry p {
-      margin: 5px 0;
-      font-size: 0.95rem;
-    }
-
-    footer {
-      margin-top: 40px;
-      padding: 16px;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #aaa;
-      border-top: 1px solid #333;
-    }
-
-    footer .brand {
-      color: var(--neon);
-      font-weight: bold;
-    }
-  </style>
+  <!-- Enlace al CSS externo -->
+  <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
   <h1>📜 Historial de Cambios del Proyecto</h1>
 
-  <div id="history-root"></div>
+  <!-- Index -->
+  <section>
+    <h2>📂 Index</h2>
+    <div id="index-root"></div>
+  </section>
+
+  <!-- Abonos -->
+  <section>
+    <h2>💰 Abonos</h2>
+    <h3>HTML</h3>
+    <div id="abonos-html-root"></div>
+
+    <h3>CSS</h3>
+    <div id="abonos-css-root"></div>
+
+    <h3>JS</h3>
+    <div id="abonos-js-root"></div>
+  </section>
+
+  <!-- History -->
+  <section>
+    <h2>📜 History</h2>
+    <div id="history-root"></div>
+  </section>
 
   <footer>
     Última actualización: <span id="last-update"></span><br>
-    Versión <span class="brand">4.1.1</span> © <span id="year"></span> — Desarrollado por <span class="brand">Lord Balliwn's</span>
+    Versión <span class="brand">2.0</span> © <span id="year"></span> — Desarrollado por <span class="brand">Dinastía Irbiloc</span>
   </footer>
 
-  <script>
-    // Historial con fechas y horas (ejemplo basado en nuestras sesiones)
-    const history = [
-      { version: "1.1 (HTML)", date: "2025-12-15 22:10", changes: "Código original con dos préstamos (Luis y Beatris)." },
-      { version: "2.0 (HTML)", date: "2025-12-16 00:45", changes: "Se agregó el préstamo de PayJoy." },
-      { version: "2.1 (HTML)", date: "2025-12-16 01:30", changes: "Primer cambio de diseño: fondo azul nocturno + barra verde neón." },
-      { version: "2.2 (HTML)", date: "2025-12-16 02:00", changes: "Barra en azul neón con efecto brillante." },
-      { version: "3.0 (HTML)", date: "2025-12-17 20:15", changes: "Se agregó la deuda con Andy. Orden por monto. Footer elegante." },
-      { version: "3.1 (HTML)", date: "2025-12-17 21:00", changes: "Orden por porcentaje pagado. Ajuste preliminar de PayJoy." },
-      { version: "3.2 (HTML)", date: "2025-12-18 00:20", changes: "Corrección del orden dinámico (Luis primero)." },
-      { version: "3.3 (HTML)", date: "2025-12-18 01:00", changes: "PayJoy ajustado a $4,416 para reflejar 67% pagado." },
-      { version: "3.4 (HTML)", date: "2025-12-18 01:30", changes: "Se añade `.trim()` al nombre ingresado." },
-      { version: "4.0a (HTML)", date: "2025-12-19 23:00", changes: "Fondo azul claro + copos de nieve adaptativos." },
-      { version: "4.0b (HTML)", date: "2025-12-20 00:30", changes: "Fondo azul oscuro + nieve + detección de batería." },
-      { version: "4.0 (HTML)", date: "2025-12-20 01:15", changes: "Se añade deuda de Pedro ($1,360, saldo $860) y se desactiva nieve en iOS/Safari." },
-      { version: "4.1 (HTML)", date: "2025-12-20 01:45", changes: "Correcciones menores de presentación y consistencia (ajustes de abonos.html)." },
-      { version: "4.1.1 (HTML)", date: "2025-12-21 01:50", changes: "Luis: saldo actual $4,430 tras abono de $500. Pedro: monto original corregido a $1,460, saldo actual $960 tras abono de $500. Footer actualizado a versión 4.1.1." },
-      { version: "1.0 (CSS)", date: "2025-12-20 02:00", changes: "Archivo separado de estilos." },
-      { version: "1.1 (CSS)", date: "2025-12-20 02:30", changes: "Corrección de scroll: se elimina overflow hidden." },
-      { version: "1.0 (JS)", date: "2025-12-20 03:00", changes: "Archivo separado de lógica. Incluye saludo, préstamos, footer y nieve adaptativa." },
-      { version: "1.1 (JS)", date: "2025-12-20 03:30", changes: "Corrección de detección Safari/Chrome. Se añade try/catch en batería." },
-      { version: "1.2 (JS)", date: "2025-12-21 01:55", changes: "Actualización de abonos: Luis saldo $4,430, Pedro monto original $1,460 y saldo $960." }
-    ];
-
-    // Render dinámico
-    const root = document.getElementById("history-root");
-    history.forEach(entry => {
-      const div = document.createElement("div");
-      div.className = "history-entry";
-      div.innerHTML = `
-        <h2>${entry.version}</h2>
-        <p><strong>Fecha:</strong> ${entry.date}</p>
-        <p><strong>Cambios:</strong> ${entry.changes}</p>
-      `;
-      root.appendChild(div);
-    });
-
-    // Footer dinámico
-    document.getElementById("year").textContent = new Date().getFullYear();
-    document.getElementById("last-update").textContent = new Date().toLocaleString();
-  </script>
+  <!-- Enlace al JS externo -->
+  <script src="version.js"></script>
 </body>
 </html>
