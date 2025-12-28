@@ -22,7 +22,7 @@ saludoDiv.style.marginBottom = "20px";
 saludoDiv.innerHTML = saludoCompleto;
 document.body.insertBefore(saludoDiv, document.body.firstChild);
 
-// Datos de préstamos actualizados (v4.2.1)
+// Datos de préstamos actualizados (v1.5 / 4.2.2)
 const loans = [
   { id: "luis",    nombre: "Luis",    montoOriginal: 17000, saldoActual: 4430, intro: "Préstamo correspondiente a Luis." },
   { id: "payjoy",  nombre: "PayJoy",  montoOriginal: 4416,  saldoActual: 1566, intro: "Préstamo correspondiente a PayJoy." },
@@ -69,7 +69,7 @@ loans.forEach(l => actualizarBarra(l.id, l.montoOriginal, l.saldoActual));
 
 // Footer año y versión
 document.getElementById("year").textContent = new Date().getFullYear();
-document.querySelector("footer .brand").textContent = "4.2.1";
+document.querySelector("footer .brand").textContent = "4.2.2";
 
 // -------------------------
 // Fondo animado: copos de nieve adaptativos con ahorro de batería
