@@ -29,6 +29,9 @@ h2 {
 h3 {
   color: #fff;
   margin-top: 20px;
+  font-weight: bold;
+  border-left: 3px solid var(--neon);
+  padding-left: 8px;
 }
 
 .history-entry {
@@ -47,6 +50,10 @@ h3 {
 .history-entry p {
   margin: 5px 0;
   font-size: 0.95rem;
+}
+
+section {
+  margin-bottom: 40px;
 }
 
 footer {
