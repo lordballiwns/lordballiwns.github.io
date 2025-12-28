@@ -22,12 +22,12 @@ saludoDiv.style.marginBottom = "20px";
 saludoDiv.innerHTML = saludoCompleto;
 document.body.insertBefore(saludoDiv, document.body.firstChild);
 
-// Datos de préstamos actualizados (v4.2)
+// Datos de préstamos actualizados (v4.2.1)
 const loans = [
   { id: "luis",    nombre: "Luis",    montoOriginal: 17000, saldoActual: 4430, intro: "Préstamo correspondiente a Luis." },
   { id: "payjoy",  nombre: "PayJoy",  montoOriginal: 4416,  saldoActual: 1566, intro: "Préstamo correspondiente a PayJoy." },
   { id: "beatris", nombre: "Beatris", montoOriginal: 2400,  saldoActual: 1800, intro: "Préstamo correspondiente a Beatris." },
-  { id: "andy",    nombre: "Andy",    montoOriginal: 6700,  saldoActual: 6700, intro: "Préstamo correspondiente a Andy." },
+  { id: "andy",    nombre: "Andy",    montoOriginal: 7600,  saldoActual: 7600, intro: "Préstamo correspondiente a Andy." },
   { id: "pedro",   nombre: "Pedro",   montoOriginal: 1460,  saldoActual: 960,  intro: "Préstamo correspondiente a Pedro." }
 ];
 
@@ -69,7 +69,7 @@ loans.forEach(l => actualizarBarra(l.id, l.montoOriginal, l.saldoActual));
 
 // Footer año y versión
 document.getElementById("year").textContent = new Date().getFullYear();
-document.querySelector("footer .brand").textContent = "4.2";
+document.querySelector("footer .brand").textContent = "4.2.1";
 
 // -------------------------
 // Fondo animado: copos de nieve adaptativos con ahorro de batería
