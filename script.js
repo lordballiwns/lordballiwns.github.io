@@ -22,18 +22,14 @@ saludoDiv.style.marginBottom = "20px";
 saludoDiv.innerHTML = saludoCompleto;
 document.body.insertBefore(saludoDiv, document.body.firstChild);
 
-// Datos de préstamos actualizados (v1.5.4 / 4.2.4)
-// Movimientos aplicados:
-// - PayJoy: abono de 522 → saldo disminuye
-// - Pedro: abono de 230 → saldo disminuye
-// - Luis: abono de 500 → saldo disminuye
-// - Andy: se pidió 2800 → saldo aumenta
+// Datos de préstamos actualizados (v1.6 / 4.2.4)
+// Ahora cada préstamo guarda también el último abono y el saldo anterior
 const loans = [
-  { id: "luis",    nombre: "Luis",    montoOriginal: 17000, saldoActual: 3880,  intro: "Préstamo correspondiente a Luis." },
-  { id: "payjoy",  nombre: "PayJoy",  montoOriginal: 4416,  saldoActual: 522,   intro: "Préstamo correspondiente a PayJoy." },
-  { id: "beatris", nombre: "Beatris", montoOriginal: 2400,  saldoActual: 1800,  intro: "Préstamo correspondiente a Beatris." },
-  { id: "andy",    nombre: "Andy",    montoOriginal: 7600,  saldoActual: 10450, intro: "Préstamo correspondiente a Andy." },
-  { id: "pedro",   nombre: "Pedro",   montoOriginal: 1460,  saldoActual: 220,   intro: "Préstamo correspondiente a Pedro." }
+  { id: "luis",    nombre: "Luis",    montoOriginal: 17000, saldoActual: 3880,  ultimoAbono: 500,  saldoAnterior: 4380,  intro: "Préstamo correspondiente a Luis." },
+  { id: "payjoy",  nombre: "PayJoy",  montoOriginal: 4416,  saldoActual: 522,   ultimoAbono: 522,  saldoAnterior: 1044,  intro: "Préstamo correspondiente a PayJoy." },
+  { id: "beatris", nombre: "Beatris", montoOriginal: 2400,  saldoActual: 1800,  ultimoAbono: 0,    saldoAnterior: 1800,  intro: "Préstamo correspondiente a Beatris." },
+  { id: "andy",    nombre: "Andy",    montoOriginal: 7600,  saldoActual: 10450, ultimoAbono: 2800, saldoAnterior: 7650,  intro: "Préstamo correspondiente a Andy." },
+  { id: "pedro",   nombre: "Pedro",   montoOriginal: 1460,  saldoActual: 220,   ultimoAbono: 230,  saldoAnterior: 450,   intro: "Préstamo correspondiente a Pedro." }
 ];
 
 // Calcular porcentaje pagado y ordenar dinámicamente
@@ -55,22 +51,35 @@ loans.forEach(l => {
       <div class="progress-bar"></div>
     </div>
     <div class="progress-text"></div>
-    <div class="progress-label">Deuda con ${l.nombre} — Monto original: $${l.montoOriginal.toLocaleString()} — Saldo actual: $${l.saldoActual.toLocaleString()}</div>
+    <div class="progress-label"></div>
   `;
   root.appendChild(cont);
 });
 
-function actualizarBarra(id, montoOriginal, saldoActual) {
+// Nueva función actualizarBarra con último abono y saldo anterior
+function actualizarBarra(id, montoOriginal, saldoActual, ultimoAbono, saldoAnterior) {
   const contenedor = document.getElementById(id);
   const barra = contenedor.querySelector(".progress-bar");
   const texto = contenedor.querySelector(".progress-text");
+  const label = contenedor.querySelector(".progress-label");
+
   const montoPagado = montoOriginal - saldoActual;
   let porcentaje = (montoPagado / montoOriginal) * 100;
   porcentaje = Math.min(Math.max(porcentaje, 0), 100);
+
   barra.style.width = porcentaje.toFixed(2) + "%";
-  texto.textContent = `${porcentaje.toFixed(2)}% pagado — $${saldoActual.toLocaleString()} restantes`;
+
+  if (saldoActual > 0) {
+    texto.textContent = `${porcentaje.toFixed(2)}% pagado — Último abono $${ultimoAbono.toLocaleString()} — Saldo anterior $${saldoAnterior.toLocaleString()}`;
+    label.textContent = `Deuda con ${id.charAt(0).toUpperCase() + id.slice(1)} — Monto original: $${montoOriginal.toLocaleString()} — Saldo actual: $${saldoActual.toLocaleString()}`;
+  } else {
+    texto.textContent = `100% pagado — Último abono $${ultimoAbono.toLocaleString()} — Saldo anterior $${saldoAnterior.toLocaleString()}`;
+    label.textContent = `Deuda con ${id.charAt(0).toUpperCase() + id.slice(1)} — Monto original: $${montoOriginal.toLocaleString()} — Saldo actual: Finalizado`;
+  }
 }
-loans.forEach(l => actualizarBarra(l.id, l.montoOriginal, l.saldoActual));
+
+// Aplicar la nueva lógica a cada préstamo
+loans.forEach(l => actualizarBarra(l.id, l.montoOriginal, l.saldoActual, l.ultimoAbono, l.saldoAnterior));
 
 // Footer año y versión
 document.getElementById("year").textContent = new Date().getFullYear();
