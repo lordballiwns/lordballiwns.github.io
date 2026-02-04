@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-MX">
 <head>
   <meta charset="UTF-8">
   <title>Préstamos — Tema Primavera</title>
@@ -12,15 +12,25 @@
   <!-- Canvas para fondo dinámico y pétalos -->
   <canvas id="spring-canvas"></canvas>
 
+  <!-- Botón de inicio integrado al tema -->
+  <nav>
+    <button id="btn-inicio">Inicio</button>
+  </nav>
+
+  <!-- Saludo dinámico -->
+  <div id="saludo"></div>
+
   <!-- Contenedor principal de préstamos -->
   <main>
-    <h1 style="text-align:center; color:#006400;">Estado de Préstamos</h1>
+    <h1 style="text-align:center;" id="titulo-principal">Estado de Préstamos</h1>
     <div id="loans-root"></div>
   </main>
 
-  <!-- Footer -->
+  <!-- Footer con copyright y desarrollador -->
   <footer>
-    <span id="year"></span> — <span class="brand"></span>
+    <span id="year"></span> — <span class="brand"></span><br>
+    <span class="copyright">© <span id="year"></span> — <span class="brand"></span></span><br>
+    <span class="developer">Desarrollado por <strong class="lord">Lord Balliwn's</strong></span>
     <div id="battery-status"></div>
   </footer>
 
