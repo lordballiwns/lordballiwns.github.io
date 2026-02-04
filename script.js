@@ -22,17 +22,18 @@ saludoDiv.style.marginBottom = "20px";
 saludoDiv.innerHTML = saludoCompleto;
 document.body.insertBefore(saludoDiv, document.body.firstChild);
 
-// Datos de préstamos actualizados (v1.5.3 / 4.2.4)
-// Movimientos:
+// Datos de préstamos actualizados (v1.5.4 / 4.2.4)
+// Movimientos aplicados:
 // - PayJoy: abono de 522 → saldo disminuye
-// - Pedro: abono de 200 → saldo disminuye
-// - Andy: se pidió 100 → saldo aumenta
+// - Pedro: abono de 230 → saldo disminuye
+// - Luis: abono de 500 → saldo disminuye
+// - Andy: se pidió 2800 → saldo aumenta
 const loans = [
-  { id: "luis",    nombre: "Luis",    montoOriginal: 17000, saldoActual: 4380, intro: "Préstamo correspondiente a Luis." },
-  { id: "payjoy",  nombre: "PayJoy",  montoOriginal: 4416,  saldoActual: 522,  intro: "Préstamo correspondiente a PayJoy." },
-  { id: "beatris", nombre: "Beatris", montoOriginal: 2400,  saldoActual: 1800, intro: "Préstamo correspondiente a Beatris." },
-  { id: "andy",    nombre: "Andy",    montoOriginal: 7600,  saldoActual: 7650, intro: "Préstamo correspondiente a Andy." },
-  { id: "pedro",   nombre: "Pedro",   montoOriginal: 1460,  saldoActual: 450,  intro: "Préstamo correspondiente a Pedro." }
+  { id: "luis",    nombre: "Luis",    montoOriginal: 17000, saldoActual: 3880,  intro: "Préstamo correspondiente a Luis." },
+  { id: "payjoy",  nombre: "PayJoy",  montoOriginal: 4416,  saldoActual: 522,   intro: "Préstamo correspondiente a PayJoy." },
+  { id: "beatris", nombre: "Beatris", montoOriginal: 2400,  saldoActual: 1800,  intro: "Préstamo correspondiente a Beatris." },
+  { id: "andy",    nombre: "Andy",    montoOriginal: 7600,  saldoActual: 10450, intro: "Préstamo correspondiente a Andy." },
+  { id: "pedro",   nombre: "Pedro",   montoOriginal: 1460,  saldoActual: 220,   intro: "Préstamo correspondiente a Pedro." }
 ];
 
 // Calcular porcentaje pagado y ordenar dinámicamente
