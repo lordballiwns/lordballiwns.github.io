@@ -22,11 +22,15 @@ saludoDiv.style.marginBottom = "20px";
 saludoDiv.innerHTML = saludoCompleto;
 document.body.insertBefore(saludoDiv, document.body.firstChild);
 
-// Datos de préstamos actualizados (v1.6 / 4.2.4)
-// Ahora cada préstamo guarda también el último abono y el saldo anterior
+// Datos de préstamos actualizados (v1.6.1 / 4.2.4)
+// Movimientos aplicados:
+// - PayJoy: abono de 522 → saldo actual 0 (liquidado)
+// - Pedro: abono de 230 → saldo actual 220
+// - Luis: abono de 500 → saldo actual 3880
+// - Andy: se solicitó 2800 → saldo actual 10450
 const loans = [
   { id: "luis",    nombre: "Luis",    montoOriginal: 17000, saldoActual: 3880,  ultimoAbono: 500,  saldoAnterior: 4380,  intro: "Préstamo correspondiente a Luis." },
-  { id: "payjoy",  nombre: "PayJoy",  montoOriginal: 4416,  saldoActual: 522,   ultimoAbono: 522,  saldoAnterior: 1044,  intro: "Préstamo correspondiente a PayJoy." },
+  { id: "payjoy",  nombre: "PayJoy",  montoOriginal: 4416,  saldoActual: 0,     ultimoAbono: 522,  saldoAnterior: 522,   intro: "Préstamo correspondiente a PayJoy." },
   { id: "beatris", nombre: "Beatris", montoOriginal: 2400,  saldoActual: 1800,  ultimoAbono: 0,    saldoAnterior: 1800,  intro: "Préstamo correspondiente a Beatris." },
   { id: "andy",    nombre: "Andy",    montoOriginal: 7600,  saldoActual: 10450, ultimoAbono: 2800, saldoAnterior: 7650,  intro: "Préstamo correspondiente a Andy." },
   { id: "pedro",   nombre: "Pedro",   montoOriginal: 1460,  saldoActual: 220,   ultimoAbono: 230,  saldoAnterior: 450,   intro: "Préstamo correspondiente a Pedro." }
