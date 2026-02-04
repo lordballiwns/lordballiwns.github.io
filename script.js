@@ -1,18 +1,14 @@
-// Versión 5.0 — Tema Primavera
-// Se elimina autorización de usuario, carga directa
+// Versión JS 2.5 — Tema Primavera corregido
+// Parte 1 — Configuración inicial y saludo dinámico
 
-// Saludo dinámico
+// Saludo dinámico según la hora
 const fechaActual = new Date();
 const horaActual = fechaActual.getHours();
 const saludoTemporal = horaActual < 12 ? "Buenos días" : horaActual < 18 ? "Buenas tardes" : "Buenas noches";
 const saludoCompleto = `<br>${saludoTemporal}. A continuación se muestra el estado actual de los préstamos.`;
 
-const saludoDiv = document.createElement("div");
-saludoDiv.style.textAlign = "center";
-saludoDiv.style.fontSize = "1.2rem";
-saludoDiv.style.marginBottom = "20px";
+const saludoDiv = document.getElementById("saludo");
 saludoDiv.innerHTML = saludoCompleto;
-document.body.insertBefore(saludoDiv, document.body.firstChild);
 
 // Datos de préstamos (ejemplo con último abono y saldo anterior)
 const loans = [
@@ -22,6 +18,9 @@ const loans = [
   { id: "andy",    nombre: "Andy",    montoOriginal: 7600,  saldoActual: 10450, ultimoAbono: 2800, saldoAnterior: 7650,  intro: "Préstamo correspondiente a Andy." },
   { id: "pedro",   nombre: "Pedro",   montoOriginal: 1460,  saldoActual: 220,   ultimoAbono: 230,  saldoAnterior: 450,   intro: "Préstamo correspondiente a Pedro." }
 ];
+
+// Versión JS 2.5 — Tema Primavera corregido
+// Parte 2 — Renderizado y lógica de progreso
 
 // Calcular porcentaje pagado y ordenar
 loans.forEach(l => {
@@ -69,13 +68,16 @@ function actualizarBarra(id, montoOriginal, saldoActual, ultimoAbono, saldoAnter
   }
 }
 
+// Aplicar actualización a cada préstamo
 loans.forEach(l => actualizarBarra(l.id, l.montoOriginal, l.saldoActual, l.ultimoAbono, l.saldoAnterior));
 
 // Footer año y versión
 document.getElementById("year").textContent = new Date().getFullYear();
 document.querySelector("footer .brand").textContent = "5.0";
 
-// Animación de pétalos cayendo (similar a nieve pero con colores primaverales)
+// Versión JS 2.5 — Tema Primavera corregido
+// Parte 3 — Animación de flores emoji 🌸 🌼 💮
+
 (function petalsBackground(){
   const canvas = document.getElementById('spring-canvas');
   const ctx = canvas.getContext('2d');
@@ -88,20 +90,23 @@ document.querySelector("footer .brand").textContent = "5.0";
   resize();
   window.addEventListener('resize', resize);
 
+  // Lista de flores emoji
+  const flowerEmojis = ["🌸","🌼","💮"];
+
   function generatePetals(n){
     petals = [];
     for (let i=0;i<n;i++){
       petals.push({
         x: Math.random() * w,
         y: Math.random() * h,
-        r: Math.random() * 2 + 1,
-        d: Math.random() * 0.5 + 0.2,
-        sway: Math.random() * 0.6 + 0.2,
-        color: ["#ffb6c1","#ffc0cb","#ffe4e1","#fff0f5"][Math.floor(Math.random()*4)]
+        size: Math.random() * 24 + 16, // tamaño en px
+        d: Math.random() * 0.5 + 0.2,  // velocidad de caída
+        sway: Math.random() * 0.6 + 0.2, // movimiento lateral
+        emoji: flowerEmojis[Math.floor(Math.random()*flowerEmojis.length)]
       });
     }
   }
-  generatePetals(60);
+  generatePetals(40);
 
   function draw(){
     ctx.clearRect(0,0,w,h);
@@ -119,20 +124,20 @@ document.querySelector("footer .brand").textContent = "5.0";
     ctx.fillStyle = (hora >= 6 && hora < 18) ? "#32cd32" : "#006400";
     ctx.fillRect(0,h-100,w,100);
 
-    // Pétalos
+    // Dibujar flores emoji
     for (let i=0;i<petals.length;i++){
       const p = petals[i];
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-      ctx.fillStyle = p.color;
-      ctx.fill();
+      ctx.font = `${p.size}px serif`;
+      ctx.fillText(p.emoji, p.x, p.y);
 
+      // Movimiento
       p.y += p.d;
-      p.x += Math.sin(performance.now()/1000 + i) * (p.sway * 0.2);
+      p.x += Math.sin(performance.now()/1000 + i) * (p.sway * 0.5);
 
-      if (p.y > h + 5) { p.y = -5; p.x = Math.random() * w; }
-      if (p.x < -10)   { p.x = w + 10; }
-      if (p.x > w + 10){ p.x = -10; }
+      // Reinicio cuando salen de pantalla
+      if (p.y > h + 30) { p.y = -30; p.x = Math.random() * w; }
+      if (p.x < -30)   { p.x = w + 30; }
+      if (p.x > w + 30){ p.x = -30; }
     }
     requestAnimationFrame(draw);
   }
