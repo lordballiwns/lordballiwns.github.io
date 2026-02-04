@@ -1,29 +1,39 @@
-/* Versión CSS 2.1 — Tema Primavera corregido */
+/* Versión CSS 2.2 — Tema Primavera corregido */
 
 /* Fondo general */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: #f0fff0; /* verde muy claro */
-  color: #333; /* texto principal */
+  color: #333;
 }
 
-/* Saludo dinámico: visible de día y de noche */
+/* Título principal */
+#titulo-principal {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff; /* texto claro */
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.7), 0 0 10px rgba(255,255,255,0.6);
+  margin-top: 20px;
+}
+
+/* Saludo dinámico */
 #saludo {
   text-align: center;
   font-size: 1.2rem;
   font-weight: bold;
   padding: 10px;
-  color: #006400; /* verde oscuro de día */
+  color: #006400;
   text-shadow: 1px 1px 3px rgba(255,255,255,0.8), 1px 1px 5px rgba(0,0,0,0.6);
 }
 
-/* Contenedor de cada préstamo */
+/* Contenedor de préstamos */
 .progress-container.spring-theme {
   margin: 20px auto;
   padding: 15px;
   border-radius: 10px;
-  background: rgba(255,250,240,0.85); /* translúcido para ver pétalos detrás */
+  background: rgba(255,250,240,0.85); /* translúcido */
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
@@ -38,7 +48,7 @@ body {
 
 .progress-bar {
   height: 20px;
-  background: linear-gradient(90deg, #32cd32, #ff69b4); /* verde → rosa */
+  background: linear-gradient(90deg, #32cd32, #ff69b4);
   border-radius: 10px;
   transition: width 0.5s ease-in-out;
 }
@@ -46,31 +56,37 @@ body {
 /* Textos */
 .intro-text {
   font-weight: bold;
-  color: #006400; /* verde oscuro */
+  color: #006400;
 }
 
 .progress-text {
   font-size: 0.9rem;
-  color: #ff1493; /* rosa fuerte */
+  color: #ff1493;
 }
 
 .progress-label {
   font-size: 0.85rem;
-  color: #228b22; /* verde bosque */
+  color: #228b22;
 }
 
 /* Footer */
 footer {
   text-align: center;
-  padding: 10px;
-  background: rgba(250,250,210,0.85); /* amarillo suave translúcido */
+  padding: 12px;
+  background: rgba(250,250,210,0.85);
   color: #333;
   border-top: 2px solid #32cd32;
 }
 
-footer .developer .lord {
+footer .footer-text {
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #333;
+}
+
+footer .lord {
   font-family: "Brush Script MT", cursive;
-  color: #ff69b4; /* rosa primaveral */
+  color: #ff69b4;
   font-size: 1.1rem;
 }
 
@@ -98,12 +114,12 @@ nav {
   background: linear-gradient(90deg, #228b22, #ff1493);
 }
 
-/* Canvas de pétalos */
+/* Canvas */
 canvas#spring-canvas {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1; /* detrás del contenido */
+  z-index: -1;
 }
