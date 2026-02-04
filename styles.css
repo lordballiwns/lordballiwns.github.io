@@ -1,4 +1,4 @@
-/* Versión CSS 2.0 — Tema Primavera */
+/* Versión CSS 2.1 — Tema Primavera corregido */
 
 /* Fondo general */
 body {
@@ -8,19 +8,29 @@ body {
   color: #333; /* texto principal */
 }
 
+/* Saludo dinámico: visible de día y de noche */
+#saludo {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 10px;
+  color: #006400; /* verde oscuro de día */
+  text-shadow: 1px 1px 3px rgba(255,255,255,0.8), 1px 1px 5px rgba(0,0,0,0.6);
+}
+
 /* Contenedor de cada préstamo */
 .progress-container.spring-theme {
   margin: 20px auto;
   padding: 15px;
   border-radius: 10px;
-  background: #fffaf0; /* tono cálido */
+  background: rgba(255,250,240,0.85); /* translúcido para ver pétalos detrás */
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 /* Barra de progreso */
 .progress-bar-wrapper {
   width: 100%;
-  background: #ffe4e1; /* rosa pastel */
+  background: rgba(255,228,225,0.8); /* rosa pastel translúcido */
   border-radius: 10px;
   overflow: hidden;
   margin: 10px 0;
@@ -53,8 +63,39 @@ body {
 footer {
   text-align: center;
   padding: 10px;
-  background: #fafad2; /* amarillo suave */
+  background: rgba(250,250,210,0.85); /* amarillo suave translúcido */
   color: #333;
+  border-top: 2px solid #32cd32;
+}
+
+footer .developer .lord {
+  font-family: "Brush Script MT", cursive;
+  color: #ff69b4; /* rosa primaveral */
+  font-size: 1.1rem;
+}
+
+/* Botón Inicio */
+nav {
+  text-align: center;
+  margin: 15px 0;
+}
+
+#btn-inicio {
+  background: linear-gradient(90deg, #32cd32, #ff69b4);
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+#btn-inicio:hover {
+  transform: scale(1.05);
+  background: linear-gradient(90deg, #228b22, #ff1493);
 }
 
 /* Canvas de pétalos */
