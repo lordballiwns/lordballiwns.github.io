@@ -1,5 +1,5 @@
-// Versión JS 2.5 — Tema Primavera corregido
-// Parte 1 — Configuración inicial y saludo dinámico
+// Versión JS 2.5.1 — Compatible con HTML 5.1.2
+// Parte 1 — Configuración inicial y datos de préstamos actualizados
 
 // Saludo dinámico según la hora
 const fechaActual = new Date();
@@ -10,16 +10,46 @@ const saludoCompleto = `<br>${saludoTemporal}. A continuación se muestra el est
 const saludoDiv = document.getElementById("saludo");
 saludoDiv.innerHTML = saludoCompleto;
 
-// Datos de préstamos (ejemplo con último abono y saldo anterior)
+// Datos de préstamos actualizados
 const loans = [
-  { id: "luis",    nombre: "Luis",    montoOriginal: 17000, saldoActual: 3880,  ultimoAbono: 500,  saldoAnterior: 4380,  intro: "Préstamo correspondiente a Luis." },
-  { id: "payjoy",  nombre: "PayJoy",  montoOriginal: 4416,  saldoActual: 0,     ultimoAbono: 522,  saldoAnterior: 522,   intro: "Préstamo correspondiente a PayJoy." },
-  { id: "beatris", nombre: "Beatris", montoOriginal: 2400,  saldoActual: 1800,  ultimoAbono: 0,    saldoAnterior: 1800,  intro: "Préstamo correspondiente a Beatris." },
-  { id: "andy",    nombre: "Andy",    montoOriginal: 7600,  saldoActual: 10450, ultimoAbono: 2800, saldoAnterior: 7650,  intro: "Préstamo correspondiente a Andy." },
-  { id: "pedro",   nombre: "Pedro",   montoOriginal: 1460,  saldoActual: 220,   ultimoAbono: 230,  saldoAnterior: 450,   intro: "Préstamo correspondiente a Pedro." }
+  { 
+    id: "luis",    
+    nombre: "Luis",    
+    montoOriginal: 17000, 
+    saldoActual: 3880,  
+    ultimoAbono: 500,  
+    saldoAnterior: 4380,  
+    intro: "Préstamo correspondiente a Luis." 
+  },
+  { 
+    id: "pedro",   
+    nombre: "Pedro",   
+    montoOriginal: 1460, 
+    saldoActual: 60,   // saldo actual después del abono
+    ultimoAbono: 160,  
+    saldoAnterior: 220,   
+    intro: "Préstamo correspondiente a Pedro." 
+  },
+  { 
+    id: "beatris", 
+    nombre: "Beatris", 
+    montoOriginal: 2400, 
+    saldoActual: 1800,  
+    ultimoAbono: 0,    
+    saldoAnterior: 1800,  
+    intro: "Préstamo correspondiente a Beatris." 
+  },
+  { 
+    id: "andy",    
+    nombre: "Andy",    
+    montoOriginal: 11159, 
+    saldoActual: 10159,  // saldo actual después del abono
+    ultimoAbono: 1000,  
+    saldoAnterior: 11159,  
+    intro: "Préstamo correspondiente a Andy." 
+  }
 ];
-
-// Versión JS 2.5 — Tema Primavera corregido
+// Versión JS 2.5.1 — Compatible con HTML 5.1.2
 // Parte 2 — Renderizado y lógica de progreso
 
 // Calcular porcentaje pagado y ordenar
@@ -33,7 +63,7 @@ loans.sort((a, b) => b.porcentajePagado - a.porcentajePagado);
 const root = document.getElementById("loans-root");
 loans.forEach(l => {
   const cont = document.createElement("div");
-  cont.className = "progress-container spring-theme"; // clase para colores primaverales
+  cont.className = "progress-container spring-theme";
   cont.id = l.id;
   cont.innerHTML = `
     <p class="intro-text">${l.intro}</p>
@@ -46,7 +76,7 @@ loans.forEach(l => {
   root.appendChild(cont);
 });
 
-// Nueva función actualizarBarra
+// Función actualizarBarra
 function actualizarBarra(id, montoOriginal, saldoActual, ultimoAbono, saldoAnterior) {
   const contenedor = document.getElementById(id);
   const barra = contenedor.querySelector(".progress-bar");
@@ -71,12 +101,20 @@ function actualizarBarra(id, montoOriginal, saldoActual, ultimoAbono, saldoAnter
 // Aplicar actualización a cada préstamo
 loans.forEach(l => actualizarBarra(l.id, l.montoOriginal, l.saldoActual, l.ultimoAbono, l.saldoAnterior));
 
-// Footer año y versión
-document.getElementById("year").textContent = new Date().getFullYear();
-document.querySelector("footer .brand").textContent = "5.0";
+// Versión JS 2.5.1 — Compatible con HTML 5.1.2
+// Parte 3 — Footer y versión
 
-// Versión JS 2.5 — Tema Primavera corregido
-// Parte 3 — Animación de flores emoji 🌸 🌼 💮
+// Actualizar año dinámicamente en el footer
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Actualizar versión en el footer
+document.querySelector("footer .brand").textContent = "5.1.2"; // se muestra como v5.1.2 en HTML
+
+// Nota: El HTML ya está preparado para mostrar:
+// © 2026 — v5.1.2 — Desarrollado por Lord Balliwn's
+
+// Versión JS 2.5.1 — Compatible con HTML 5.1.2
+// Parte 4 — Animación de flores emoji 🌸 🌼 💮
 
 (function petalsBackground(){
   const canvas = document.getElementById('spring-canvas');
