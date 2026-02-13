@@ -25,8 +25,8 @@ const loans = [
     id: "pedro",   
     nombre: "Pedro",   
     montoOriginal: 1460, 
-    saldoActual: 60,   // saldo actual después del abono
-    ultimoAbono: 160,  
+    saldoActual: 80,   // saldo actual después del abono
+    ultimoAbono: 140,  // corregido de 160 a 140
     saldoAnterior: 220,   
     intro: "Préstamo correspondiente a Pedro." 
   },
