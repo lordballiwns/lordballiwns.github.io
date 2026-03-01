@@ -1,9 +1,9 @@
-// Versión JS 3.0.6 — Tema Espacial (Release)
+// Versión JS 3.0.7 — Tema Espacial (Release)
 
 // --- CONFIGURACIÓN DE VERSIÓN AUTOMÁTICA ---
 const FASE_PRUEBA = "Alpha";
 const VERSION_BASE = "5.9";
-const REVISION = "6"; // <--- ACTUALIZADO A 5.9.6
+const REVISION = "7"; // <--- ACTUALIZADO A 5.9.7
 const versionCompleta = `v${VERSION_BASE}.${REVISION} (${FASE_PRUEBA})`;
 
 // --- DATOS DE MISIONES (Préstamos) ---
@@ -42,13 +42,21 @@ function renderMissions() {
     // Si finalizó, forzamos 100% para el cohete
     const displayPct = finalizado ? 100 : pct;
 
+    // --- NUEVO: Detectar estado crítico (>90%) ---
+    let estadoCohete = '';
+    if (finalizado) {
+      estadoCohete = 'landed';
+    } else if (displayPct > 90) {
+      estadoCohete = 'critical';
+    }
+
     return `
       <div class="mission-container">
         <p class="mission-intro">Misión: ${m.nombre}</p>
         
         <div class="flight-path">
           <div class="progress-fill" style="width: ${displayPct}%"></div>
-          <div class="rocket ${finalizado ? 'landed' : ''}" style="left: calc(${displayPct}% - 15px)">
+          <div class="rocket ${estadoCohete}" style="left: calc(${displayPct}% - 15px)">
             🚀
           </div>
         </div>
