@@ -1,17 +1,20 @@
-// Versión JS 3.0.7 — Tema Espacial (Release)
+// Versión JS 3.0.9 — Tema Espacial (Release)
 
 // --- CONFIGURACIÓN DE VERSIÓN AUTOMÁTICA ---
 const FASE_PRUEBA = "Alpha";
 const VERSION_BASE = "5.9";
-const REVISION = "7"; // <--- ACTUALIZADO A 5.9.7
+const REVISION = "9"; // <--- ACTUALIZADO A 5.9.9
 const versionCompleta = `v${VERSION_BASE}.${REVISION} (${FASE_PRUEBA})`;
 
 // --- DATOS DE MISIONES (Préstamos) ---
+// --- AJUSTADOS PARA PRUEBA VISUAL ---
 const missions = [
+  // Pedro: Ajustado para que su deuda restante sea crítica (>90% pagado pero no finalizado)
+  { id: "pedro", nombre: "Pedro", original: 1460, actual: 100, ultimo: 50, anterior: 150 },
+  // Beatris: Ajustada para probar el estado crítico también
+  { id: "beatris", nombre: "Beatris", original: 2400, actual: 200, ultimo: 100, anterior: 300 },
   { id: "luis", nombre: "Luis", original: 17000, actual: 3880, ultimo: 500, anterior: 4380 },
-  { id: "pedro", nombre: "Pedro", original: 1460, actual: 0, ultimo: 80, anterior: 80 },
-  { id: "beatris", nombre: "Beatris", original: 2400, actual: 1800, ultimo: 0, anterior: 1800 },
-  { id: "andy", nombre: "Andy", original: 11159, actual: 11159, ultimo: 1000, anterior: 10159 }
+  { id: "andy", nombre: "Andy", original: 11159, actual: 11159, ultimo: 0, anterior: 11159 }
 ];
 
 // --- INICIALIZAR INTERFAZ ---
@@ -37,17 +40,19 @@ function renderMissions() {
   root.innerHTML = sortedMissions.map(m => {
     const pagado = m.original - m.actual;
     let pct = Math.min(Math.max((pagado / m.original) * 100, 0), 100).toFixed(2);
+    
+    // --- LÓGICA DE ESTADO FINAL (0% absoluto) ---
     const finalizado = m.actual <= 0;
     
     // Si finalizó, forzamos 100% para el cohete
     const displayPct = finalizado ? 100 : pct;
 
-    // --- NUEVO: Detectar estado crítico (>90%) ---
+    // --- LÓGICA DE ESTADO CRÍTICO (>90%) ---
     let estadoCohete = '';
     if (finalizado) {
       estadoCohete = 'landed';
     } else if (displayPct > 90) {
-      estadoCohete = 'critical';
+      estadoCohete = 'critical'; // CSS: brillo rojo y vibración rápida
     }
 
     return `
