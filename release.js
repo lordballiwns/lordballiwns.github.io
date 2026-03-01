@@ -1,4 +1,4 @@
-// Versión JS 3.2.8 — Tema Espacial (v6.0 RC2)
+// Versión JS 3.2.9 — Tema Espacial (v6.0 RC2)
 
 const FASE_PRUEBA = "RC2"; 
 const VERSION_BASE = "6.0";
@@ -9,7 +9,9 @@ const missions = [
   { id: "luis", nombre: "Luis", original: 17000, actual: 3880, ultimo: 500, anterior: 4380 },
   { id: "pedro", nombre: "Pedro", original: 1460, actual: 0, ultimo: 80, anterior: 80 },
   { id: "beatris", nombre: "Beatris", original: 2400, actual: 1800, ultimo: 0, anterior: 1800 },
-  { id: "andy", nombre: "Andy", original: 11159, actual: 11159, ultimo: 1000, anterior: 10159 }
+  { id: "andy", nombre: "Andy", original: 11159, actual: 11159, ultimo: 1000, anterior: 10159 },
+  // NUEVA DEUDA APLAZO
+  { id: "aplazo", nombre: "Aplazo", original: 8158.8, actual: 5522.88, ultimo: 2635.92, anterior: 8158.8 }
 ];
 
 // --- INICIALIZAR INTERFAZ ---
