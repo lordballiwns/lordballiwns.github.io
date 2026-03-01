@@ -1,16 +1,15 @@
-// Versión JS 3.0.10 — Tema Espacial (Release)
+// Versión JS 3.1.0 — Tema Espacial (Release)
 
 // --- CONFIGURACIÓN DE VERSIÓN AUTOMÁTICA ---
 const FASE_PRUEBA = "Alpha";
 const VERSION_BASE = "5.9";
-const REVISION = "10"; // <--- ACTUALIZADO A 5.9.10
+const REVISION = "11"; // <--- ACTUALIZADO A 5.9.11
 const versionCompleta = `v${VERSION_BASE}.${REVISION} (${FASE_PRUEBA})`;
 
 // --- DATOS DE MISIONES (Préstamos) ---
-// --- RESTAURADOS A ESTADO REAL ---
 const missions = [
   { id: "luis", nombre: "Luis", original: 17000, actual: 3880, ultimo: 500, anterior: 4380 },
-  { id: "pedro", nombre: "Pedro", original: 1460, actual: 0, ultimo: 80, anterior: 80 }, // <--- RESTAURADO
+  { id: "pedro", nombre: "Pedro", original: 1460, actual: 0, ultimo: 80, anterior: 80 },
   { id: "beatris", nombre: "Beatris", original: 2400, actual: 1800, ultimo: 0, anterior: 1800 },
   { id: "andy", nombre: "Andy", original: 11159, actual: 11159, ultimo: 1000, anterior: 10159 }
 ];
@@ -42,7 +41,7 @@ function renderMissions() {
     // --- LÓGICA DE ESTADO FINAL (0% absoluto) ---
     const finalizado = m.actual <= 0;
     
-    // Si finalizó, forzamos 100% para el cohete
+    // Si finalizado, forzamos 100% para el cohete
     const displayPct = finalizado ? 100 : pct;
 
     // --- LÓGICA DE ESTADO CRÍTICO (>90%) ---
