@@ -1,7 +1,7 @@
 // Versión JS 3.2.0 — Tema Espacial (v6.0 RC2)
-// Developed by Lord Balliwn's for Proyecto Tigger Swan
+// Desarrollado por Lord Balliwn's para Proyecto Tigger Swan
 
-// --- CONFIGURACIÓN DE VERSIÓN AUTOMÁTICA ---
+// --- CONFIGURACIÓN DE VERSIÓN ---
 const FASE_PRUEBA = "RC2"; 
 const VERSION_BASE = "6.0";
 const versionCompleta = `v${VERSION_BASE} (${FASE_PRUEBA})`;
@@ -24,10 +24,10 @@ function init() {
     saludoEl.innerHTML = `${saludo}<br>Telemetría de misiones financieras en curso.`;
   }
   
-  // --- PIE DE PÁGINA (Identidad Corporativa y Autoría) ---
+  // --- FUENTE ÚNICA DE CRÉDITO Y VERSIÓN ---
   const footerBrand = document.querySelector("footer .brand");
   if (footerBrand) {
-    footerBrand.innerHTML = `${versionCompleta} — Proyecto Tigger Swan<br><small>Developed by Lord Balliwn's</small>`;
+    footerBrand.textContent = `${versionCompleta} — Lord Balliwn's`;
   }
   
   const yearEl = document.getElementById("year");
@@ -43,7 +43,7 @@ function renderMissions() {
   const root = document.getElementById("missions-root");
   if (!root) return;
   
-  // Ordenamiento por saldo actual (de menor a mayor)
+  // Ordenamiento por saldo actual (menor a mayor)
   const sortedMissions = [...missions].sort((a, b) => a.actual - b.actual);
 
   root.innerHTML = sortedMissions.map(m => {
@@ -53,12 +53,12 @@ function renderMissions() {
     const finalizado = m.actual <= 0;
     const displayPct = finalizado ? 100 : pct;
 
-    // Lógica de estados visuales del cohete
+    // Estados visuales del cohete
     let estadoCohete = '';
     if (finalizado) {
-      estadoCohete = 'landed'; // Gris y estático
+      estadoCohete = 'landed'; // Gris y quieto
     } else if (displayPct > 90) {
-      estadoCohete = 'critical'; // Vibración rápida y brillo rojo
+      estadoCohete = 'critical'; // Vibración rápida y brillo rojo (combustible crítico)
     }
 
     return `
@@ -84,21 +84,21 @@ function renderMissions() {
   }).join('');
 }
 
-// --- MOTOR DE ESPACIO PROFUNDO (Estrellas Brillantes y de Colores) ---
+// --- MOTOR DE ESPACIO PROFUNDO (Estrellas v2.1) ---
 (function starsBackground(){
   const canvas = document.getElementById('space-canvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
   let w, h, stars = [];
 
-  // Paleta de colores estelares suaves (Clasificación astronómica)
+  // Paleta de colores estelares reales
   const starColors = [
     "rgba(255, 255, 255,",   // Blanco
-    "rgba(255, 250, 240,",   // Crema
-    "rgba(224, 247, 255,",   // Azul pálido
+    "rgba(255, 250, 240,",   // Crema/Hueso
+    "rgba(224, 247, 255,",   // Azul hielo
     "rgba(255, 255, 224,",   // Amarillo pálido
     "rgba(255, 244, 229,",   // Naranja suave
-    "rgba(240, 248, 255,"    // Celeste pálido
+    "rgba(240, 248, 255,"    // Alice Blue
   ];
 
   function resize(){
@@ -111,7 +111,7 @@ function renderMissions() {
   function generateStars(n){
     stars = [];
     for (let i=0; i<n; i++){
-      const baseOpacity = Math.random() * 0.5 + 0.3; // Mínimo 0.3 para visibilidad
+      const baseOpacity = Math.random() * 0.5 + 0.3; // Más brillantes para visibilidad
       stars.push({
         x: Math.random() * w,
         y: Math.random() * h,
@@ -132,7 +132,7 @@ function renderMissions() {
 
     for (let i=0; i<stars.length; i++){
       const s = stars[i];
-      // Efecto de parpadeo senoidal
+      // Parpadeo suave
       s.opacity = s.baseOpacity + (Math.sin(Date.now() * s.blinkSpeed) * 0.2);
       const finalOpacity = Math.max(0.1, Math.min(1, s.opacity));
       
@@ -146,5 +146,5 @@ function renderMissions() {
   requestAnimationFrame(draw);
 })();
 
-// Lanzamiento del sistema
+// Ignición
 init();
