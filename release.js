@@ -1,18 +1,17 @@
-// Versión JS 3.0.4 — Tema Espacial (Release)
+// Versión JS 3.0.6 — Tema Espacial (Release)
 
 // --- CONFIGURACIÓN DE VERSIÓN AUTOMÁTICA ---
 const FASE_PRUEBA = "Alpha";
 const VERSION_BASE = "5.9";
-const REVISION = "4"; // <--- ACTUALIZADO A 5.9.4
+const REVISION = "6"; // <--- ACTUALIZADO A 5.9.6
 const versionCompleta = `v${VERSION_BASE}.${REVISION} (${FASE_PRUEBA})`;
 
 // --- DATOS DE MISIONES (Préstamos) ---
-// --- AJUSTADOS CON NUEVOS ABONOS Y PRÉSTAMOS ---
 const missions = [
   { id: "luis", nombre: "Luis", original: 17000, actual: 3880, ultimo: 500, anterior: 4380 },
-  { id: "pedro", nombre: "Pedro", original: 1460, actual: 0, ultimo: 80, anterior: 80 }, // <--- ACTUALIZADO: Saldo 0
+  { id: "pedro", nombre: "Pedro", original: 1460, actual: 0, ultimo: 80, anterior: 80 },
   { id: "beatris", nombre: "Beatris", original: 2400, actual: 1800, ultimo: 0, anterior: 1800 },
-  { id: "andy", nombre: "Andy", original: 11159, actual: 11159, ultimo: 1000, anterior: 10159 } // <--- ACTUALIZADO: +$1000
+  { id: "andy", nombre: "Andy", original: 11159, actual: 11159, ultimo: 1000, anterior: 10159 }
 ];
 
 // --- INICIALIZAR INTERFAZ ---
@@ -37,7 +36,6 @@ function renderMissions() {
 
   root.innerHTML = sortedMissions.map(m => {
     const pagado = m.original - m.actual;
-    // Cálculo de porcentaje
     let pct = Math.min(Math.max((pagado / m.original) * 100, 0), 100).toFixed(2);
     const finalizado = m.actual <= 0;
     
@@ -51,7 +49,7 @@ function renderMissions() {
         <div class="flight-path">
           <div class="progress-fill" style="width: ${displayPct}%"></div>
           <div class="rocket ${finalizado ? 'landed' : ''}" style="left: calc(${displayPct}% - 15px)">
-            ${finalizado ? '🛸' : '🚀'}
+            🚀
           </div>
         </div>
 
