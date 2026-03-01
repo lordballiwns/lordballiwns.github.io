@@ -3,16 +3,16 @@
 // --- CONFIGURACIÓN DE VERSIÓN AUTOMÁTICA ---
 const FASE_PRUEBA = "Alpha";
 const VERSION_BASE = "5.9";
-const REVISION = "2"; // <--- ACTUALIZADO A 5.9.2
+const REVISION = "4"; // <--- ACTUALIZADO A 5.9.4
 const versionCompleta = `v${VERSION_BASE}.${REVISION} (${FASE_PRUEBA})`;
 
 // --- DATOS DE MISIONES (Préstamos) ---
-// El orden aquí no importa, el JS los ordenará por saldoActual
+// --- AJUSTADOS CON NUEVOS ABONOS Y PRÉSTAMOS ---
 const missions = [
   { id: "luis", nombre: "Luis", original: 17000, actual: 3880, ultimo: 500, anterior: 4380 },
-  { id: "pedro", nombre: "Pedro", original: 1460, actual: 80, ultimo: 140, anterior: 220 },
+  { id: "pedro", nombre: "Pedro", original: 1460, actual: 0, ultimo: 80, anterior: 80 }, // <--- ACTUALIZADO: Saldo 0
   { id: "beatris", nombre: "Beatris", original: 2400, actual: 1800, ultimo: 0, anterior: 1800 },
-  { id: "andy", nombre: "Andy", original: 11159, actual: 10159, ultimo: 1000, anterior: 11159 }
+  { id: "andy", nombre: "Andy", original: 11159, actual: 11159, ultimo: 1000, anterior: 10159 } // <--- ACTUALIZADO: +$1000
 ];
 
 // --- INICIALIZAR INTERFAZ ---
@@ -32,11 +32,12 @@ function init() {
 function renderMissions() {
   const root = document.getElementById("missions-root");
   
-  // --- ORDENAMIENTO POR DEUDA (Menor a Mayor) ---
+  // --- ORDENAMIENTO (Menor saldo actual a Mayor) ---
   const sortedMissions = [...missions].sort((a, b) => a.actual - b.actual);
 
   root.innerHTML = sortedMissions.map(m => {
     const pagado = m.original - m.actual;
+    // Cálculo de porcentaje
     let pct = Math.min(Math.max((pagado / m.original) * 100, 0), 100).toFixed(2);
     const finalizado = m.actual <= 0;
     
@@ -55,7 +56,7 @@ function renderMissions() {
         </div>
 
         <div class="status-text">
-          Progreso: ${pct}% — Último abono: $${m.ultimo.toLocaleString()}
+          Progreso: ${pct}% — Último movimiento: $${m.ultimo.toLocaleString()}
         </div>
         <div class="mission-label">
           <span>Saldo Anterior: $${m.anterior.toLocaleString()}</span><br>
