@@ -1,4 +1,4 @@
-// Versión JS 3.0 — Tema Espacial (Release)
+// Versión JS 3.0.4 — Tema Espacial (Release)
 
 // --- CONFIGURACIÓN DE VERSIÓN AUTOMÁTICA ---
 const FASE_PRUEBA = "Alpha";
