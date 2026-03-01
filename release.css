@@ -1,4 +1,4 @@
-/* Versión CSS 3.0.6 — Tema Espacial (Release) */
+/* Versión CSS 3.0.7 — Tema Espacial (Release) */
 
 body {
   margin: 0;
@@ -78,9 +78,14 @@ body {
   100% { transform: translate(0, 0); }
 }
 
+/* --- NUEVO: ESTADO CRÍTICO (Menos del 10%) --- */
+.rocket.critical {
+  animation: vibrar 0.05s infinite linear; /* Más rápido */
+  filter: drop-shadow(0 0 12px red); /* Brillo rojo */
+}
+
 /* --- ESTADO FINALIZADO --- */
 .rocket.landed {
-  /* --- NUEVO: Cohete gris y estático --- */
   filter: grayscale(100%) brightness(50%);
   animation: none;
 }
