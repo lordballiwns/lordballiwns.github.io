@@ -1,7 +1,5 @@
-// Versión JS 3.2.0 — Tema Espacial (v6.0 RC2)
-// Desarrollado por Lord Balliwn's para Proyecto Tigger Swan
+// Versión JS 3.2.8 — Tema Espacial (v6.0 RC2)
 
-// --- CONFIGURACIÓN DE VERSIÓN ---
 const FASE_PRUEBA = "RC2"; 
 const VERSION_BASE = "6.0";
 const versionCompleta = `v${VERSION_BASE} (${FASE_PRUEBA})`;
@@ -16,23 +14,25 @@ const missions = [
 
 // --- INICIALIZAR INTERFAZ ---
 function init() {
-  const hora = new Date().getHours();
-  const saludo = hora < 12 ? "Buen día, Comandante." : hora < 18 ? "Buenas tardes, Comandante." : "Buenas noches, Comandante.";
-  
   const saludoEl = document.getElementById("saludo");
   if (saludoEl) {
-    saludoEl.innerHTML = `${saludo}<br>Telemetría de misiones financieras en curso.`;
+    const hora = new Date().getHours();
+    const saludo = hora < 12 ? "Buen día" : hora < 18 ? "Buenas tardes" : "Buenas noches";
+    saludoEl.innerHTML = `${saludo}, Comandante.<br>Telemetría de misiones financieras en curso.`;
   }
   
-  // --- FUENTE ÚNICA DE CRÉDITO Y VERSIÓN ---
+  // 1. Inyección de Versión y Autor en línea .brand
   const footerBrand = document.querySelector("footer .brand");
   if (footerBrand) {
-    footerBrand.textContent = `${versionCompleta} — Lord Balliwn's`;
+    footerBrand.textContent = `${versionCompleta} — Developed by Lord Balliwn's`;
   }
   
+  // 2. Inyección de Año y Copyright en línea .copyright
   const yearEl = document.getElementById("year");
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
+    // Añadimos el resto del copyright al contenedor padre para no duplicar en HTML
+    yearEl.parentElement.innerHTML += " Proyecto Tigger Swan.";
   }
   
   renderMissions();
