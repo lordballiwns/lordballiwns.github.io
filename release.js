@@ -1,10 +1,10 @@
-// Versión JS 3.1.0 — Tema Espacial (Release)
+// Versión JS 3.1.1 — Tema Espacial (Release Candidate 1)
 
 // --- CONFIGURACIÓN DE VERSIÓN AUTOMÁTICA ---
-const FASE_PRUEBA = "Alpha";
-const VERSION_BASE = "5.9";
-const REVISION = "11"; // <--- ACTUALIZADO A 5.9.11
-const versionCompleta = `v${VERSION_BASE}.${REVISION} (${FASE_PRUEBA})`;
+const FASE_PRUEBA = "RC1"; // <--- ACTUALIZADO
+const VERSION_BASE = "6.0"; // <--- ACTUALIZADO
+const REVISION = ""; // No se usa revisión en RC
+const versionCompleta = `v${VERSION_BASE} (${FASE_PRUEBA})`;
 
 // --- DATOS DE MISIONES (Préstamos) ---
 const missions = [
@@ -75,11 +75,21 @@ function renderMissions() {
   }).join('');
 }
 
-// --- CANVAS DE ESTRELLAS ---
+// --- CANVAS DE ESTRELLAS (Motor v2.0) ---
 (function starsBackground(){
   const canvas = document.getElementById('space-canvas');
   const ctx = canvas.getContext('2d');
   let w, h, stars = [];
+
+  // --- NUEVO: Paleta de colores estelares suaves ---
+  const starColors = [
+    "rgba(255, 255, 255,",   // Blanco puro
+    "rgba(255, 250, 240,",   // Blanco crema (FloralWhite)
+    "rgba(224, 247, 255,",   // Azul muy pálido
+    "rgba(255, 255, 224,",   // Amarillo muy pálido (LightYellow)
+    "rgba(255, 244, 229,",   // Naranja muy suave
+    "rgba(240, 248, 255,"    // Azul cielo pálido (AliceBlue)
+  ];
 
   function resize(){
     w = canvas.width = window.innerWidth;
@@ -91,28 +101,38 @@ function renderMissions() {
   function generateStars(n){
     stars = [];
     for (let i=0; i<n; i++){
+      // --- AJUSTE: Brillo y Color ---
+      const baseOpacity = Math.random() * 0.5 + 0.3; // Opacidad base más alta (0.3 a 0.8)
       stars.push({
         x: Math.random() * w,
         y: Math.random() * h,
-        size: Math.random() * 1.5,
-        opacity: Math.random(),
-        blinkSpeed: Math.random() * 0.02 + 0.005
+        size: Math.random() * 2 + 0.5, // Estrellas ligeramente más grandes
+        colorBase: starColors[Math.floor(Math.random() * starColors.length)], // Color aleatorio de la paleta
+        opacity: baseOpacity, 
+        baseOpacity: baseOpacity, // Guardamos la base para el parpadeo
+        blinkSpeed: Math.random() * 0.01 + 0.002 // Parpadeo más lento y natural
       });
     }
   }
-  generateStars(100);
+  generateStars(150); // Mantenemos una cantidad similar
 
   function draw(){
     ctx.clearRect(0,0,w,h);
+    // Fondo espacial profundo
     ctx.fillStyle = "#020205";
     ctx.fillRect(0,0,w,h);
 
     for (let i=0; i<stars.length; i++){
       const s = stars[i];
-      s.opacity += s.blinkSpeed;
-      if (s.opacity > 1 || s.opacity < 0) s.blinkSpeed = -s.blinkSpeed;
       
-      ctx.fillStyle = `rgba(255, 255, 255, ${Math.abs(s.opacity)})`;
+      // --- LÓGICA DE PARPADEO MEJORADA ---
+      // El parpadeo oscila alrededor de la opacidad base
+      s.opacity = s.baseOpacity + (Math.sin(Date.now() * s.blinkSpeed) * 0.2);
+      
+      // Asegurar que la opacidad se mantenga en rango visible pero brillante
+      const finalOpacity = Math.max(0.2, Math.min(1, s.opacity));
+      
+      ctx.fillStyle = `${s.colorBase} ${finalOpacity})`;
       ctx.beginPath();
       ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
       ctx.fill();
