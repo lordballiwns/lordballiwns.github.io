@@ -3,10 +3,11 @@
 // --- CONFIGURACIÓN DE VERSIÓN AUTOMÁTICA ---
 const FASE_PRUEBA = "Alpha";
 const VERSION_BASE = "5.9";
-const REVISION = "0"; // Cambiar aquí para 5.9.1, 5.9.2...
+const REVISION = "2"; // <--- ACTUALIZADO A 5.9.2
 const versionCompleta = `v${VERSION_BASE}.${REVISION} (${FASE_PRUEBA})`;
 
 // --- DATOS DE MISIONES (Préstamos) ---
+// El orden aquí no importa, el JS los ordenará por saldoActual
 const missions = [
   { id: "luis", nombre: "Luis", original: 17000, actual: 3880, ultimo: 500, anterior: 4380 },
   { id: "pedro", nombre: "Pedro", original: 1460, actual: 80, ultimo: 140, anterior: 220 },
@@ -30,7 +31,11 @@ function init() {
 // --- RENDERIZADO DE MISIONES ---
 function renderMissions() {
   const root = document.getElementById("missions-root");
-  root.innerHTML = missions.map(m => {
+  
+  // --- ORDENAMIENTO POR DEUDA (Menor a Mayor) ---
+  const sortedMissions = [...missions].sort((a, b) => a.actual - b.actual);
+
+  root.innerHTML = sortedMissions.map(m => {
     const pagado = m.original - m.actual;
     let pct = Math.min(Math.max((pagado / m.original) * 100, 0), 100).toFixed(2);
     const finalizado = m.actual <= 0;
@@ -53,7 +58,8 @@ function renderMissions() {
           Progreso: ${pct}% — Último abono: $${m.ultimo.toLocaleString()}
         </div>
         <div class="mission-label">
-          Saldo Actual: ${finalizado ? '<strong>MISIÓN CUMPLIDA</strong>' : '$' + m.actual.toLocaleString()}
+          <span>Saldo Anterior: $${m.anterior.toLocaleString()}</span><br>
+          <span>Saldo Actual: ${finalizado ? '<strong>MISIÓN CUMPLIDA</strong>' : '$' + m.actual.toLocaleString()}</span>
         </div>
       </div>
     `;
