@@ -1,12 +1,12 @@
-// Versión JS 3.1.1 — Tema Espacial (Release Candidate 1)
+// Versión JS 3.2.0 — Tema Espacial (v6.0 RC2)
+// Developed by Lord Balliwn's for Proyecto Tigger Swan
 
 // --- CONFIGURACIÓN DE VERSIÓN AUTOMÁTICA ---
-const FASE_PRUEBA = "RC1"; // <--- ACTUALIZADO
-const VERSION_BASE = "6.0"; // <--- ACTUALIZADO
-const REVISION = ""; // No se usa revisión en RC
+const FASE_PRUEBA = "RC2"; 
+const VERSION_BASE = "6.0";
 const versionCompleta = `v${VERSION_BASE} (${FASE_PRUEBA})`;
 
-// --- DATOS DE MISIONES (Préstamos) ---
+// --- DATOS DE MISIONES (Telemetría Real) ---
 const missions = [
   { id: "luis", nombre: "Luis", original: 17000, actual: 3880, ultimo: 500, anterior: 4380 },
   { id: "pedro", nombre: "Pedro", original: 1460, actual: 0, ultimo: 80, anterior: 80 },
@@ -18,11 +18,22 @@ const missions = [
 function init() {
   const hora = new Date().getHours();
   const saludo = hora < 12 ? "Buen día, Comandante." : hora < 18 ? "Buenas tardes, Comandante." : "Buenas noches, Comandante.";
-  document.getElementById("saludo").innerHTML = `${saludo}<br>Telemetría de misiones financieras en curso.`;
   
-  // Versión y Año
-  document.querySelector("footer .brand").textContent = versionCompleta;
-  document.getElementById("year").textContent = new Date().getFullYear();
+  const saludoEl = document.getElementById("saludo");
+  if (saludoEl) {
+    saludoEl.innerHTML = `${saludo}<br>Telemetría de misiones financieras en curso.`;
+  }
+  
+  // --- PIE DE PÁGINA (Identidad Corporativa y Autoría) ---
+  const footerBrand = document.querySelector("footer .brand");
+  if (footerBrand) {
+    footerBrand.innerHTML = `${versionCompleta} — Proyecto Tigger Swan<br><small>Developed by Lord Balliwn's</small>`;
+  }
+  
+  const yearEl = document.getElementById("year");
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
   
   renderMissions();
 }
@@ -30,26 +41,24 @@ function init() {
 // --- RENDERIZADO DE MISIONES ---
 function renderMissions() {
   const root = document.getElementById("missions-root");
+  if (!root) return;
   
-  // --- ORDENAMIENTO (Menor saldo actual a Mayor) ---
+  // Ordenamiento por saldo actual (de menor a mayor)
   const sortedMissions = [...missions].sort((a, b) => a.actual - b.actual);
 
   root.innerHTML = sortedMissions.map(m => {
     const pagado = m.original - m.actual;
     let pct = Math.min(Math.max((pagado / m.original) * 100, 0), 100).toFixed(2);
     
-    // --- LÓGICA DE ESTADO FINAL (0% absoluto) ---
     const finalizado = m.actual <= 0;
-    
-    // Si finalizado, forzamos 100% para el cohete
     const displayPct = finalizado ? 100 : pct;
 
-    // --- LÓGICA DE ESTADO CRÍTICO (>90%) ---
+    // Lógica de estados visuales del cohete
     let estadoCohete = '';
     if (finalizado) {
-      estadoCohete = 'landed';
+      estadoCohete = 'landed'; // Gris y estático
     } else if (displayPct > 90) {
-      estadoCohete = 'critical';
+      estadoCohete = 'critical'; // Vibración rápida y brillo rojo
     }
 
     return `
@@ -75,20 +84,21 @@ function renderMissions() {
   }).join('');
 }
 
-// --- CANVAS DE ESTRELLAS (Motor v2.0) ---
+// --- MOTOR DE ESPACIO PROFUNDO (Estrellas Brillantes y de Colores) ---
 (function starsBackground(){
   const canvas = document.getElementById('space-canvas');
+  if (!canvas) return;
   const ctx = canvas.getContext('2d');
   let w, h, stars = [];
 
-  // --- NUEVO: Paleta de colores estelares suaves ---
+  // Paleta de colores estelares suaves (Clasificación astronómica)
   const starColors = [
-    "rgba(255, 255, 255,",   // Blanco puro
-    "rgba(255, 250, 240,",   // Blanco crema (FloralWhite)
-    "rgba(224, 247, 255,",   // Azul muy pálido
-    "rgba(255, 255, 224,",   // Amarillo muy pálido (LightYellow)
-    "rgba(255, 244, 229,",   // Naranja muy suave
-    "rgba(240, 248, 255,"    // Azul cielo pálido (AliceBlue)
+    "rgba(255, 255, 255,",   // Blanco
+    "rgba(255, 250, 240,",   // Crema
+    "rgba(224, 247, 255,",   // Azul pálido
+    "rgba(255, 255, 224,",   // Amarillo pálido
+    "rgba(255, 244, 229,",   // Naranja suave
+    "rgba(240, 248, 255,"    // Celeste pálido
   ];
 
   function resize(){
@@ -101,36 +111,30 @@ function renderMissions() {
   function generateStars(n){
     stars = [];
     for (let i=0; i<n; i++){
-      // --- AJUSTE: Brillo y Color ---
-      const baseOpacity = Math.random() * 0.5 + 0.3; // Opacidad base más alta (0.3 a 0.8)
+      const baseOpacity = Math.random() * 0.5 + 0.3; // Mínimo 0.3 para visibilidad
       stars.push({
         x: Math.random() * w,
         y: Math.random() * h,
-        size: Math.random() * 2 + 0.5, // Estrellas ligeramente más grandes
-        colorBase: starColors[Math.floor(Math.random() * starColors.length)], // Color aleatorio de la paleta
+        size: Math.random() * 2 + 0.5, 
+        colorBase: starColors[Math.floor(Math.random() * starColors.length)],
         opacity: baseOpacity, 
-        baseOpacity: baseOpacity, // Guardamos la base para el parpadeo
-        blinkSpeed: Math.random() * 0.01 + 0.002 // Parpadeo más lento y natural
+        baseOpacity: baseOpacity,
+        blinkSpeed: Math.random() * 0.01 + 0.002 
       });
     }
   }
-  generateStars(150); // Mantenemos una cantidad similar
+  generateStars(150);
 
   function draw(){
     ctx.clearRect(0,0,w,h);
-    // Fondo espacial profundo
     ctx.fillStyle = "#020205";
     ctx.fillRect(0,0,w,h);
 
     for (let i=0; i<stars.length; i++){
       const s = stars[i];
-      
-      // --- LÓGICA DE PARPADEO MEJORADA ---
-      // El parpadeo oscila alrededor de la opacidad base
+      // Efecto de parpadeo senoidal
       s.opacity = s.baseOpacity + (Math.sin(Date.now() * s.blinkSpeed) * 0.2);
-      
-      // Asegurar que la opacidad se mantenga en rango visible pero brillante
-      const finalOpacity = Math.max(0.2, Math.min(1, s.opacity));
+      const finalOpacity = Math.max(0.1, Math.min(1, s.opacity));
       
       ctx.fillStyle = `${s.colorBase} ${finalOpacity})`;
       ctx.beginPath();
@@ -142,4 +146,5 @@ function renderMissions() {
   requestAnimationFrame(draw);
 })();
 
+// Lanzamiento del sistema
 init();
