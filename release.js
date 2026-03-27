@@ -1,4 +1,4 @@
-// Versión JS 3.2.10 — Tema Espacial (v6.0 RC2)
+// Versión JS 3.3.0 — Tema Espacial (v6.0 RC2)
 
 const FASE_PRUEBA = "RC2"; 
 const VERSION_BASE = "6.0";
@@ -10,7 +10,6 @@ const missions = [
   { id: "pedro", nombre: "Pedro", original: 1460, actual: 0, ultimo: 80, anterior: 80 },
   { id: "beatris", nombre: "Beatris", original: 2400, actual: 1800, ultimo: 0, anterior: 1800 },
   { id: "andy", nombre: "Andy", original: 11159, actual: 11159, ultimo: 1000, anterior: 10159 },
-  // ACTUALIZACIÓN DEUDA APLAZO
   { id: "aplazo", nombre: "Aplazo", original: 8158.8, actual: 3891.12, ultimo: 1631.76, anterior: 5522.88 }
 ];
 
@@ -23,17 +22,14 @@ function init() {
     saludoEl.innerHTML = `${saludo}, Comandante.<br>Telemetría de misiones financieras en curso.`;
   }
   
-  // 1. Inyección de Versión y Autor en línea .brand
   const footerBrand = document.querySelector("footer .brand");
   if (footerBrand) {
     footerBrand.textContent = `${versionCompleta} — Developed by Lord Balliwn's`;
   }
   
-  // 2. Inyección de Año y Copyright en línea .copyright
   const yearEl = document.getElementById("year");
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
-    // Añadimos el resto del copyright al contenedor padre para no duplicar en HTML
     yearEl.parentElement.innerHTML += " Proyecto Tigger Swan.";
   }
   
@@ -45,8 +41,12 @@ function renderMissions() {
   const root = document.getElementById("missions-root");
   if (!root) return;
   
-  // Ordenamiento por saldo actual (menor a mayor)
-  const sortedMissions = [...missions].sort((a, b) => a.actual - b.actual);
+  // Ordenamiento: Barras más llenas (mayor progreso) primero
+  const sortedMissions = [...missions].sort((a, b) => {
+    const pctA = (a.original - a.actual) / a.original;
+    const pctB = (b.original - b.actual) / b.original;
+    return pctB - pctA; 
+  });
 
   root.innerHTML = sortedMissions.map(m => {
     const pagado = m.original - m.actual;
@@ -55,12 +55,11 @@ function renderMissions() {
     const finalizado = m.actual <= 0;
     const displayPct = finalizado ? 100 : pct;
 
-    // Estados visuales del cohete
     let estadoCohete = '';
     if (finalizado) {
-      estadoCohete = 'landed'; // Gris y quieto
+      estadoCohete = 'landed'; 
     } else if (displayPct > 90) {
-      estadoCohete = 'critical'; // Vibración rápida y brillo rojo (combustible crítico)
+      estadoCohete = 'critical'; 
     }
 
     return `
@@ -93,10 +92,7 @@ function renderMissions() {
   const ctx = canvas.getContext('2d');
   let w, h, stars = [];
 
-  const starColors = [
-    "rgba(255, 255, 255,", "rgba(255, 250, 240,", "rgba(224, 247, 255,", 
-    "rgba(255, 255, 224,", "rgba(255, 244, 229,", "rgba(240, 248, 255,"
-  ];
+  const starColors = ["rgba(255, 255, 255,", "rgba(255, 250, 240,", "rgba(224, 247, 255,", "rgba(255, 255, 224,", "rgba(255, 244, 229,", "rgba(240, 248, 255,"];
 
   function resize(){
     w = canvas.width = window.innerWidth;
@@ -110,12 +106,10 @@ function renderMissions() {
     for (let i=0; i<n; i++){
       const baseOpacity = Math.random() * 0.5 + 0.3;
       stars.push({
-        x: Math.random() * w,
-        y: Math.random() * h,
+        x: Math.random() * w, y: Math.random() * h,
         size: Math.random() * 2 + 0.5, 
         colorBase: starColors[Math.floor(Math.random() * starColors.length)],
-        opacity: baseOpacity, 
-        baseOpacity: baseOpacity,
+        opacity: baseOpacity, baseOpacity: baseOpacity,
         blinkSpeed: Math.random() * 0.01 + 0.002 
       });
     }
@@ -126,13 +120,10 @@ function renderMissions() {
     ctx.clearRect(0,0,w,h);
     ctx.fillStyle = "#020205";
     ctx.fillRect(0,0,w,h);
-
     for (let i=0; i<stars.length; i++){
       const s = stars[i];
       s.opacity = s.baseOpacity + (Math.sin(Date.now() * s.blinkSpeed) * 0.2);
-      const finalOpacity = Math.max(0.1, Math.min(1, s.opacity));
-      
-      ctx.fillStyle = `${s.colorBase} ${finalOpacity})`;
+      ctx.fillStyle = `${s.colorBase} ${Math.max(0.1, Math.min(1, s.opacity))})`;
       ctx.beginPath();
       ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
       ctx.fill();
@@ -142,5 +133,4 @@ function renderMissions() {
   requestAnimationFrame(draw);
 })();
 
-// Ignición
 init();
