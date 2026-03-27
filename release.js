@@ -1,4 +1,4 @@
-// Versión JS 3.2.9 — Tema Espacial (v6.0 RC2)
+// Versión JS 3.2.10 — Tema Espacial (v6.0 RC2)
 
 const FASE_PRUEBA = "RC2"; 
 const VERSION_BASE = "6.0";
@@ -10,8 +10,8 @@ const missions = [
   { id: "pedro", nombre: "Pedro", original: 1460, actual: 0, ultimo: 80, anterior: 80 },
   { id: "beatris", nombre: "Beatris", original: 2400, actual: 1800, ultimo: 0, anterior: 1800 },
   { id: "andy", nombre: "Andy", original: 11159, actual: 11159, ultimo: 1000, anterior: 10159 },
-  // NUEVA DEUDA APLAZO
-  { id: "aplazo", nombre: "Aplazo", original: 8158.8, actual: 5522.88, ultimo: 2635.92, anterior: 8158.8 }
+  // ACTUALIZACIÓN DEUDA APLAZO
+  { id: "aplazo", nombre: "Aplazo", original: 8158.8, actual: 3891.12, ultimo: 1631.76, anterior: 5522.88 }
 ];
 
 // --- INICIALIZAR INTERFAZ ---
@@ -93,14 +93,9 @@ function renderMissions() {
   const ctx = canvas.getContext('2d');
   let w, h, stars = [];
 
-  // Paleta de colores estelares reales
   const starColors = [
-    "rgba(255, 255, 255,",   // Blanco
-    "rgba(255, 250, 240,",   // Crema/Hueso
-    "rgba(224, 247, 255,",   // Azul hielo
-    "rgba(255, 255, 224,",   // Amarillo pálido
-    "rgba(255, 244, 229,",   // Naranja suave
-    "rgba(240, 248, 255,"    // Alice Blue
+    "rgba(255, 255, 255,", "rgba(255, 250, 240,", "rgba(224, 247, 255,", 
+    "rgba(255, 255, 224,", "rgba(255, 244, 229,", "rgba(240, 248, 255,"
   ];
 
   function resize(){
@@ -113,7 +108,7 @@ function renderMissions() {
   function generateStars(n){
     stars = [];
     for (let i=0; i<n; i++){
-      const baseOpacity = Math.random() * 0.5 + 0.3; // Más brillantes para visibilidad
+      const baseOpacity = Math.random() * 0.5 + 0.3;
       stars.push({
         x: Math.random() * w,
         y: Math.random() * h,
@@ -134,7 +129,6 @@ function renderMissions() {
 
     for (let i=0; i<stars.length; i++){
       const s = stars[i];
-      // Parpadeo suave
       s.opacity = s.baseOpacity + (Math.sin(Date.now() * s.blinkSpeed) * 0.2);
       const finalOpacity = Math.max(0.1, Math.min(1, s.opacity));
       
