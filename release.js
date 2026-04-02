@@ -1,4 +1,4 @@
-// Versión JS 3.3.0 — Tema Espacial (v6.0 RC2)
+// Versión JS 3.3.1 — Tema Espacial (v6.0 RC2)
 
 const FASE_PRUEBA = "RC2"; 
 const VERSION_BASE = "6.0";
@@ -10,7 +10,8 @@ const missions = [
   { id: "pedro", nombre: "Pedro", original: 1460, actual: 0, ultimo: 80, anterior: 80 },
   { id: "beatris", nombre: "Beatris", original: 2400, actual: 1800, ultimo: 0, anterior: 1800 },
   { id: "andy", nombre: "Andy", original: 11159, actual: 11159, ultimo: 1000, anterior: 10159 },
-  { id: "aplazo", nombre: "Aplazo", original: 8158.8, actual: 3891.12, ultimo: 1631.76, anterior: 5522.88 }
+  // SEGUNDO ABONO APLAZO
+  { id: "aplazo", nombre: "Aplazo", original: 8158.8, actual: 2259.36, ultimo: 1631.76, anterior: 3891.12 }
 ];
 
 // --- INICIALIZAR INTERFAZ ---
@@ -41,7 +42,7 @@ function renderMissions() {
   const root = document.getElementById("missions-root");
   if (!root) return;
   
-  // Ordenamiento: Barras más llenas (mayor progreso) primero
+  // Ordenamiento: Mayor progreso porcentual primero
   const sortedMissions = [...missions].sort((a, b) => {
     const pctA = (a.original - a.actual) / a.original;
     const pctB = (b.original - b.actual) / b.original;
@@ -91,7 +92,6 @@ function renderMissions() {
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
   let w, h, stars = [];
-
   const starColors = ["rgba(255, 255, 255,", "rgba(255, 250, 240,", "rgba(224, 247, 255,", "rgba(255, 255, 224,", "rgba(255, 244, 229,", "rgba(240, 248, 255,"];
 
   function resize(){
